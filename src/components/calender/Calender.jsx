@@ -62,9 +62,9 @@ const Calender = () => {
                     ))}
                     {generateDate(today.month(), today.year()).map((day, index) => (
                         <div key={index} 
-                            className={`flex justify-center items-center p-4 hover:bg-green-500 hover:rounded-full hover:text-white hover:cursor-pointer 
+                            className={`flex justify-center items-center p-3 m-1 hover:bg-green-500 hover:rounded-[50%] hover:text-white hover:cursor-pointer 
                                         ${day.isCurrentMonth ? 'text-black' : 'text-gray-300'} 
-                                        ${day.today ? 'bg-green-700 rounded-full' : ''}
+                                        ${day.today ? 'bg-green-700 rounded-[50%]' : ''}
                                         ${day.date.isSame(selectedDate, 'date') ? 'bg-green-500 rounded-full text-white' : ''}`}
                             onClick={() => setSelectedDate(day.date)}>{day.date.date()}</div>
                             // onClick để test
