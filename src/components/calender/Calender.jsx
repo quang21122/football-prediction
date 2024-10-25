@@ -62,12 +62,15 @@ const Calender = () => {
                     ))}
                     {generateDate(today.month(), today.year()).map((day, index) => (
                         <div key={index} 
-                            className={`flex justify-center items-center p-4 hover:bg-green-500 hover:rounded-full hover:text-white hover:cursor-pointer ${day.isCurrentMonth ? 'text-black' : 'text-gray-300'} ${day.today ? 'bg-green-600 rounded-full' : ''}`}
+                            className={`flex justify-center items-center p-4 hover:bg-green-500 hover:rounded-full hover:text-white hover:cursor-pointer 
+                                        ${day.isCurrentMonth ? 'text-black' : 'text-gray-300'} 
+                                        ${day.today ? 'bg-green-700 rounded-full' : ''}
+                                        ${day.date.isSame(selectedDate, 'date') ? 'bg-green-500 rounded-full text-white' : ''}`}
                             onClick={() => setSelectedDate(day.date)}>{day.date.date()}</div>
                             // onClick để test
                     ))}
                 </div>
-                <hr className='w-full border-solid border-green-700'/>
+                <hr className='w-full border-solid border-green-600'/>
                 <div className='flex items-center py-5 px-6'>
                     <button className='bg-green-600 rounded-2xl py-2 px-4' onClick={() => setToday(dayjs())}>Today</button>
                 </div>
