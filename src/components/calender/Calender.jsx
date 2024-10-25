@@ -50,7 +50,7 @@ const Calender = () => {
     const [selectedDate, setSelectedDate] = React.useState(dayjs());
     return (
         <>
-            <div className='w-[15%] h-[40%] rounded-3xl bg-white'>
+            <div className='w-[15%] h-[40%] rounded-[9%] bg-white'>
                 <div className='flex items-center justify-center py-3'>
                     <GrFormPrevious className='cursor-pointer text-4xl' onClick={() => setToday(today.subtract(1, 'month'))} />
                     <h1 className='text-xl font-bold px-16'>{months[today.month()]} {today.year()}</h1>
@@ -61,12 +61,19 @@ const Calender = () => {
                         <div key={index} className='bg-green-100 flex justify-center items-center h-full py-3'>{day}</div>
                     ))}
                     {generateDate(today.month(), today.year()).map((day, index) => (
-                        <div key={index} className={`flex justify-center items-center p-4 hover:bg-green-500 hover:rounded-full hover:text-white hover:cursor-pointer ${day.isCurrentMonth ? 'text-black' : 'text-gray-300'} ${day.today ? 'bg-green-600 rounded-full' : ''}`}>{day.date.date()}</div>
+                        <div key={index} 
+                            className={`flex justify-center items-center p-4 hover:bg-green-500 hover:rounded-full hover:text-white hover:cursor-pointer ${day.isCurrentMonth ? 'text-black' : 'text-gray-300'} ${day.today ? 'bg-green-600 rounded-full' : ''}`}
+                            onClick={() => setSelectedDate(day.date)}>{day.date.date()}</div>
+                            // onClick để test
                     ))}
                 </div>
                 <hr className='w-full border-solid border-green-700'/>
                 <div className='flex items-center py-5 px-6'>
-                    <button className='bg-green-600 rounded-2xl py-2 px-4'>Today</button>
+                    <button className='bg-green-600 rounded-2xl py-2 px-4' onClick={() => setToday(dayjs())}>Today</button>
+                </div>
+                {/* Chỗ này test nốt */}
+                <div className="">
+                    <h1 className='text-center text-xl font-bold'>{selectedDate.format('dddd, MMMM DD, YYYY')}</h1>
                 </div>
             </div>
         </>
