@@ -5,7 +5,7 @@ function FinishedMatches() {
   const [displayLimit, setDisplayLimit] = useState(3);
 
   useEffect(() => {
-    const savedMatches = localStorage.getItem('finishedMatches');
+    const savedMatches = localStorage.getItem('savedData');
     if (savedMatches) {
       setMatches(JSON.parse(savedMatches));
     }
