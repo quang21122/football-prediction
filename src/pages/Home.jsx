@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import Calendar from "../components/calendar/Calendar";
 import FinishedMatches from "../components/Matches/FinishedMatches-v2";
 import LiveMatches from "../components/Matches/LiveMatches-v2";
-import sampleData from '../../data-sample.json';
+import finishedMatchesData from "../../finished-matches.json";
+import liveMatchesData from "../../live-matches.json";
 
 function loadData() {
-  localStorage.setItem('savedData', JSON.stringify(sampleData));
+  localStorage.setItem('finishedMatchesData', JSON.stringify(finishedMatchesData));
+  localStorage.setItem('liveMatchesData', JSON.stringify(liveMatchesData));
   console.log('Data loaded');
 }
 

@@ -5,7 +5,8 @@ function LiveMatches() {
   const [displayLimit, setDisplayLimit] = useState(3);
 
   useEffect(() => {
-    const savedMatches = localStorage.getItem('liveMatches');
+    const savedMatches = localStorage.getItem('liveMatchesData');
+    console.log(savedMatches);
     if (savedMatches) {
       setMatches(JSON.parse(savedMatches));
     }
