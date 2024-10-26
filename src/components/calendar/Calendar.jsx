@@ -50,7 +50,7 @@ const Calendar = () => {
     const [selectedDate, setSelectedDate] = React.useState(dayjs());
     return (
         <>
-            <div className='w-[15%] h-[40%] rounded-[9%] bg-white'>
+            <div className='w-[50%] h-[360px] rounded-[9%] bg-white'>
                 <div className='flex items-center justify-center py-3'>
                     <GrFormPrevious className='cursor-pointer text-4xl' onClick={() => setToday(today.subtract(1, 'month'))} />
                     <h1 className='text-xl font-bold px-16'>{months[today.month()]} {today.year()}</h1>
