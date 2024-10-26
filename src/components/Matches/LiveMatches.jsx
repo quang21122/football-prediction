@@ -1,15 +1,62 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-function FinishedMatches() {
+function LiveMatches({ date }) {
   const [matches, setMatches] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [displayLimit, setDisplayLimit] = useState(3);
 
   useEffect(() => {
-    const savedMatches = localStorage.getItem('finishedMatchesData');
-    if (savedMatches) {
-      setMatches(JSON.parse(savedMatches));
-    }
-  }, []);
+    const fetchMatches = async () => {
+      try {
+        const myHeaders = new Headers();
+        myHeaders.append("x-rapidapi-key", import.meta.env.VITE_RAPIDAPI_KEY);
+        myHeaders.append("x-rapidapi-host", import.meta.env.VITE_RAPIDAPI_HOST);
+
+        const requestOptions = {
+          method: 'GET',
+          headers: myHeaders,
+          redirect: 'follow'
+        }
+
+        const response = await fetch(`https://v3.football.api-sports.io/fixtures?date=${date}`, requestOptions);
+        const data = await response.json();
+
+        const majorLeagueMatches = data.response.filter(match =>
+          [2, 3, 39, 140, 78, 135, 61].includes(match.league.id)
+        );
+
+        const liveMatches = majorLeagueMatches.filter(match => match.fixture.status.short === '1H' || match.fixture.status.short === 'HT' || match.fixture.status.short === '2H');
+
+        localStorage.setItem('liveMatches', JSON.stringify(liveMatches));
+
+        setMatches(liveMatches);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchMatches();
+  }, [date]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center h-screen items-center">
+        <h1 className="text-3xl">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center h-screen items-center">
+        <h1 className="text-red-500 text-3xl">{error}</h1>
+      </div>
+    );
+  }
 
   const convertDate = (utcDate) => {
     const date = new Date(utcDate);
@@ -26,14 +73,6 @@ function FinishedMatches() {
     });
     return { formattedDate, formattedTime };
   };
-
-  if (matches.length === 0) {
-    return (
-      <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">No matches found in localStorage.</h1>
-      </div>
-    );
-  }
 
   const displayedMatches = matches.slice(0, displayLimit);
 
@@ -54,7 +93,7 @@ function FinishedMatches() {
 
   return (
     <div className=' bg-purple-100 rounded-[2rem] pb-4'>
-      <h2 className='text-5xl text-purple-500 font-bold py-10 ml-4'>Các trận đấu đã kết thúc</h2>
+      <h2 className='text-5xl text-purple-500 font-bold py-10 ml-4'>Các trận đấu đang diễn ra</h2>
       {leagueIds.map((leagueId, index) => {
         const league = groupedMatches[leagueId];
         return (
@@ -110,4 +149,8 @@ function FinishedMatches() {
   );
 }
 
-export default FinishedMatches;
+LiveMatches.propTypes = {
+  date: PropTypes.string.isRequired,
+};
+
+export default LiveMatches;

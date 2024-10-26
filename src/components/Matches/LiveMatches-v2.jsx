@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
-function FinishedMatches() {
+function LiveMatches() {
   const [matches, setMatches] = useState([]);
   const [displayLimit, setDisplayLimit] = useState(3);
 
   useEffect(() => {
-    const savedMatches = localStorage.getItem('finishedMatchesData');
+    const savedMatches = localStorage.getItem('liveMatchesData');
+    console.log(savedMatches);
     if (savedMatches) {
       setMatches(JSON.parse(savedMatches));
     }
@@ -53,12 +54,12 @@ function FinishedMatches() {
   const leagueIds = Object.keys(groupedMatches);
 
   return (
-    <div className=' bg-purple-100 rounded-[2rem] pb-4'>
-      <h2 className='text-5xl text-purple-500 font-bold py-10 ml-4'>Các trận đấu đã kết thúc</h2>
+    <div className='my-6 bg-blue-100 rounded-[2rem] pb-4'>
+      <h2 className='text-5xl text-blue-500 font-bold py-10 ml-4'>Các trận đấu đang diễn ra</h2>
       {leagueIds.map((leagueId, index) => {
         const league = groupedMatches[leagueId];
         return (
-          <div key={leagueId} className={`text-3xl p-4 mb-4 ${index < leagueIds.length - 1 ? 'border-b-2 border-purple-400' : ''}`}>
+          <div key={leagueId} className={`text-3xl p-4 mb-4 ${index < leagueIds.length - 1 ? 'border-b-2 border-blue-400' : ''}`}>
             <div className='flex font-bold'>
               <img src={league.logo} alt={league.name} className='h-10 w-10 mr-4'/>
               <span>{league.name}</span>
@@ -66,7 +67,7 @@ function FinishedMatches() {
             </div>
             {league.matches.map(match => (
               <div key={match.fixture.id} className='mt-4 flex py-4'>
-                <div className='flex flex-col items-center border-r-2 border-purple-400 pr-8'>
+                <div className='flex flex-col items-center border-r-2 border-blue-400 pr-8'>
                   <p className='text-black text-2xl'>
                     {convertDate(match.fixture.date).formattedDate}
                   </p>
@@ -77,7 +78,7 @@ function FinishedMatches() {
                     {match.fixture.status.short}
                   </p>
                 </div>
-                <div className='flex flex-col justify-around w-full border-r-2 border-purple-400 mr-4'>
+                <div className='flex flex-col justify-around w-full border-r-2 border-blue-400 mr-4'>
                   <div className='flex w-full justify-center items-center'>
                     <div className='flex'>
                       <img src={match.teams.home.logo} alt={match.teams.home.name} className='h-8 w-8 mr-4 ml-2'/>
@@ -100,7 +101,7 @@ function FinishedMatches() {
       })}
       {displayLimit < matches.length && (
           <button
-              className='text-2xl flex justify-center mx-auto py-1 px-5 border-purple-600 rounded-xl border-2 text-black font-normal mt-4 hover:bg-purple-600 hover:text-white'
+              className='text-2xl flex justify-center mx-auto py-1 px-5 border-blue-600 rounded-xl border-2 text-black font-normal mt-4 hover:bg-blue-600 hover:text-white'
               onClick={() => setDisplayLimit(displayLimit + 5)}
           >
               Xem thêm
@@ -110,4 +111,4 @@ function FinishedMatches() {
   );
 }
 
-export default FinishedMatches;
+export default LiveMatches;
