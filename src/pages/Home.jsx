@@ -16,7 +16,7 @@ function loadData() {
 }
 
 function Home() {
-  const [matches, setMatches] = useState([
+  const [selectedMatch, setSelectedMatch] = useState(
     {
       "fixture": {
         "id": 157256,
@@ -67,7 +67,7 @@ function Home() {
         }
       },
     },
-  ]);
+  );
 
   useEffect(() => {
     loadData();
@@ -75,7 +75,7 @@ function Home() {
 
   const onMatchClick = (match) => {
     console.log('Match clicked', match);
-    setMatches([match]);
+    setSelectedMatch(match);
   }
 
   return (
@@ -90,7 +90,7 @@ function Home() {
         <LiveMatches onMatchClick={onMatchClick} />
         <FinishedMatches onMatchClick={onMatchClick} />
       </div>
-      <MatchDetails matches={matches} />
+      <MatchDetails selectedMatch={selectedMatch} />
     </div>
   );
 }
