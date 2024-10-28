@@ -93,7 +93,7 @@ function LiveMatches({ date }) {
 
   return (
     <div className=' bg-purple-100 rounded-[2rem] pb-4'>
-      <h2 className='text-5xl text-purple-500 font-bold py-10 ml-4'>Các trận đấu đang diễn ra</h2>
+      <h2 className='text-5xl text-purple-500 font-bold py-6 ml-4'>Các trận đấu đang diễn ra</h2>
       {leagueIds.map((leagueId, index) => {
         const league = groupedMatches[leagueId];
         return (
