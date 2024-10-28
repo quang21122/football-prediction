@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-function FinishedMatches() {
+function FinishedMatches({ onMatchClick }) {
   const [matches, setMatches] = useState([]);
   const [displayLimit, setDisplayLimit] = useState(3);
 
@@ -65,7 +66,7 @@ function FinishedMatches() {
               <span className='ml-auto mr-8'>Kết quả</span>
             </div>
             {league.matches.map(match => (
-              <div key={match.fixture.id} className='mt-4 flex py-4'>
+              <div key={match.fixture.id} className='mt-4 flex py-4 cursor-pointer hover:bg-purple-200 hover:rounded-xl' onClick={() => onMatchClick(match)}>
                 <div className='flex flex-col items-center border-r-2 border-purple-400 pr-8'>
                   <p className='text-black text-2xl'>
                     {convertDate(match.fixture.date).formattedDate}
@@ -109,5 +110,9 @@ function FinishedMatches() {
     </div>
   );
 }
+
+FinishedMatches.propTypes = {
+  onMatchClick: PropTypes.func.isRequired,
+};
 
 export default FinishedMatches;
