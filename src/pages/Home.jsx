@@ -5,10 +5,12 @@ import LiveMatches from "../components/Matches/LiveMatches-v2";
 import UpcomingMatches from "../components/Matches/UpcomingMatches-v2";
 import finishedMatchesData from "../../finished-matches.json";
 import liveMatchesData from "../../live-matches.json";
+import upcomingMatchesData from "../../upcoming-matches.json";
 
 function loadData() {
   localStorage.setItem('finishedMatchesData', JSON.stringify(finishedMatchesData));
   localStorage.setItem('liveMatchesData', JSON.stringify(liveMatchesData));
+  localStorage.setItem('upcomingMatchesData', JSON.stringify(upcomingMatchesData));
   console.log('Data loaded');
 }
 
