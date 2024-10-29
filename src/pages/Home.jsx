@@ -7,6 +7,7 @@ import finishedMatchesData from "../../finished-matches.json";
 import liveMatchesData from "../../live-matches.json";
 import upcomingMatchesData from "../../upcoming-matches.json";
 import MatchDetails from "../components/Matches/MatchDetails-v2";
+import Leaderboard from "../components/leaderboard/Leaderboard";
 
 function loadData() {
   localStorage.setItem('finishedMatchesData', JSON.stringify(finishedMatchesData));
@@ -80,7 +81,10 @@ function Home() {
 
   return (
     <div className="grid grid-cols-3 py-10">
-      <Calendar />
+      <div className="flex flex-col">
+        <Calendar />
+        <Leaderboard />
+      </div>
       <div className="bg-white p-8 rounded-[3rem]">
         <p className="text-5xl font-bold text-green-600">Danh sách trận đấu</p>
         {/* <UpcomingMatches date={'2024-11-02'} /> */}
