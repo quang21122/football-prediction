@@ -6,7 +6,7 @@ import UpcomingMatches from "../components/Matches/UpcomingMatches-v2";
 import finishedMatchesData from "../../finished-matches.json";
 import liveMatchesData from "../../live-matches.json";
 import upcomingMatchesData from "../../upcoming-matches.json";
-import MatchDetails from "../components/Matches/MatchDetails";
+import MatchDetails from "../components/Matches/MatchDetails-v2";
 
 function loadData() {
   localStorage.setItem('finishedMatchesData', JSON.stringify(finishedMatchesData));
@@ -22,7 +22,7 @@ function Home() {
         "id": 157256,
         "referee": "M. Oliver",
         "timezone": "UTC",
-        "date": "2024-11-02T12:30:00+00:00",
+        "date": "2024-10-20T15:30:00+00:00",
         "timestamp": 1737241200,
       },
       "league": {
@@ -35,13 +35,13 @@ function Home() {
       "teams": {
         "home": {
           "id": 34,
-          "name": "Newcastle",
-          "logo": "https://media.api-sports.io/football/teams/34.png"
+          "name": "Liverpool",
+          "logo": "https://media.api-sports.io/football/teams/40.png"
         },
         "away": {
           "id": 42,
-          "name": "Arsenal",
-          "logo": "https://media.api-sports.io/football/teams/42.png"
+          "name": "Chelsea",
+          "logo": "https://media.api-sports.io/football/teams/49.png"
         }
       },
       "goals": {

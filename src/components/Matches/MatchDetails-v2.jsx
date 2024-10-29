@@ -2,49 +2,18 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 function MatchDetails({ selectedMatch }) {
+    console.log('MatchDetails', selectedMatch);
+
     const [lineups, setLineups] = useState([]);
-    const [playersData, setPlayersData] = useState({}); // lưu thông tin cầu thủ
+    const [playersData, setPlayersData] = useState({});
 
     useEffect(() => {
-        const fetchLineups = async () => {
-            try {
-                const myHeaders = new Headers();
-                myHeaders.append("x-rapidapi-key", import.meta.env.VITE_RAPIDAPI_KEY);
-                myHeaders.append("x-rapidapi-host", import.meta.env.VITE_RAPIDAPI_HOST);
+        const savedLineups = localStorage.getItem('lineups');
+        const savedPlayersData = localStorage.getItem('playersData');
+        setLineups(savedLineups ? JSON.parse(savedLineups) : []);
+        setPlayersData(savedPlayersData ? JSON.parse(savedPlayersData) : {});
+    }, []);
 
-                const requestOptions = {
-                    method: 'GET',
-                    headers: myHeaders,
-                    redirect: 'follow'
-                };
-
-                const lineupResponse = await fetch(`https://v3.football.api-sports.io/fixtures/lineups?fixture=${selectedMatch.fixture.id}`, requestOptions);
-                const lineupData = await lineupResponse.json();
-                setLineups(lineupData.response);
-                localStorage.setItem('lineups', JSON.stringify(lineupData.response));
-                console.log('lineupData', lineupData.response);
-
-                const playersResponse = await fetch(`https://v3.football.api-sports.io/fixtures/players?fixture=${selectedMatch.fixture.id}`, requestOptions);
-                const playersData = await playersResponse.json();
-
-                // Tạo dictionary để dễ dàng lấy thông tin ảnh cầu thủ dựa trên ID
-                const playerPhotos = playersData.response.reduce((acc, team) => {
-                    team.players.forEach(player => {
-                        acc[player.player.id] = player.player.photo;
-                    });
-                    return acc;
-                }, {});
-
-                setPlayersData(playerPhotos);
-                localStorage.setItem('playersData', JSON.stringify(playerPhotos));
-                console.log('playersData', playerPhotos);
-            } catch (error) {
-                console.error('Error fetching lineups or players:', error);
-            }
-        };
-
-        fetchLineups();
-    }, [selectedMatch.fixture.id]);
 
     const convertDate = (utcDate) => {
         const date = new Date(utcDate);
