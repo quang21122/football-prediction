@@ -50,13 +50,13 @@ const Calendar = () => {
     const [selectedDate, setSelectedDate] = React.useState(dayjs());
     return (
         <div className='pl-10'>
-            <div className='w-[90%] h-[63rem] rounded-[9%] bg-white'>
+            <div className='w-[90%] h-[63rem] rounded-[6rem] bg-white'>
                 <div className='flex items-center justify-center py-2'>
                     <GrFormPrevious className='cursor-pointer text-6xl' onClick={() => setToday(today.subtract(1, 'month'))} />
                     <h1 className='text-4xl font-bold py-8 px-36'>{months[today.month()]} {today.year()}</h1>
                     <GrFormNext className='cursor-pointer text-6xl' onClick={() => setToday(today.add(1, 'month'))} />
                 </div>
-                <div className='w-full grid grid-cols-7'>
+                <div className='grid grid-cols-7'>
                     {days.map((day, index) => (
                         <div key={index} className='bg-green-100 flex justify-center items-center h-full py-8 text-3xl font-semibold'>{day}</div>
                     ))}
