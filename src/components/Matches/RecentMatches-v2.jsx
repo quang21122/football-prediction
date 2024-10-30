@@ -5,7 +5,7 @@ function RecentMatches() {
     const [recentMatches, setRecentMatches] = useState([]);
 
     useEffect(() => {
-        setRecentMatches(JSON.parse(localStorage.getItem('recentMatches')) || []);
+        setRecentMatches(JSON.parse(localStorage.getItem('recentMatchesData')) || []);
         console.log('Recent matches:', JSON.parse(localStorage.getItem('recentMatches')));
     }, []);
 
