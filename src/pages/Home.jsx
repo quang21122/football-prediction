@@ -10,6 +10,7 @@ import MatchDetails from "../components/Matches/MatchDetails-v2";
 import Leaderboard from "../components/leaderboard/Leaderboard";
 import lineups from "../../lineups.json";
 import headToHeadData from "../../head-to-head.json";
+import playersData from "../../players.json";
 
 function loadData() {
   localStorage.setItem('finishedMatchesData', JSON.stringify(finishedMatchesData));
@@ -17,6 +18,7 @@ function loadData() {
   localStorage.setItem('upcomingMatchesData', JSON.stringify(upcomingMatchesData));
   localStorage.setItem('lineupsData', JSON.stringify(lineups));
   localStorage.setItem('headToHeadData', JSON.stringify(headToHeadData));
+  localStorage.setItem('playersData', JSON.stringify(playersData));
   console.log('Data loaded');
 }
 
