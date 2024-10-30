@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-
+import RecentMatches from './RecentMatches-v2';
 
 function MatchDetails({ selectedMatch }) {
     console.log('MatchDetails', selectedMatch);
@@ -189,6 +189,15 @@ function MatchDetails({ selectedMatch }) {
                             </div>
                         );
                     })}
+                </div>
+            )}
+            {/* {selectedDetails === 'recent' && <RecentMatches teamId={40} />} */}
+            {selectedDetails === 'recent' && (
+                <div>
+                    <h2 className='text-4xl ml-8 my-8 text-green-600 font-bold'>{selectedMatch.teams.home.name}</h2>
+                    <RecentMatches />
+                    <h2 className='text-4xl ml-8 my-8 text-green-600 font-bold'>{selectedMatch.teams.away.name}</h2>
+                    <RecentMatches />
                 </div>
             )}
         </div>
