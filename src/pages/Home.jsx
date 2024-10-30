@@ -35,12 +35,12 @@ function Home() {
       },
       "teams": {
         "home": {
-          "id": 34,
+          "id": 40,
           "name": "Liverpool",
           "logo": "https://media.api-sports.io/football/teams/40.png"
         },
         "away": {
-          "id": 42,
+          "id": 49,
           "name": "Chelsea",
           "logo": "https://media.api-sports.io/football/teams/49.png"
         }

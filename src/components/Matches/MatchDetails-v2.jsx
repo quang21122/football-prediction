@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import HeadToHead from './HeadToHead';
 
 function MatchDetails({ selectedMatch }) {
     console.log('MatchDetails', selectedMatch);
@@ -124,6 +125,9 @@ function MatchDetails({ selectedMatch }) {
                         ))}
                     </div>
                 </div>
+            )}
+            {selectedDetails === 'h2h' && (
+                <HeadToHead homeTeamId={selectedMatch.teams.home.id} awayTeamId={selectedMatch.teams.away.id} />
             )}
         </div>
     );
