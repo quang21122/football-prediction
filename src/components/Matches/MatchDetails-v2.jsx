@@ -11,12 +11,13 @@ function MatchDetails({ selectedMatch }) {
     const [headToHead, setHeadToHead] = useState([]);
 
     useEffect(() => {
-        const savedLineups = localStorage.getItem('lineups');
+        const savedLineups = localStorage.getItem('lineupsData');
         const savedPlayersData = localStorage.getItem('playersData');
         const headToHead = localStorage.getItem('headToHead');
         setLineups(savedLineups ? JSON.parse(savedLineups) : []);
         setPlayersData(savedPlayersData ? JSON.parse(savedPlayersData) : {});
         setHeadToHead(headToHead ? JSON.parse(headToHead) : []);
+        console.log('Lineups:', savedLineups);
     }, []);
 
 
