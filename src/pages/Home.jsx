@@ -9,12 +9,14 @@ import upcomingMatchesData from "../../upcoming-matches.json";
 import MatchDetails from "../components/Matches/MatchDetails-v2";
 import Leaderboard from "../components/leaderboard/Leaderboard";
 import lineups from "../../lineups.json";
+import headToHeadData from "../../head-to-head.json";
 
 function loadData() {
   localStorage.setItem('finishedMatchesData', JSON.stringify(finishedMatchesData));
   localStorage.setItem('liveMatchesData', JSON.stringify(liveMatchesData));
   localStorage.setItem('upcomingMatchesData', JSON.stringify(upcomingMatchesData));
   localStorage.setItem('lineupsData', JSON.stringify(lineups));
+  localStorage.setItem('headToHeadData', JSON.stringify(headToHeadData));
   console.log('Data loaded');
 }
 
