@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import HeadToHead from './HeadToHead';
 
 function MatchDetails({ selectedMatch }) {
     const [lineups, setLineups] = useState([]);
@@ -152,6 +153,9 @@ function MatchDetails({ selectedMatch }) {
                         ))}
                     </div>
                 </div>
+            )}
+            {selectedDetails === 'h2h' && (
+                <HeadToHead selectedMatch={selectedMatch} />
             )}
         </div>
     );
