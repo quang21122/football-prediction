@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-function UpcomingMatches() {
+function UpcomingMatches({ onMatchClick }) {
   const [matches, setMatches] = useState([]);
   const [displayLimit, setDisplayLimit] = useState(3);
 
@@ -11,6 +12,7 @@ function UpcomingMatches() {
       setMatches(JSON.parse(savedMatches));
     }
   }, []);
+
 
   const convertDate = (utcDate) => {
     const date = new Date(utcDate);
@@ -66,7 +68,7 @@ function UpcomingMatches() {
               <span className='ml-auto mr-8'>Dự đoán</span>
             </div>
             {league.matches.map(match => (
-              <div key={match.fixture.id} className='mt-4 flex py-4'>
+              <div key={match.fixture.id} className='mt-4 flex py-4 cursor-pointer hover:bg-green-200 hover:rounded-xl' onClick={() => onMatchClick(match)}>
                 <div className='flex flex-col items-center border-r-2 border-green-400 pr-8'>
                   <p className='text-black text-2xl'>
                     {convertDate(match.fixture.date).formattedDate}
@@ -110,5 +112,9 @@ function UpcomingMatches() {
     </div>
   );
 }
+
+UpcomingMatches.propTypes = {
+  onMatchClick: PropTypes.func.isRequired,
+};
 
 export default UpcomingMatches;
