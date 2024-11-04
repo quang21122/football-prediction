@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function UpcomingMatches({ onMatchClick }) {
   const [matches, setMatches] = useState([]);
-  const [displayLimit, setDisplayLimit] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5; // Number of matches per page
 
   useEffect(() => {
     const savedMatches = localStorage.getItem("upcomingMatchesData");
-    console.log("savedMatches", savedMatches);
     if (savedMatches) {
       setMatches(JSON.parse(savedMatches));
     }
@@ -37,7 +38,9 @@ function UpcomingMatches({ onMatchClick }) {
     );
   }
 
-  const displayedMatches = matches.slice(0, displayLimit);
+  const totalPages = Math.ceil(matches.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const displayedMatches = matches.slice(startIndex, startIndex + pageSize);
 
   const groupedMatches = displayedMatches.reduce((acc, match) => {
     const leagueId = match.league.id;
@@ -54,9 +57,12 @@ function UpcomingMatches({ onMatchClick }) {
 
   const leagueIds = Object.keys(groupedMatches);
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="rounded-[2rem] pb-4">
-      {/* <h2 className='text-5xl text-green-600 font-bold py-6 ml-4 mt-8'>Các trận đấu sắp diễn ra</h2> */}
       {leagueIds.map((leagueId, index) => {
         const league = groupedMatches[leagueId];
         return (
@@ -68,7 +74,6 @@ function UpcomingMatches({ onMatchClick }) {
           >
             <div className="flex font-bold text-white py-4 px-6 mb-10 rounded-xl bg-gradient-to-r from-red-500 to-red-900 w-full">
               <span>{league.name}</span>
-              {/* <span className="ml-auto mr-8">Dự đoán</span> */}
             </div>
             {league.matches.map((match) => (
               <div
@@ -83,7 +88,6 @@ function UpcomingMatches({ onMatchClick }) {
                   <p className="text-black text-2xl">
                     {convertDate(match.fixture.date).formattedDate}
                   </p>
-                  {/* <p className="font-semibold">{match.fixture.status.short}</p> */}
                 </div>
                 <div className="flex flex-row justify-center w-full">
                   <div className="flex justify-center items-center">
@@ -117,14 +121,40 @@ function UpcomingMatches({ onMatchClick }) {
           </div>
         );
       })}
-      {displayLimit < matches.length && (
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-6 space-x-2">
         <button
-          className="text-2xl flex justify-center mx-auto py-1 px-5 rounded-xl border-2 text-black font-normal mt-4 hover:bg-green-600 hover:text-white"
-          onClick={() => setDisplayLimit(displayLimit + 5)}
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
-          Xem thêm
+          <FaChevronLeft />
         </button>
-      )}
+
+        {/* Page Numbers */}
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i + 1}
+            onClick={() => handlePageChange(i + 1)}
+            className={`text-2xl px-4 py-2 rounded-xl border-2 ${
+              currentPage === i + 1
+                ? "bg-red-600 text-white"
+                : "hover:bg-red-600 hover:text-white"
+            }`}
+          >
+            {i + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+        >
+          <FaChevronRight />
+        </button>
+      </div>
     </div>
   );
 }
