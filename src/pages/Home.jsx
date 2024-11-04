@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Calendar from "../components/calendar/Calendar";
-import FinishedMatches from "../components/Matches/FinishedMatches-v2";
-import LiveMatches from "../components/Matches/LiveMatches-v2";
+// import FinishedMatches from "../components/Matches/FinishedMatches-v2";
+// import LiveMatches from "../components/Matches/LiveMatches-v2";
 import UpcomingMatches from "../components/Matches/UpcomingMatches-v2";
 import finishedMatchesData from "../../finished-matches.json";
 import liveMatchesData from "../../live-matches.json";
@@ -104,8 +104,8 @@ function Home() {
         <LiveMatches onMatchClick={onMatchClick} />
         <FinishedMatches onMatchClick={onMatchClick} /> */}
         <UpcomingMatches />
-        <LiveMatches />
-        <FinishedMatches />
+        {/* <LiveMatches />
+        <FinishedMatches /> */}
       </div>
       {/* <MatchDetails selectedMatch={selectedMatch} /> */}
     </div>
