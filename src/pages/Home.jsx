@@ -95,8 +95,7 @@ function Home() {
       <div className="flex flex-col">
         <Calendar />
       </div>
-      <div className="bg-white p-8 rounded-[3rem]">
-        <p className="text-5xl font-bold text-green-600">Danh sách trận đấu</p>
+      <div className="">
         {/* <UpcomingMatches date={'2024-11-02'} /> */}
         {/* <LiveMatches date={'2024-10-26'} /> */}
         {/* <FinishedMatches date={'2024-10-20'} /> */}
