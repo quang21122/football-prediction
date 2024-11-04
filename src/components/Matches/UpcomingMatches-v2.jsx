@@ -78,7 +78,7 @@ function UpcomingMatches({ onMatchClick }) {
             {league.matches.map((match) => (
               <div
                 key={match.fixture.id}
-                className="mt-6 bg-white px-8 flex py-10 cursor-pointer border border-zinc-300 rounded-2xl shadow-lg"
+                className="mt-6 bg-white px-8 flex py-10 border border-zinc-300 rounded-2xl shadow-lg"
                 onClick={() => onMatchClick(match)}
               >
                 <div className="flex flex-col items-center border-r-2 my-auto pr-8">
@@ -113,7 +113,7 @@ function UpcomingMatches({ onMatchClick }) {
                     />
                   </div>
                 </div>
-                <button className="border-2 border-red-300 mr-4 rounded-xl px-8 py-2 flex items-center self-center justify-center text-2xl whitespace-nowrap">
+                <button className="border-2 border-red-300 mr-4 rounded-xl px-8 py-2 flex items-center self-center justify-center text-2xl whitespace-nowrap hover:bg-red-600 hover:text-white">
                   Xem thêm
                 </button>
               </div>
