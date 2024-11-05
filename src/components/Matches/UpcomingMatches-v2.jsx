@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-function UpcomingMatches({ onMatchClick }) {
+function UpcomingMatches() {
   const [matches, setMatches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 7; // Number of matches per page
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedMatches = localStorage.getItem("upcomingMatchesData");
@@ -13,6 +15,10 @@ function UpcomingMatches({ onMatchClick }) {
       setMatches(JSON.parse(savedMatches));
     }
   }, []);
+
+  const handleMatchClick = (match) => {
+    navigate(`/matches/${match.fixture.id}`);
+  };
 
   const convertDate = (utcDate) => {
     const date = new Date(utcDate);
@@ -79,7 +85,7 @@ function UpcomingMatches({ onMatchClick }) {
               <div
                 key={match.fixture.id}
                 className="mt-6 bg-white px-8 flex py-10 border border-zinc-300 rounded-2xl shadow-lg"
-                onClick={() => onMatchClick(match)}
+                onClick={() => handleMatchClick(match)}
               >
                 <div className="flex flex-col items-center border-r-2 my-auto pr-8">
                   <p className="text-black text-2xl font-semibold mb-6">
