@@ -1,88 +1,16 @@
 [
   {
     "fixture": {
-      "id": 1208118,
+      "id": 1208608,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T12:30:00+00:00",
-      "timestamp": 1730550600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
+      "date": "2024-11-09T13:00:00+00:00",
+      "timestamp": 1731157200,
+      "periods": { "first": null, "second": null },
       "venue": {
-        "id": 562,
-        "name": "St. James' Park",
-        "city": "Newcastle upon Tyne"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 39,
-      "name": "Premier League",
-      "country": "England",
-      "logo": "https://media.api-sports.io/football/leagues/39.png",
-      "flag": "https://media.api-sports.io/flags/gb-eng.svg",
-      "season": 2024,
-      "round": "Regular Season - 10"
-    },
-    "teams": {
-      "home": {
-        "id": 34,
-        "name": "Newcastle",
-        "logo": "https://media.api-sports.io/football/teams/34.png",
-        "winner": null
-      },
-      "away": {
-        "id": 42,
-        "name": "Arsenal",
-        "logo": "https://media.api-sports.io/football/teams/42.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1208597,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T13:00:00+00:00",
-      "timestamp": 1730552400,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 1486,
-        "name": "Estadio El Sadar",
-        "city": "Iruñea"
+        "id": 1456,
+        "name": "Estadio Santiago Bernabéu",
+        "city": "Madrid"
       },
       "status": {
         "long": "Not Started",
@@ -98,60 +26,42 @@
       "logo": "https://media.api-sports.io/football/leagues/140.png",
       "flag": "https://media.api-sports.io/flags/es.svg",
       "season": 2024,
-      "round": "Regular Season - 12"
+      "round": "Regular Season - 13"
     },
     "teams": {
       "home": {
+        "id": 541,
+        "name": "Real Madrid",
+        "logo": "https://media.api-sports.io/football/teams/541.png",
+        "winner": null
+      },
+      "away": {
         "id": 727,
         "name": "Osasuna",
         "logo": "https://media.api-sports.io/football/teams/727.png",
         "winner": null
-      },
-      "away": {
-        "id": 720,
-        "name": "Valladolid",
-        "logo": "https://media.api-sports.io/football/teams/720.png",
-        "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1223695,
+      "id": 1223714,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T14:00:00+00:00",
-      "timestamp": 1730556000,
-      "periods": {
-        "first": null,
-        "second": null
-      },
+      "date": "2024-11-09T14:00:00+00:00",
+      "timestamp": 1731160800,
+      "periods": { "first": null, "second": null },
       "venue": {
-        "id": 881,
-        "name": "Stadio Renato Dall'Ara",
-        "city": "Bologna"
+        "id": null,
+        "name": "Stadio Pier Luigi Penzo",
+        "city": "Venezia"
       },
       "status": {
         "long": "Not Started",
@@ -167,61 +77,39 @@
       "logo": "https://media.api-sports.io/football/leagues/135.png",
       "flag": "https://media.api-sports.io/flags/it.svg",
       "season": 2024,
-      "round": "Regular Season - 11"
+      "round": "Regular Season - 12"
     },
     "teams": {
       "home": {
-        "id": 500,
-        "name": "Bologna",
-        "logo": "https://media.api-sports.io/football/teams/500.png",
+        "id": 517,
+        "name": "Venezia",
+        "logo": "https://media.api-sports.io/football/teams/517.png",
         "winner": null
       },
       "away": {
-        "id": 867,
-        "name": "Lecce",
-        "logo": "https://media.api-sports.io/football/teams/867.png",
+        "id": 523,
+        "name": "Parma",
+        "logo": "https://media.api-sports.io/football/teams/523.png",
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1224048,
+      "id": 1224059,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T14:30:00+00:00",
-      "timestamp": 1730557800,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 700,
-        "name": "Allianz Arena",
-        "city": "München"
-      },
+      "date": "2024-11-09T14:30:00+00:00",
+      "timestamp": 1731162600,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 755, "name": "Weserstadion", "city": "Bremen" },
       "status": {
         "long": "Not Started",
         "short": "NS",
@@ -236,336 +124,183 @@
       "logo": "https://media.api-sports.io/football/leagues/78.png",
       "flag": "https://media.api-sports.io/flags/de.svg",
       "season": 2024,
-      "round": "Regular Season - 9"
+      "round": "Regular Season - 10"
     },
     "teams": {
       "home": {
-        "id": 157,
-        "name": "Bayern München",
-        "logo": "https://media.api-sports.io/football/teams/157.png",
+        "id": 162,
+        "name": "Werder Bremen",
+        "logo": "https://media.api-sports.io/football/teams/162.png",
         "winner": null
       },
       "away": {
-        "id": 182,
-        "name": "Union Berlin",
-        "logo": "https://media.api-sports.io/football/teams/182.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1224050,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T14:30:00+00:00",
-      "timestamp": 1730557800,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 10491,
-        "name": "Deutsche Bank Park",
-        "city": "Frankfurt am Main"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 78,
-      "name": "Bundesliga",
-      "country": "Germany",
-      "logo": "https://media.api-sports.io/football/leagues/78.png",
-      "flag": "https://media.api-sports.io/flags/de.svg",
-      "season": 2024,
-      "round": "Regular Season - 9"
-    },
-    "teams": {
-      "home": {
-        "id": 169,
-        "name": "Eintracht Frankfurt",
-        "logo": "https://media.api-sports.io/football/teams/169.png",
-        "winner": null
-      },
-      "away": {
-        "id": 176,
-        "name": "VfL Bochum",
-        "logo": "https://media.api-sports.io/football/teams/176.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1224051,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T14:30:00+00:00",
-      "timestamp": 1730557800,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 724,
-        "name": "PreZero Arena",
-        "city": "Sinsheim"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 78,
-      "name": "Bundesliga",
-      "country": "Germany",
-      "logo": "https://media.api-sports.io/football/leagues/78.png",
-      "flag": "https://media.api-sports.io/flags/de.svg",
-      "season": 2024,
-      "round": "Regular Season - 9"
-    },
-    "teams": {
-      "home": {
-        "id": 167,
-        "name": "1899 Hoffenheim",
-        "logo": "https://media.api-sports.io/football/teams/167.png",
-        "winner": null
-      },
-      "away": {
-        "id": 186,
-        "name": "FC St. Pauli",
-        "logo": "https://media.api-sports.io/football/teams/186.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1224053,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T14:30:00+00:00",
-      "timestamp": 1730557800,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 752,
-        "name": "Volkswagen Arena",
-        "city": "Wolfsburg"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 78,
-      "name": "Bundesliga",
-      "country": "Germany",
-      "logo": "https://media.api-sports.io/football/leagues/78.png",
-      "flag": "https://media.api-sports.io/flags/de.svg",
-      "season": 2024,
-      "round": "Regular Season - 9"
-    },
-    "teams": {
-      "home": {
-        "id": 161,
-        "name": "VfL Wolfsburg",
-        "logo": "https://media.api-sports.io/football/teams/161.png",
-        "winner": null
-      },
-      "away": {
-        "id": 170,
-        "name": "FC Augsburg",
-        "logo": "https://media.api-sports.io/football/teams/170.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1224055,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T14:30:00+00:00",
-      "timestamp": 1730557800,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 725,
-        "name": "Holstein-Stadion",
-        "city": "Kiel"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 78,
-      "name": "Bundesliga",
-      "country": "Germany",
-      "logo": "https://media.api-sports.io/football/leagues/78.png",
-      "flag": "https://media.api-sports.io/flags/de.svg",
-      "season": 2024,
-      "round": "Regular Season - 9"
-    },
-    "teams": {
-      "home": {
         "id": 191,
         "name": "Holstein Kiel",
         "logo": "https://media.api-sports.io/football/teams/191.png",
         "winner": null
-      },
-      "away": {
-        "id": 180,
-        "name": "1. FC Heidenheim",
-        "logo": "https://media.api-sports.io/football/teams/180.png",
-        "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1208113,
+      "id": 1224061,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T15:00:00+00:00",
-      "timestamp": 1730559600,
-      "periods": {
-        "first": null,
-        "second": null
+      "date": "2024-11-09T14:30:00+00:00",
+      "timestamp": 1731162600,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 11899, "name": "MEWA ARENA", "city": "Mainz" },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 78,
+      "name": "Bundesliga",
+      "country": "Germany",
+      "logo": "https://media.api-sports.io/football/leagues/78.png",
+      "flag": "https://media.api-sports.io/flags/de.svg",
+      "season": 2024,
+      "round": "Regular Season - 10"
+    },
+    "teams": {
+      "home": {
+        "id": 164,
+        "name": "FSV Mainz 05",
+        "logo": "https://media.api-sports.io/football/teams/164.png",
+        "winner": null
       },
+      "away": {
+        "id": 165,
+        "name": "Borussia Dortmund",
+        "logo": "https://media.api-sports.io/football/teams/165.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1224063,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T14:30:00+00:00",
+      "timestamp": 1731162600,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 751, "name": "Vonovia Ruhrstadion", "city": "Bochum" },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 78,
+      "name": "Bundesliga",
+      "country": "Germany",
+      "logo": "https://media.api-sports.io/football/leagues/78.png",
+      "flag": "https://media.api-sports.io/flags/de.svg",
+      "season": 2024,
+      "round": "Regular Season - 10"
+    },
+    "teams": {
+      "home": {
+        "id": 176,
+        "name": "VfL Bochum",
+        "logo": "https://media.api-sports.io/football/teams/176.png",
+        "winner": null
+      },
+      "away": {
+        "id": 168,
+        "name": "Bayer Leverkusen",
+        "logo": "https://media.api-sports.io/football/teams/168.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1224064,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T14:30:00+00:00",
+      "timestamp": 1731162600,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 745, "name": "Millerntor-Stadion", "city": "Hamburg" },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 78,
+      "name": "Bundesliga",
+      "country": "Germany",
+      "logo": "https://media.api-sports.io/football/leagues/78.png",
+      "flag": "https://media.api-sports.io/flags/de.svg",
+      "season": 2024,
+      "round": "Regular Season - 10"
+    },
+    "teams": {
+      "home": {
+        "id": 186,
+        "name": "FC St. Pauli",
+        "logo": "https://media.api-sports.io/football/teams/186.png",
+        "winner": null
+      },
+      "away": {
+        "id": 157,
+        "name": "Bayern München",
+        "logo": "https://media.api-sports.io/football/teams/157.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1208123,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T15:00:00+00:00",
+      "timestamp": 1731164400,
+      "periods": { "first": null, "second": null },
       "venue": {
-        "id": 504,
-        "name": "Vitality Stadium",
-        "city": "Bournemouth, Dorset"
+        "id": 10503,
+        "name": "Gtech Community Stadium",
+        "city": "Brentford, Middlesex"
       },
       "status": {
         "long": "Not Started",
@@ -581,61 +316,39 @@
       "logo": "https://media.api-sports.io/football/leagues/39.png",
       "flag": "https://media.api-sports.io/flags/gb-eng.svg",
       "season": 2024,
-      "round": "Regular Season - 10"
+      "round": "Regular Season - 11"
     },
     "teams": {
       "home": {
+        "id": 55,
+        "name": "Brentford",
+        "logo": "https://media.api-sports.io/football/teams/55.png",
+        "winner": null
+      },
+      "away": {
         "id": 35,
         "name": "Bournemouth",
         "logo": "https://media.api-sports.io/football/teams/35.png",
         "winner": null
-      },
-      "away": {
-        "id": 50,
-        "name": "Manchester City",
-        "logo": "https://media.api-sports.io/football/teams/50.png",
-        "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1208115,
+      "id": 1208126,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T15:00:00+00:00",
-      "timestamp": 1730559600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 545,
-        "name": "Portman Road",
-        "city": "Ipswich, Suffolk"
-      },
+      "date": "2024-11-09T15:00:00+00:00",
+      "timestamp": 1731164400,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 525, "name": "Selhurst Park", "city": "London" },
       "status": {
         "long": "Not Started",
         "short": "NS",
@@ -650,61 +363,39 @@
       "logo": "https://media.api-sports.io/football/leagues/39.png",
       "flag": "https://media.api-sports.io/flags/gb-eng.svg",
       "season": 2024,
-      "round": "Regular Season - 10"
+      "round": "Regular Season - 11"
     },
     "teams": {
       "home": {
-        "id": 57,
-        "name": "Ipswich",
-        "logo": "https://media.api-sports.io/football/teams/57.png",
+        "id": 52,
+        "name": "Crystal Palace",
+        "logo": "https://media.api-sports.io/football/teams/52.png",
         "winner": null
       },
       "away": {
-        "id": 46,
-        "name": "Leicester",
-        "logo": "https://media.api-sports.io/football/teams/46.png",
+        "id": 36,
+        "name": "Fulham",
+        "logo": "https://media.api-sports.io/football/teams/36.png",
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1208116,
+      "id": 1208131,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T15:00:00+00:00",
-      "timestamp": 1730559600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 550,
-        "name": "Anfield",
-        "city": "Liverpool"
-      },
+      "date": "2024-11-09T15:00:00+00:00",
+      "timestamp": 1731164400,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 598, "name": "London Stadium", "city": "London" },
       "status": {
         "long": "Not Started",
         "short": "NS",
@@ -719,151 +410,13 @@
       "logo": "https://media.api-sports.io/football/leagues/39.png",
       "flag": "https://media.api-sports.io/flags/gb-eng.svg",
       "season": 2024,
-      "round": "Regular Season - 10"
+      "round": "Regular Season - 11"
     },
     "teams": {
       "home": {
-        "id": 40,
-        "name": "Liverpool",
-        "logo": "https://media.api-sports.io/football/teams/40.png",
-        "winner": null
-      },
-      "away": {
-        "id": 51,
-        "name": "Brighton",
-        "logo": "https://media.api-sports.io/football/teams/51.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1208119,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T15:00:00+00:00",
-      "timestamp": 1730559600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 566,
-        "name": "The City Ground",
-        "city": "Nottingham, Nottinghamshire"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 39,
-      "name": "Premier League",
-      "country": "England",
-      "logo": "https://media.api-sports.io/football/leagues/39.png",
-      "flag": "https://media.api-sports.io/flags/gb-eng.svg",
-      "season": 2024,
-      "round": "Regular Season - 10"
-    },
-    "teams": {
-      "home": {
-        "id": 65,
-        "name": "Nottingham Forest",
-        "logo": "https://media.api-sports.io/football/teams/65.png",
-        "winner": null
-      },
-      "away": {
         "id": 48,
         "name": "West Ham",
         "logo": "https://media.api-sports.io/football/teams/48.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1208120,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T15:00:00+00:00",
-      "timestamp": 1730559600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 585,
-        "name": "St. Mary's Stadium",
-        "city": "Southampton, Hampshire"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 39,
-      "name": "Premier League",
-      "country": "England",
-      "logo": "https://media.api-sports.io/football/leagues/39.png",
-      "flag": "https://media.api-sports.io/flags/gb-eng.svg",
-      "season": 2024,
-      "round": "Regular Season - 10"
-    },
-    "teams": {
-      "home": {
-        "id": 41,
-        "name": "Southampton",
-        "logo": "https://media.api-sports.io/football/teams/41.png",
         "winner": null
       },
       "away": {
@@ -873,247 +426,22 @@
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1208596,
+      "id": 1208132,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T15:15:00+00:00",
-      "timestamp": 1730560500,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 1478,
-        "name": "Estadi Municipal de Montilivi",
-        "city": "Girona"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 140,
-      "name": "La Liga",
-      "country": "Spain",
-      "logo": "https://media.api-sports.io/football/leagues/140.png",
-      "flag": "https://media.api-sports.io/flags/es.svg",
-      "season": 2024,
-      "round": "Regular Season - 12"
-    },
-    "teams": {
-      "home": {
-        "id": 547,
-        "name": "Girona",
-        "logo": "https://media.api-sports.io/football/teams/547.png",
-        "winner": null
-      },
-      "away": {
-        "id": 537,
-        "name": "Leganes",
-        "logo": "https://media.api-sports.io/football/teams/537.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1213836,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T16:00:00+00:00",
-      "timestamp": 1730563200,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 671,
-        "name": "Parc des Princes",
-        "city": "Paris"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 61,
-      "name": "Ligue 1",
-      "country": "France",
-      "logo": "https://media.api-sports.io/football/leagues/61.png",
-      "flag": "https://media.api-sports.io/flags/fr.svg",
-      "season": 2024,
-      "round": "Regular Season - 10"
-    },
-    "teams": {
-      "home": {
-        "id": 85,
-        "name": "Paris Saint Germain",
-        "logo": "https://media.api-sports.io/football/teams/85.png",
-        "winner": null
-      },
-      "away": {
-        "id": 116,
-        "name": "Lens",
-        "logo": "https://media.api-sports.io/football/teams/116.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1223704,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T17:00:00+00:00",
-      "timestamp": 1730566800,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 20416,
-        "name": "Bluenergy Stadium",
-        "city": "Udine"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 135,
-      "name": "Serie A",
-      "country": "Italy",
-      "logo": "https://media.api-sports.io/football/leagues/135.png",
-      "flag": "https://media.api-sports.io/flags/it.svg",
-      "season": 2024,
-      "round": "Regular Season - 11"
-    },
-    "teams": {
-      "home": {
-        "id": 494,
-        "name": "Udinese",
-        "logo": "https://media.api-sports.io/football/teams/494.png",
-        "winner": null
-      },
-      "away": {
-        "id": 496,
-        "name": "Juventus",
-        "logo": "https://media.api-sports.io/football/teams/496.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1208122,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T17:30:00+00:00",
-      "timestamp": 1730568600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
+      "date": "2024-11-09T15:00:00+00:00",
+      "timestamp": 1731164400,
+      "periods": { "first": null, "second": null },
       "venue": {
         "id": 600,
         "name": "Molineux Stadium",
@@ -1133,7 +461,7 @@
       "logo": "https://media.api-sports.io/football/leagues/39.png",
       "flag": "https://media.api-sports.io/flags/gb-eng.svg",
       "season": 2024,
-      "round": "Regular Season - 10"
+      "round": "Regular Season - 11"
     },
     "teams": {
       "home": {
@@ -1143,46 +471,28 @@
         "winner": null
       },
       "away": {
-        "id": 52,
-        "name": "Crystal Palace",
-        "logo": "https://media.api-sports.io/football/teams/52.png",
+        "id": 41,
+        "name": "Southampton",
+        "logo": "https://media.api-sports.io/football/teams/41.png",
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1208599,
+      "id": 1208610,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T17:30:00+00:00",
-      "timestamp": 1730568600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
+      "date": "2024-11-09T15:15:00+00:00",
+      "timestamp": 1731165300,
+      "periods": { "first": null, "second": null },
       "venue": {
         "id": 1498,
         "name": "Estadio de la Cerámica",
@@ -1202,7 +512,7 @@
       "logo": "https://media.api-sports.io/football/leagues/140.png",
       "flag": "https://media.api-sports.io/flags/es.svg",
       "season": 2024,
-      "round": "Regular Season - 12"
+      "round": "Regular Season - 13"
     },
     "teams": {
       "home": {
@@ -1212,119 +522,32 @@
         "winner": null
       },
       "away": {
-        "id": 728,
-        "name": "Rayo Vallecano",
-        "logo": "https://media.api-sports.io/football/teams/728.png",
+        "id": 542,
+        "name": "Alaves",
+        "logo": "https://media.api-sports.io/football/teams/542.png",
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1224049,
+      "id": 1213841,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T17:30:00+00:00",
-      "timestamp": 1730568600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
+      "date": "2024-11-09T16:00:00+00:00",
+      "timestamp": 1731168000,
+      "periods": { "first": null, "second": null },
       "venue": {
-        "id": 19381,
-        "name": "SIGNAL IDUNA PARK",
-        "city": "Dortmund"
-      },
-      "status": {
-        "long": "Not Started",
-        "short": "NS",
-        "elapsed": null,
-        "extra": null
-      }
-    },
-    "league": {
-      "id": 78,
-      "name": "Bundesliga",
-      "country": "Germany",
-      "logo": "https://media.api-sports.io/football/leagues/78.png",
-      "flag": "https://media.api-sports.io/flags/de.svg",
-      "season": 2024,
-      "round": "Regular Season - 9"
-    },
-    "teams": {
-      "home": {
-        "id": 165,
-        "name": "Borussia Dortmund",
-        "logo": "https://media.api-sports.io/football/teams/165.png",
-        "winner": null
-      },
-      "away": {
-        "id": 173,
-        "name": "RB Leipzig",
-        "logo": "https://media.api-sports.io/football/teams/173.png",
-        "winner": null
-      }
-    },
-    "goals": {
-      "home": null,
-      "away": null
-    },
-    "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
-    }
-  },
-  {
-    "fixture": {
-      "id": 1213835,
-      "referee": null,
-      "timezone": "UTC",
-      "date": "2024-11-02T18:00:00+00:00",
-      "timestamp": 1730570400,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 641,
-        "name": "Stade Francis-Le Blé",
-        "city": "Brest"
+        "id": 681,
+        "name": "Stade de la Meinau",
+        "city": "Strasbourg"
       },
       "status": {
         "long": "Not Started",
@@ -1340,61 +563,39 @@
       "logo": "https://media.api-sports.io/football/leagues/61.png",
       "flag": "https://media.api-sports.io/flags/fr.svg",
       "season": 2024,
-      "round": "Regular Season - 10"
+      "round": "Regular Season - 11"
     },
     "teams": {
       "home": {
-        "id": 106,
-        "name": "Stade Brestois 29",
-        "logo": "https://media.api-sports.io/football/teams/106.png",
+        "id": 95,
+        "name": "Strasbourg",
+        "logo": "https://media.api-sports.io/football/teams/95.png",
         "winner": null
       },
       "away": {
-        "id": 84,
-        "name": "Nice",
-        "logo": "https://media.api-sports.io/football/teams/84.png",
+        "id": 91,
+        "name": "Monaco",
+        "logo": "https://media.api-sports.io/football/teams/91.png",
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1223700,
+      "id": 1223706,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T19:45:00+00:00",
-      "timestamp": 1730576700,
-      "periods": {
-        "first": null,
-        "second": null
-      },
-      "venue": {
-        "id": 12086,
-        "name": "U-Power Stadium",
-        "city": "Monza"
-      },
+      "date": "2024-11-09T17:00:00+00:00",
+      "timestamp": 1731171600,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 12275, "name": "Unipol Domus", "city": "Cagliari" },
       "status": {
         "long": "Not Started",
         "short": "NS",
@@ -1409,13 +610,13 @@
       "logo": "https://media.api-sports.io/football/leagues/135.png",
       "flag": "https://media.api-sports.io/flags/it.svg",
       "season": 2024,
-      "round": "Regular Season - 11"
+      "round": "Regular Season - 12"
     },
     "teams": {
       "home": {
-        "id": 1579,
-        "name": "Monza",
-        "logo": "https://media.api-sports.io/football/teams/1579.png",
+        "id": 490,
+        "name": "Cagliari",
+        "logo": "https://media.api-sports.io/football/teams/490.png",
         "winner": null
       },
       "away": {
@@ -1425,44 +626,77 @@
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1208600,
+      "id": 1208124,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T20:00:00+00:00",
-      "timestamp": 1730577600,
-      "periods": {
-        "first": null,
-        "second": null
-      },
+      "date": "2024-11-09T17:30:00+00:00",
+      "timestamp": 1731173400,
+      "periods": { "first": null, "second": null },
       "venue": {
-        "id": 1497,
-        "name": "Estadio de Mestalla",
-        "city": "Valencia"
+        "id": 508,
+        "name": "American Express Stadium",
+        "city": "Falmer, East Sussex"
+      },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 39,
+      "name": "Premier League",
+      "country": "England",
+      "logo": "https://media.api-sports.io/football/leagues/39.png",
+      "flag": "https://media.api-sports.io/flags/gb-eng.svg",
+      "season": 2024,
+      "round": "Regular Season - 11"
+    },
+    "teams": {
+      "home": {
+        "id": 51,
+        "name": "Brighton",
+        "logo": "https://media.api-sports.io/football/teams/51.png",
+        "winner": null
+      },
+      "away": {
+        "id": 50,
+        "name": "Manchester City",
+        "logo": "https://media.api-sports.io/football/teams/50.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1212922,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T17:30:00+00:00",
+      "timestamp": 1731173400,
+      "periods": { "first": null, "second": null },
+      "venue": {
+        "id": 1474,
+        "name": "RCDE Stadium",
+        "city": "Cornella de Llobregat"
       },
       "status": {
         "long": "Not Started",
@@ -1478,61 +712,86 @@
       "logo": "https://media.api-sports.io/football/leagues/140.png",
       "flag": "https://media.api-sports.io/flags/es.svg",
       "season": 2024,
-      "round": "Regular Season - 12"
+      "round": "Regular Season - 13"
     },
     "teams": {
       "home": {
+        "id": 540,
+        "name": "Espanyol",
+        "logo": "https://media.api-sports.io/football/teams/540.png",
+        "winner": null
+      },
+      "away": {
         "id": 532,
         "name": "Valencia",
         "logo": "https://media.api-sports.io/football/teams/532.png",
         "winner": null
-      },
-      "away": {
-        "id": 541,
-        "name": "Real Madrid",
-        "logo": "https://media.api-sports.io/football/teams/541.png",
-        "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
-      }
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   },
   {
     "fixture": {
-      "id": 1213834,
+      "id": 1224057,
       "referee": null,
       "timezone": "UTC",
-      "date": "2024-11-02T20:00:00+00:00",
-      "timestamp": 1730577600,
-      "periods": {
-        "first": null,
-        "second": null
+      "date": "2024-11-09T17:30:00+00:00",
+      "timestamp": 1731173400,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 738, "name": "Red Bull Arena", "city": "Leipzig" },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 78,
+      "name": "Bundesliga",
+      "country": "Germany",
+      "logo": "https://media.api-sports.io/football/leagues/78.png",
+      "flag": "https://media.api-sports.io/flags/de.svg",
+      "season": 2024,
+      "round": "Regular Season - 10"
+    },
+    "teams": {
+      "home": {
+        "id": 173,
+        "name": "RB Leipzig",
+        "logo": "https://media.api-sports.io/football/teams/173.png",
+        "winner": null
       },
-      "venue": {
-        "id": 676,
-        "name": "Stade Geoffroy-Guichard",
-        "city": "Saint-Ètienne"
-      },
+      "away": {
+        "id": 163,
+        "name": "Borussia Mönchengladbach",
+        "logo": "https://media.api-sports.io/football/teams/163.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1213842,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T18:00:00+00:00",
+      "timestamp": 1731175200,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 654, "name": "Stade Bollaert-Delelis", "city": "Lens" },
       "status": {
         "long": "Not Started",
         "short": "NS",
@@ -1547,43 +806,220 @@
       "logo": "https://media.api-sports.io/football/leagues/61.png",
       "flag": "https://media.api-sports.io/flags/fr.svg",
       "season": 2024,
-      "round": "Regular Season - 10"
+      "round": "Regular Season - 11"
     },
     "teams": {
       "home": {
-        "id": 1063,
-        "name": "Saint Etienne",
-        "logo": "https://media.api-sports.io/football/teams/1063.png",
+        "id": 116,
+        "name": "Lens",
+        "logo": "https://media.api-sports.io/football/teams/116.png",
         "winner": null
       },
       "away": {
-        "id": 95,
-        "name": "Strasbourg",
-        "logo": "https://media.api-sports.io/football/teams/95.png",
+        "id": 83,
+        "name": "Nantes",
+        "logo": "https://media.api-sports.io/football/teams/83.png",
         "winner": null
       }
     },
-    "goals": {
-      "home": null,
-      "away": null
-    },
+    "goals": { "home": null, "away": null },
     "score": {
-      "halftime": {
-        "home": null,
-        "away": null
-      },
-      "fulltime": {
-        "home": null,
-        "away": null
-      },
-      "extratime": {
-        "home": null,
-        "away": null
-      },
-      "penalty": {
-        "home": null,
-        "away": null
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1223710,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T19:45:00+00:00",
+      "timestamp": 1731181500,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 909, "name": "Allianz Stadium", "city": "Torino" },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
       }
+    },
+    "league": {
+      "id": 135,
+      "name": "Serie A",
+      "country": "Italy",
+      "logo": "https://media.api-sports.io/football/leagues/135.png",
+      "flag": "https://media.api-sports.io/flags/it.svg",
+      "season": 2024,
+      "round": "Regular Season - 12"
+    },
+    "teams": {
+      "home": {
+        "id": 496,
+        "name": "Juventus",
+        "logo": "https://media.api-sports.io/football/teams/496.png",
+        "winner": null
+      },
+      "away": {
+        "id": 503,
+        "name": "Torino",
+        "logo": "https://media.api-sports.io/football/teams/503.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1208127,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T20:00:00+00:00",
+      "timestamp": 1731182400,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 550, "name": "Anfield", "city": "Liverpool" },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 39,
+      "name": "Premier League",
+      "country": "England",
+      "logo": "https://media.api-sports.io/football/leagues/39.png",
+      "flag": "https://media.api-sports.io/flags/gb-eng.svg",
+      "season": 2024,
+      "round": "Regular Season - 11"
+    },
+    "teams": {
+      "home": {
+        "id": 40,
+        "name": "Liverpool",
+        "logo": "https://media.api-sports.io/football/teams/40.png",
+        "winner": null
+      },
+      "away": {
+        "id": 66,
+        "name": "Aston Villa",
+        "logo": "https://media.api-sports.io/football/teams/66.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1208604,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T20:00:00+00:00",
+      "timestamp": 1731182400,
+      "periods": { "first": null, "second": null },
+      "venue": {
+        "id": 1464,
+        "name": "Estadio Municipal de Butarque",
+        "city": "Leganés"
+      },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 140,
+      "name": "La Liga",
+      "country": "Spain",
+      "logo": "https://media.api-sports.io/football/leagues/140.png",
+      "flag": "https://media.api-sports.io/flags/es.svg",
+      "season": 2024,
+      "round": "Regular Season - 13"
+    },
+    "teams": {
+      "home": {
+        "id": 537,
+        "name": "Leganes",
+        "logo": "https://media.api-sports.io/football/teams/537.png",
+        "winner": null
+      },
+      "away": {
+        "id": 536,
+        "name": "Sevilla",
+        "logo": "https://media.api-sports.io/football/teams/536.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
+    }
+  },
+  {
+    "fixture": {
+      "id": 1213845,
+      "referee": null,
+      "timezone": "UTC",
+      "date": "2024-11-09T20:00:00+00:00",
+      "timestamp": 1731182400,
+      "periods": { "first": null, "second": null },
+      "venue": { "id": 634, "name": "Stade Raymond Kopa", "city": "Angers" },
+      "status": {
+        "long": "Not Started",
+        "short": "NS",
+        "elapsed": null,
+        "extra": null
+      }
+    },
+    "league": {
+      "id": 61,
+      "name": "Ligue 1",
+      "country": "France",
+      "logo": "https://media.api-sports.io/football/leagues/61.png",
+      "flag": "https://media.api-sports.io/flags/fr.svg",
+      "season": 2024,
+      "round": "Regular Season - 11"
+    },
+    "teams": {
+      "home": {
+        "id": 77,
+        "name": "Angers",
+        "logo": "https://media.api-sports.io/football/teams/77.png",
+        "winner": null
+      },
+      "away": {
+        "id": 85,
+        "name": "Paris Saint Germain",
+        "logo": "https://media.api-sports.io/football/teams/85.png",
+        "winner": null
+      }
+    },
+    "goals": { "home": null, "away": null },
+    "score": {
+      "halftime": { "home": null, "away": null },
+      "fulltime": { "home": null, "away": null },
+      "extratime": { "home": null, "away": null },
+      "penalty": { "home": null, "away": null }
     }
   }
 ]
