@@ -174,7 +174,7 @@ function UpcomingMatches({ date, onMatchClick }) {
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronLeft />
         </button>
@@ -184,7 +184,7 @@ function UpcomingMatches({ date, onMatchClick }) {
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
-            className={`text-2xl px-4 py-2 rounded-xl border-2 ${
+            className={`text-2xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
               currentPage === i + 1
                 ? "bg-red-600 text-white"
                 : "hover:bg-red-600 hover:text-white"
@@ -197,7 +197,7 @@ function UpcomingMatches({ date, onMatchClick }) {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronRight />
         </button>

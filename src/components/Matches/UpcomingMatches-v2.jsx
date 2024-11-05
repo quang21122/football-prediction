@@ -5,7 +5,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 function UpcomingMatches({ onMatchClick }) {
   const [matches, setMatches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5; // Number of matches per page
+  const pageSize = 7; // Number of matches per page
 
   useEffect(() => {
     const savedMatches = localStorage.getItem("upcomingMatchesData");
@@ -127,7 +127,7 @@ function UpcomingMatches({ onMatchClick }) {
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronLeft />
         </button>
@@ -137,7 +137,7 @@ function UpcomingMatches({ onMatchClick }) {
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
-            className={`text-2xl px-4 py-2 rounded-xl border-2 ${
+            className={`text-2xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
               currentPage === i + 1
                 ? "bg-red-600 text-white"
                 : "hover:bg-red-600 hover:text-white"
@@ -150,7 +150,7 @@ function UpcomingMatches({ onMatchClick }) {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronRight />
         </button>

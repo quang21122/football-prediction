@@ -63,68 +63,69 @@ function FinishedMatches({ onMatchClick }) {
   };
 
   return (
-    <div className="bg-white rounded-[2rem] border border-solid border-gray-200 p-2">
-      {leagueIds.map((leagueId) => {
-        const league = groupedMatches[leagueId];
-        return (
-          <div key={leagueId}>
-            {league.matches.map((match) => (
-              <div
-                key={match.fixture.id}
-                className="mt-6 mb-10 mx-4 bg-white grid grid-cols-[2fr_6fr_1.5fr_0.5fr] py-8 border border-zinc-300 rounded-3xl shadow-lg"
-                onClick={() => onMatchClick(match)}
-              >
-                <div className="font-bold text-xl text-center flex items-center justify-center">
-                  <span>{league.name}</span>
-                </div>
-                <div className="flex flex-row justify-center">
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={match.teams.home.logo}
-                      alt={match.teams.home.name}
-                      className="w-10 h-10"
-                    />
-                    <div className="mx-8">
-                      <span className="text-xl -mt-8 flex justify-center font-bold text-primary  ">
-                        Kết quả
-                      </span>
-                      <div className="border mt-2 shadow-xl text-2xl font-bold text-primary-dark border-zinc-400 rounded-full px-6 flex justify-center py-2">
-                        <span className="">{match.goals.home}</span>
-                        <span className="mx-6">-</span>
-                        <span className="">{match.goals.away}</span>
+    <div>
+      <div className="bg-white rounded-[2rem] border border-solid border-gray-200 p-2">
+        {leagueIds.map((leagueId) => {
+          const league = groupedMatches[leagueId];
+          return (
+            <div key={leagueId}>
+              {league.matches.map((match) => (
+                <div
+                  key={match.fixture.id}
+                  className="mt-6 mb-10 mx-4 bg-white grid grid-cols-[2fr_6fr_1.5fr_0.5fr] py-8 border border-zinc-300 rounded-3xl shadow-lg"
+                  onClick={() => onMatchClick(match)}
+                >
+                  <div className="font-bold text-xl text-center flex items-center justify-center">
+                    <span>{league.name}</span>
+                  </div>
+                  <div className="flex flex-row justify-center">
+                    <div className="flex justify-center items-center">
+                      <img
+                        src={match.teams.home.logo}
+                        alt={match.teams.home.name}
+                        className="w-10 h-10"
+                      />
+                      <div className="mx-8">
+                        <span className="text-xl -mt-8 flex justify-center font-bold text-primary  ">
+                          Kết quả
+                        </span>
+                        <div className="border mt-2 shadow-xl text-2xl font-bold text-primary-dark border-zinc-400 rounded-full px-6 flex justify-center py-2">
+                          <span className="">{match.goals.home}</span>
+                          <span className="mx-6">-</span>
+                          <span className="">{match.goals.away}</span>
+                        </div>
                       </div>
+                      <img
+                        src={match.teams.away.logo}
+                        alt={match.teams.away.name}
+                        className="w-10 h-10"
+                      />
                     </div>
-                    <img
-                      src={match.teams.away.logo}
-                      alt={match.teams.away.name}
-                      className="w-10 h-10"
-                    />
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <p className="text-black font-semibold text-[1rem]">
+                      {convertDate(match.fixture.date).formattedTime}
+                    </p>
+                    <p className="text-black text-[1rem]">
+                      {convertDate(match.fixture.date).formattedDate}
+                    </p>
+                    <p className="text-black text-[1rem] font-bold">KT</p>
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <GrFormNext className="cursor-pointer text-6xl" />
                   </div>
                 </div>
-                <div className="flex flex-col items-center">
-                  <p className="text-black font-semibold text-[1rem]">
-                    {convertDate(match.fixture.date).formattedTime}
-                  </p>
-                  <p className="text-black text-[1rem]">
-                    {convertDate(match.fixture.date).formattedDate}
-                  </p>
-                  <p className="text-black text-[1rem] font-bold">KT</p>
-                </div>
-                <div className="flex justify-center items-center">
-                  <GrFormNext className="cursor-pointer text-6xl" />
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-      })}
-
+              ))}
+            </div>
+          );
+        })}
+      </div>
       {/* Pagination control */}
       <div className="flex justify-center mt-6 space-x-2">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronLeft />
         </button>
@@ -134,7 +135,7 @@ function FinishedMatches({ onMatchClick }) {
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
-            className={`text-2xl px-4 py-2 rounded-xl border-2 ${
+            className={`text-2xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
               currentPage === i + 1
                 ? "bg-red-600 text-white"
                 : "hover:bg-red-600 hover:text-white"
@@ -147,7 +148,7 @@ function FinishedMatches({ onMatchClick }) {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronRight />
         </button>
