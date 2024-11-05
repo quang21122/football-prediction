@@ -119,7 +119,7 @@ function UpcomingMatches({ date, onMatchClick }) {
               index < leagueIds.length - 1 ? "border-b-2 " : ""
             }`}
           >
-            <div className="flex font-bold text-white py-4 px-6 mb-10 rounded-xl bg-gradient-to-r from-red-500 to-red-900 w-full">
+            <div className="flex font-bold text-white py-4 px-6 mb-10 rounded-xl bg-gradient-to-r from-primary to-primary-dark w-full">
               <span>{league.name}</span>
             </div>
             {league.matches.map((match) => (
@@ -144,10 +144,10 @@ function UpcomingMatches({ date, onMatchClick }) {
                       className="w-28 h-28"
                     />
                     <div className="mx-10">
-                      <span className="text-2xl -mt-8 flex justify-center font-bold text-red-500">
+                      <span className="text-2xl -mt-8 flex justify-center font-bold text-primary">
                         Dự đoán
                       </span>
-                      <div className="border mt-2 shadow-xl text-5xl font-bold text-red-700 border-zinc-400 rounded-full px-10 flex justify-center py-4">
+                      <div className="border mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-4">
                         <span className="">?</span>
                         <span className="mx-6">-</span>
                         <span className="">?</span>
@@ -174,7 +174,7 @@ function UpcomingMatches({ date, onMatchClick }) {
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronLeft />
         </button>
@@ -184,7 +184,7 @@ function UpcomingMatches({ date, onMatchClick }) {
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
-            className={`text-2xl px-4 py-2 rounded-xl border-2 ${
+            className={`text-2xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
               currentPage === i + 1
                 ? "bg-red-600 text-white"
                 : "hover:bg-red-600 hover:text-white"
@@ -197,7 +197,7 @@ function UpcomingMatches({ date, onMatchClick }) {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="text-2xl px-3 py-2 rounded-xl border-2 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronRight />
         </button>

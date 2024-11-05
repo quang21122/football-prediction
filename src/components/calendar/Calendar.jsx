@@ -83,7 +83,7 @@ const Calendar = () => {
           {days.map((day, index) => (
             <div
               key={index}
-              className="bg-red-600 flex justify-center items-center h-full py-4 text-xl font-semibold"
+              className="bg-primary flex justify-center items-center h-full py-4 text-xl font-semibold"
             >
               {day}
             </div>
@@ -99,12 +99,12 @@ const Calendar = () => {
                                         } 
                                         ${
                                           day.today
-                                            ? "bg-red-600 rounded-full"
+                                            ? "bg-primary rounded-full"
                                             : ""
                                         }
                                         ${
                                           day.date.isSame(selectedDate, "date")
-                                            ? "bg-red-600 rounded-full text-white"
+                                            ? "bg-primary rounded-full text-white"
                                             : ""
                                         }`}
               onClick={() => setSelectedDate(day.date)}
@@ -117,7 +117,7 @@ const Calendar = () => {
         <hr className="w-full border-solid border-red-200" />
         <div className="flex items-center py-3 px-10">
           <button
-            className="bg-red-600 rounded-3xl py-4 px-12 text-xl hover:text-white"
+            className="bg-primary rounded-3xl py-4 px-12 text-xl hover:text-white"
             onClick={() => setToday(dayjs())}
           >
             Today

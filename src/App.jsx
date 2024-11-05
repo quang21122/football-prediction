@@ -1,12 +1,17 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
+import MatchDetails from "./pages/MatchDetails";
 
 const router = createBrowserRouter([
   {
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
+      },
+      {
+        path: "/matches/:id",
+        element: <MatchDetails />,
       },
     ],
   },
