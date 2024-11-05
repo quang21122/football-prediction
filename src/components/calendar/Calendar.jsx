@@ -64,14 +64,14 @@ const Calendar = () => {
   const [today, setToday] = React.useState(dayjs());
   const [selectedDate, setSelectedDate] = React.useState(dayjs());
   return (
-    <div className="pl-10">
-      <div className="w-[90%] h-[63rem] rounded-[6rem] bg-white">
-        <div className="flex items-center justify-center py-2">
+    <div className="pl-2">
+      <div className="w-[40rem] h-[48rem] rounded-[4.5rem] bg-white">
+        <div className="flex items-center justify-center py-1">
           <GrFormPrevious
             className="cursor-pointer text-6xl"
             onClick={() => setToday(today.subtract(1, "month"))}
           />
-          <h1 className="text-4xl font-bold py-8 px-36">
+          <h1 className="text-2xl font-bold py-6 px-20">
             {months[today.month()]} {today.year()}
           </h1>
           <GrFormNext
@@ -83,7 +83,7 @@ const Calendar = () => {
           {days.map((day, index) => (
             <div
               key={index}
-              className="bg-green-100 flex justify-center items-center h-full py-8 text-3xl font-semibold"
+              className="bg-red-600 flex justify-center items-center h-full py-4 text-xl font-semibold"
             >
               {day}
             </div>
@@ -91,7 +91,7 @@ const Calendar = () => {
           {generateDate(today.month(), today.year()).map((day, index) => (
             <div
               key={index}
-              className={`flex justify-center items-center p-6 m-1.5 text-3xl h-[6rem] hover:bg-green-500 hover:rounded-full hover:text-white hover:cursor-pointer 
+              className={`flex justify-center items-center m-3 text-xl h-[4rem] hover:bg-red-300 hover:rounded-full hover:text-white hover:cursor-pointer 
                                         ${
                                           day.isCurrentMonth
                                             ? "text-black"
@@ -99,12 +99,12 @@ const Calendar = () => {
                                         } 
                                         ${
                                           day.today
-                                            ? "bg-green-700 rounded-[50%]"
+                                            ? "bg-red-600 rounded-full"
                                             : ""
                                         }
                                         ${
                                           day.date.isSame(selectedDate, "date")
-                                            ? "bg-green-500 rounded-full text-white"
+                                            ? "bg-red-600 rounded-full text-white"
                                             : ""
                                         }`}
               onClick={() => setSelectedDate(day.date)}
@@ -114,10 +114,10 @@ const Calendar = () => {
             // onClick để test
           ))}
         </div>
-        <hr className="w-full border-solid border-green-600" />
-        <div className="flex items-center py-8 px-10">
+        <hr className="w-full border-solid border-red-200" />
+        <div className="flex items-center py-3 px-10">
           <button
-            className="bg-green-600 rounded-3xl py-4 px-12 text-3xl hover:text-white"
+            className="bg-red-600 rounded-3xl py-4 px-12 text-xl hover:text-white"
             onClick={() => setToday(dayjs())}
           >
             Today
