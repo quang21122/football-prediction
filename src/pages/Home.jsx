@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Calendar from "../components/calendar/Calendar";
-// import FinishedMatches from "../components/Matches/FinishedMatches-v2";
+import FinishedMatches from "../components/Matches/FinishedMatches-v2";
 // import LiveMatches from "../components/Matches/LiveMatches-v2";
 import UpcomingMatches from "../components/Matches/UpcomingMatches-v2";
 import finishedMatchesData from "../../finished-matches.json";
@@ -94,6 +94,10 @@ function Home() {
     <div className="grid grid-cols-[3fr_7fr] py-10 gap-x-20 max-w-[120rem] mx-auto">
       <div className="flex flex-col">
         <Calendar />
+        <h2 className="text-4xl font-bold pt-14 pb-5 flex justify-center items-center text-yellow-400">
+          Các trận đấu đã kết thúc
+        </h2>
+        <FinishedMatches />
       </div>
       <div className="">
         {/* <UpcomingMatches date={'2024-11-02'} /> */}
