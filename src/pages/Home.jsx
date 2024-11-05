@@ -94,7 +94,7 @@ function Home() {
     <div className="grid grid-cols-[3fr_7fr] py-10 gap-x-20 max-w-[120rem] mx-auto">
       <div className="flex flex-col">
         <Calendar />
-        <h2 className="text-4xl font-bold pt-14 pb-5 flex justify-center items-center text-yellow-400">
+        <h2 className="text-4xl font-bold pt-14 pb-5 flex justify-center items-center text-primary">
           Các trận đấu đã kết thúc
         </h2>
         <FinishedMatches />

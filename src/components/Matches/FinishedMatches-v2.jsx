@@ -85,10 +85,10 @@ function FinishedMatches({ onMatchClick }) {
                       className="w-10 h-10"
                     />
                     <div className="mx-8">
-                      <span className="text-xl -mt-8 flex justify-center font-bold text-yellow-400  ">
+                      <span className="text-xl -mt-8 flex justify-center font-bold text-primary  ">
                         Kết quả
                       </span>
-                      <div className="border mt-2 shadow-xl text-2xl font-bold text-yellow-400 border-zinc-400 rounded-full px-6 flex justify-center py-2">
+                      <div className="border mt-2 shadow-xl text-2xl font-bold text-primary-dark border-zinc-400 rounded-full px-6 flex justify-center py-2">
                         <span className="">{match.goals.home}</span>
                         <span className="mx-6">-</span>
                         <span className="">{match.goals.away}</span>
