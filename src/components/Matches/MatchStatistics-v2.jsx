@@ -1,43 +1,218 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 
-function MatchStatistics() {
-  const [statistics, setStatistics] = useState([]);
+export default function MatchStatistics() {
+  const [stats, setStats] = useState([]);
+
+  const translatedStats = {
+    "Shots on Goal": "Cú sút trúng mục tiêu",
+    "Shots off Goal": "Cú sút ra ngoài",
+    "Total Shots": "Tổng số cú sút",
+    "Blocked Shots": "Cú sút bị chặn",
+    "Shots insidebox": "Cú sút trong vòng cấm",
+    "Shots outsidebox": "Cú sút ngoài vòng cấm",
+    Fouls: "Số lần phạm lỗi",
+    "Corner Kicks": "Số quả phạt góc",
+    Offsides: "Số lần việt vị",
+    "Ball Possession": "Tỷ lệ kiểm soát bóng",
+    "Yellow Cards": "Thẻ vàng",
+    "Goalkeeper Saves": "Cứu thua",
+    "Total passes": "Tổng số đường chuyền",
+    "Passes accurate": "Số đường chuyền chính xác",
+    "Passes %": "Tỷ lệ đường chuyền chính xác",
+    expected_goals: "Kỳ vọng ghi bàn",
+  };
 
   useEffect(() => {
+    // Giả sử dữ liệu được lưu trữ trong localStorage
     const matchStatistics = localStorage.getItem("matchStatisticsData");
-    setStatistics(matchStatistics ? JSON.parse(matchStatistics) : []);
-    console.log("Match statistics:", matchStatistics);
+    const parsedStats = matchStatistics ? JSON.parse(matchStatistics) : [];
+
+    // Filter out the "Red Cards" and "Goals Prevented" stats
+    const filteredStats = parsedStats.map((team) => {
+      return {
+        ...team,
+        statistics: team.statistics.filter(
+          (stat) => stat.type !== "Red Cards" && stat.type !== "goals_prevented"
+        ),
+      };
+    });
+
+    setStats(filteredStats);
+    console.log(filteredStats); // Log the filtered data for debugging
   }, []);
 
+  const stats1 =
+    stats[0]?.statistics.slice(0, Math.ceil(stats[0]?.statistics.length / 2)) ||
+    [];
+  const stats2 =
+    stats[0]?.statistics.slice(Math.ceil(stats[0]?.statistics.length / 2)) ||
+    [];
+
+  // Hàm để tính tỷ lệ width
+  const getWidth = (value1, value2) => {
+    if (
+      typeof value1 === "string" &&
+      value1.includes("%") &&
+      typeof value2 === "string" &&
+      value2.includes("%")
+    ) {
+      const num1 = parseFloat(value1);
+      const num2 = parseFloat(value2);
+      const total = num1 + num2;
+      return [(num1 / total) * 100, (num2 / total) * 100];
+    } else {
+      const num1 = Number(value1);
+      const num2 = Number(value2);
+      const total = num1 + num2;
+      return [(num1 / total) * 100, (num2 / total) * 100];
+    }
+  };
+
+  const getVietnameseName = (type) => {
+    return translatedStats[type] || type;
+  };
+
   return (
-    <div className="bg-green-50 p-8 m-6 mt-12 rounded-[3rem]">
-      <h3 className="text-3xl font-bold text-green-700 mb-6">
-        Thống kê trận đấu
-      </h3>
-      <div className="grid grid-cols-2 gap-8">
-        {statistics.map((stat, index) => (
-          <div key={index}>
-            <h4 className="text-2xl font-bold text-green-600 mb-4">
-              {stat.type}
-            </h4>
-            <ul className="space-y-4">
-              {stat.statistics.map((item, itemIndex) => (
-                <li key={itemIndex} className="flex justify-between">
-                  <span>{item.value}</span>
-                  <span>{item.type}</span>
-                </li>
-              ))}
-            </ul>
+    <div className="p-6 w-[120rem] mx-auto px-20">
+      <div className="border border-zinc-300 shadow-2xl rounded-3xl grid md:grid-cols-[1fr_auto_1fr] gap-20 py-10">
+        {/* Cột 1 */}
+        <div className="space-y-6 mx-10">
+          <div className="flex justify-between">
+            <div className="flex items-center gap-x-6">
+              <img
+                src={stats[0]?.team.logo}
+                alt="team-logo"
+                className="h-20 w-20"
+              />
+              <span className="text-3xl font-semibold">
+                {stats[0]?.team.name}
+              </span>
+            </div>
+            <div className="flex items-center gap-x-6">
+              <span className="text-3xl font-semibold">
+                {stats[1]?.team.name}
+              </span>
+              <img
+                src={stats[1]?.team.logo}
+                alt="team-logo"
+                className="h-20 w-20"
+              />
+            </div>
           </div>
-        ))}
+          {stats1
+            .filter((stat, index) => {
+              const value1 = stat.value;
+              const value2 = stats[1]?.statistics[index]?.value;
+              return value1 !== "0" && value2 !== "0";
+            })
+            .map((stat, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex justify-between items-center text-2xl text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">{stat.value}</span>
+                  </div>
+                  <span className="text-xl">
+                    {getVietnameseName(stat.type)}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">
+                      {stats[1]?.statistics[index]?.value}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-1 h-2">
+                  {(() => {
+                    const [width1, width2] = getWidth(
+                      stat.value,
+                      stats[1]?.statistics[index]?.value
+                    );
+                    return (
+                      <>
+                        <div
+                          className="bg-primary rounded-full"
+                          style={{ width: `${width1}%` }}
+                        />
+                        <div
+                          className="bg-primary-dark rounded-full"
+                          style={{ width: `${width2}%` }}
+                        />
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            ))}
+        </div>
+        <div className="bg-zinc-100 w-1 mx-auto"></div>
+        {/* Cột 2 */}
+        <div className="space-y-6 mx-10">
+          <div className="flex justify-between">
+            <div className="flex items-center gap-x-6">
+              <img
+                src={stats[0]?.team.logo}
+                alt="team-logo"
+                className="h-20 w-20"
+              />
+              <span className="text-3xl font-semibold">
+                {stats[0]?.team.name}
+              </span>
+            </div>
+            <div className="flex items-center gap-x-6">
+              <span className="text-3xl font-semibold">
+                {stats[1]?.team.name}
+              </span>
+              <img
+                src={stats[1]?.team.logo}
+                alt="team-logo"
+                className="h-20 w-20"
+              />
+            </div>
+          </div>
+          {stats2
+            .filter((stat, index) => {
+              const value1 = stat.value;
+              const value2 = stats[1]?.statistics[index + stats1.length]?.value;
+              return value1 !== "0" && value2 !== "0";
+            })
+            .map((stat, index) => (
+              <div key={index} className="space-y-2">
+                <div className="flex justify-between items-center text-2xl text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">{stat.value}</span>
+                  </div>
+                  <span className="text-xl">
+                    {getVietnameseName(stat.type)}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">
+                      {stats[1]?.statistics[index + stats1.length]?.value}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-1 h-2">
+                  {(() => {
+                    const [width1, width2] = getWidth(
+                      stat.value,
+                      stats[1]?.statistics[index + stats1.length]?.value
+                    );
+                    return (
+                      <>
+                        <div
+                          className="bg-primary rounded-full"
+                          style={{ width: `${width1}%` }}
+                        />
+                        <div
+                          className="bg-primary-dark rounded-full"
+                          style={{ width: `${width2}%` }}
+                        />
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
 }
-
-MatchStatistics.propTypes = {
-  matchId: PropTypes.number.isRequired,
-};
-
-export default MatchStatistics;
