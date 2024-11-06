@@ -169,7 +169,7 @@ function MatchDetails() {
         </div>
         <div className="border-2 border-zinc-100">
           {selectedDetails === "lineups" && <Lineups />}
-          {selectedDetails === "recent" && <RecentMatches />}
+          {selectedDetails === "recent" && <RecentMatches teamId={33} />}
           {selectedDetails === "h2h" && <HeadToHead />}
           {selectedDetails === "stats" && <MatchStatistics />}
         </div>
