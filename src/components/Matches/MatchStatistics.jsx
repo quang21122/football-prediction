@@ -25,6 +25,7 @@ function MatchStatistics({ matchId }) {
 
         setStatistics(data.response);
         localStorage.setItem("statistics", JSON.stringify(data.response));
+        console.log("statistics", JSON.stringify(data.response));
       } catch (error) {
         console.error("Error fetching statistics:", error);
       }
