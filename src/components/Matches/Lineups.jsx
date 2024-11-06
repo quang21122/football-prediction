@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-function Lineups({ match }) {
+function Lineups({ matchId }) {
   const [lineups, setLineups] = useState([]);
   const [playersData, setPlayersData] = useState({});
 
@@ -19,15 +19,16 @@ function Lineups({ match }) {
         };
 
         const lineupResponse = await fetch(
-          `https://v3.football.api-sports.io/fixtures/lineups?fixture=${match.fixture.id}`,
+          `https://v3.football.api-sports.io/fixtures/lineups?fixture=${matchId}`,
           requestOptions
         );
         const lineupData = await lineupResponse.json();
         setLineups(lineupData.response);
         localStorage.setItem("lineups", JSON.stringify(lineupData.response));
+        console.log("lineups", JSON.stringify(lineupData.response));
 
         const playersResponse = await fetch(
-          `https://v3.football.api-sports.io/fixtures/players?fixture=${match.fixture.id}`,
+          `https://v3.football.api-sports.io/fixtures/players?fixture=${matchId}`,
           requestOptions
         );
         const playersData = await playersResponse.json();
@@ -41,13 +42,14 @@ function Lineups({ match }) {
 
         setPlayersData(playerPhotos);
         localStorage.setItem("playersData", JSON.stringify(playerPhotos));
+        console.log("players", JSON.stringify(playerPhotos));
       } catch (error) {
         console.error("Error fetching lineups or players:", error);
       }
     };
 
     fetchLineups();
-  }, [match.fixture.id]);
+  }, [matchId]);
 
   return (
     <div className="bg-green-50 p-8 m-6 mt-12 rounded-[3rem]">
@@ -118,7 +120,7 @@ function Lineups({ match }) {
 }
 
 Lineups.propTypes = {
-  match: PropTypes.object.isRequired,
+  matchId: PropTypes.number.isRequired,
 };
 
 export default Lineups;
