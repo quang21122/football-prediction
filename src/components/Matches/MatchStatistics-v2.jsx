@@ -5,7 +5,7 @@ function MatchStatistics() {
   const [statistics, setStatistics] = useState([]);
 
   useEffect(() => {
-    const matchStatistics = localStorage.getItem("statistics");
+    const matchStatistics = localStorage.getItem("matchStatisticsData");
     setStatistics(matchStatistics ? JSON.parse(matchStatistics) : []);
     console.log("Match statistics:", matchStatistics);
   }, []);

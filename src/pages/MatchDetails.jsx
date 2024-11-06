@@ -171,7 +171,7 @@ function MatchDetails() {
           {selectedDetails === "lineups" && <Lineups />}
           {selectedDetails === "recent" && <RecentMatches />}
           {selectedDetails === "h2h" && <HeadToHead />}
-          {selectedDetails === "stats" && <MatchStatistics matchId={1208094} />}
+          {selectedDetails === "stats" && <MatchStatistics />}
         </div>
       </div>
     </div>
