@@ -23,11 +23,8 @@ export default function MatchStatistics() {
   };
 
   useEffect(() => {
-    // Giả sử dữ liệu được lưu trữ trong localStorage
     const matchStatistics = localStorage.getItem("matchStatisticsData");
     const parsedStats = matchStatistics ? JSON.parse(matchStatistics) : [];
-
-    // Filter out the "Red Cards" and "Goals Prevented" stats
     const filteredStats = parsedStats.map((team) => {
       return {
         ...team,
@@ -38,7 +35,7 @@ export default function MatchStatistics() {
     });
 
     setStats(filteredStats);
-    console.log(filteredStats); // Log the filtered data for debugging
+    console.log(filteredStats);
   }, []);
 
   const stats1 =
