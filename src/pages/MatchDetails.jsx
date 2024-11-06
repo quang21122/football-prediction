@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
 import Lineups from "../components/Matches/Lineups-v2";
 import RecentMatches from "../components/Matches/RecentMatches-v2";
+import HeadToHead from "../components/Matches/HeadToHead-v2";
+import MatchStatistics from "../components/Matches/MatchStatistics-v2";
 
 function MatchDetails() {
   const { id } = useParams(); // Retrieve match ID from the URL
@@ -168,6 +170,8 @@ function MatchDetails() {
         <div className="border-2 border-zinc-100">
           {selectedDetails === "lineups" && <Lineups />}
           {selectedDetails === "recent" && <RecentMatches />}
+          {selectedDetails === "h2h" && <HeadToHead />}
+          {selectedDetails === "stats" && <MatchStatistics matchId={1208094} />}
         </div>
       </div>
     </div>
