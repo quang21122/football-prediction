@@ -81,7 +81,7 @@ function FinishedMatches() {
                   className="mt-6 mb-10 mx-4 bg-white grid grid-cols-[2fr_6fr_1.5fr_0.5fr] py-8 border border-zinc-300 rounded-3xl shadow-lg"
                   onClick={() => handleMatchClick(match)}
                 >
-                  <div className="font-bold text-xl text-center flex items-center justify-center">
+                  <div className="font-bold text-xl text-center flex items-center justify-center pl-4">
                     <span>{league.name}</span>
                   </div>
                   <div className="flex flex-row justify-center">

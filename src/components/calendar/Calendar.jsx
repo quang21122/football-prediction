@@ -98,7 +98,7 @@ const Calendar = () => {
                                             : "text-gray-300"
                                         } 
                                         ${
-                                          day.today
+                                          day.today 
                                             ? "bg-primary rounded-full"
                                             : ""
                                         }
