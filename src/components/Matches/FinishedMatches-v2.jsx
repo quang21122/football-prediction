@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { GrFormNext } from "react-icons/gr";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-function FinishedMatches({ onMatchClick }) {
+function FinishedMatches() {
   const [matches, setMatches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6; // Number of matches per page
+  const navigate = useNavigate();
 
   useEffect(() => {
     const savedMatches = localStorage.getItem("finishedMatchesData");
@@ -14,6 +16,10 @@ function FinishedMatches({ onMatchClick }) {
       setMatches(JSON.parse(savedMatches));
     }
   }, []);
+
+  const handleMatchClick = (match) => {
+    navigate(`/matches/${match.fixture.id}`);
+  };
 
   const convertDate = (utcDate) => {
     const date = new Date(utcDate);
@@ -73,7 +79,7 @@ function FinishedMatches({ onMatchClick }) {
                 <div
                   key={match.fixture.id}
                   className="mt-6 mb-10 mx-4 bg-white grid grid-cols-[2fr_6fr_1.5fr_0.5fr] py-8 border border-zinc-300 rounded-3xl shadow-lg"
-                  onClick={() => onMatchClick(match)}
+                  onClick={() => handleMatchClick(match)}
                 >
                   <div className="font-bold text-xl text-center flex items-center justify-center">
                     <span>{league.name}</span>

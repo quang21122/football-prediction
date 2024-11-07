@@ -11,6 +11,7 @@ import lineups from "../../lineups.json";
 import headToHeadData from "../../head-to-head.json";
 import playersData from "../../players.json";
 import recentMatchesData from "../../recent-matches.json";
+import matchStatisticsData from "../../match-statistics.json";
 
 function loadData() {
   localStorage.setItem(
@@ -26,6 +27,10 @@ function loadData() {
   localStorage.setItem("headToHeadData", JSON.stringify(headToHeadData));
   localStorage.setItem("playersData", JSON.stringify(playersData));
   localStorage.setItem("recentMatchesData", JSON.stringify(recentMatchesData));
+  localStorage.setItem(
+    "matchStatisticsData",
+    JSON.stringify(matchStatisticsData)
+  );
   console.log("Data loaded");
 }
 
