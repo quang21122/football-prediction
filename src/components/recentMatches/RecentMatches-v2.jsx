@@ -1,6 +1,6 @@
-import { useState} from 'react';
-import PropTypes from 'prop-types';
-import RecentMatchesTeams from './RecentMatches-teams';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import RecentMatchesTeams from "./RecentMatches-teams-v2";
 
 function RecentMatches() {
   // useEffect(() => {
@@ -70,7 +70,7 @@ function RecentMatches() {
     {
       name: "Manchester City",
       data: "recentMatchesData2",
-    }
+    },
   ];
 
   const [selectedTeam, setSelectedTeam] = useState(teams[0]);
@@ -111,7 +111,7 @@ function RecentMatches() {
 }
 
 RecentMatches.propTypes = {
-    teamId: PropTypes.number.isRequired,
+  teamId: PropTypes.number.isRequired,
 };
 
 export default RecentMatches;

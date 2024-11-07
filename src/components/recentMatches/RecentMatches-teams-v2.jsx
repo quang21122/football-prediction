@@ -2,49 +2,21 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-function RecentMatches({ teamId }) {
+function RecentMatchesTeams({ data }) {
   const [recentMatches, setRecentMatches] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
 
   useEffect(() => {
-    const fetchRecentMatches = async () => {
-      setLoading(true);
-      setError(null); // Reset error before fetching
-      try {
-        const myHeaders = new Headers();
-        myHeaders.append("x-rapidapi-key", import.meta.env.VITE_RAPIDAPI_KEY);
-        myHeaders.append("x-rapidapi-host", import.meta.env.VITE_RAPIDAPI_HOST);
-
-        const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-          redirect: "follow",
-        };
-
-        const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?team=${teamId}&last=20`,
-          requestOptions
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setRecentMatches(data.response);
-        console.log("Recent matches:", JSON.stringify(data.response));
-        localStorage.setItem("recentMatches", JSON.stringify(data.response));
-      } catch (error) {
-        console.error("Error fetching recent matches:", error);
-        setError("Failed to fetch recent matches. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecentMatches();
-  }, [teamId]);
+    setCurrentPage(1);
+    setRecentMatches(
+      JSON.parse(localStorage.getItem(data)) || []
+    );
+    console.log(
+      "Recent matches:",
+      JSON.parse(localStorage.getItem("recentMatches"))
+    );
+  }, [data]);
 
   const convertDate = (utcDate) => {
     const date = new Date(utcDate);
@@ -61,22 +33,6 @@ function RecentMatches({ teamId }) {
     });
     return { formattedDate, formattedTime };
   };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">Loading recent matches...</h1>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl text-red-600">{error}</h1>
-      </div>
-    );
-  }
 
   if (recentMatches.length === 0) {
     return (
@@ -209,8 +165,8 @@ function RecentMatches({ teamId }) {
   );
 }
 
-RecentMatches.propTypes = {
-  teamId: PropTypes.number.isRequired,
+RecentMatchesTeams.propTypes = {
+  data: PropTypes.string.isRequired,
 };
 
-export default RecentMatches;
+export default RecentMatchesTeams;
