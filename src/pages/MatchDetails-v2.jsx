@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
-import Lineups from "../components/Matches/Lineups-v2";
+import Lineups from "../components/lineups/Lineups-v2";
 import RecentMatches from "../components/recentMatches/RecentMatches-v2";
 import HeadToHead from "../components/Matches/HeadToHead-v2";
 import MatchStatistics from "../components/Matches/MatchStatistics-v2";
@@ -168,7 +168,7 @@ function MatchDetails() {
           </div>
         </div>
         <div className="border-2 border-zinc-100">
-          {selectedDetails === "lineups" && <Lineups />}
+          {selectedDetails === "lineups" && <Lineups matchId={1222610} />}
           {selectedDetails === "recent" && (
             <RecentMatches home={match.teams.home} away={match.teams.away} />
           )}
