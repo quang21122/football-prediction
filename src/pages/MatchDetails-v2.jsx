@@ -6,7 +6,7 @@ import { FaChevronRight } from "react-icons/fa";
 import Lineups from "../components/lineups/Lineups-v2";
 import RecentMatches from "../components/recentMatches/RecentMatches-v2";
 import HeadToHead from "../components/headToHead/HeadToHead-v2";
-import MatchStatistics from "../components/Matches/MatchStatistics-v2";
+import MatchStatistics from "../components/matchStatistics/MatchStatistics-v2";
 
 function MatchDetails() {
   const { id } = useParams(); // Retrieve match ID from the URL
@@ -178,7 +178,7 @@ function MatchDetails() {
               awayTeamId={match.teams.away.id}
             />
           )}
-          {selectedDetails === "stats" && <MatchStatistics />}
+          {selectedDetails === "stats" && <MatchStatistics matchId={id} />}
         </div>
       </div>
     </div>

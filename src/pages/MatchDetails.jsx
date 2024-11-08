@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
-import Lineups from "../components/lineups/Lineups-v2";
-import RecentMatches from "../components/recentMatches/RecentMatches-v2";
-import HeadToHead from "../components/Matches/HeadToHead-v2";
-import MatchStatistics from "../components/Matches/MatchStatistics-v2";
+import Lineups from "../components/lineups/Lineups";
+import RecentMatches from "../components/recentMatches/RecentMatches";
+import HeadToHead from "../components/headToHead/HeadToHead";
+import MatchStatistics from "../components/matchStatistics/MatchStatistics";
 
 function MatchDetails() {
   const { id } = useParams(); // Retrieve match ID from the URL
