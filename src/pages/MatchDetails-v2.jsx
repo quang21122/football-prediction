@@ -3,55 +3,28 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
-import Lineups from "../components/lineups/Lineups";
-import RecentMatches from "../components/recentMatches/RecentMatches";
-import HeadToHead from "../components/headToHead/HeadToHead";
-import MatchStatistics from "../components/matchStatistics/MatchStatistics";
+import Lineups from "../components/lineups/Lineups-v2";
+import RecentMatches from "../components/recentMatches/RecentMatches-v2";
+import HeadToHead from "../components/headToHead/HeadToHead-v2";
+import MatchStatistics from "../components/matchStatistics/MatchStatistics-v2";
 
 function MatchDetails() {
   const { id } = useParams(); // Retrieve match ID from the URL
   const [match, setMatch] = useState(null);
   const [selectedDetails, setSelectedDetails] = useState("lineups");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchMatchData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?id=${id}`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
-              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
-            },
-          }
-        );
-        const data = await response.json();
-        if (data && data.response && data.response.length > 0) {
-          setMatch(data.response[0]);
-        } else {
-          setMatch(null);
-        }
-      } catch (error) {
-        console.error("Error fetching match data:", error);
-        setMatch(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMatchData();
-  }, [id]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">Loading match details...</h1>
-      </div>
+    const savedMatches = JSON.parse(
+      localStorage.getItem("upcomingMatchesData")
     );
-  }
+    if (savedMatches) {
+      const selectedMatch = savedMatches.find(
+        (m) => m.fixture.id === parseInt(id)
+      );
+      setMatch(selectedMatch);
+      console.log(selectedMatch);
+    }
+  }, [id]);
 
   if (!match) {
     return (
@@ -195,7 +168,7 @@ function MatchDetails() {
           </div>
         </div>
         <div className="border-2 border-zinc-100">
-          {selectedDetails === "lineups" && <Lineups matchId={id} />}
+          {selectedDetails === "lineups" && <Lineups matchId={1222610} />}
           {selectedDetails === "recent" && (
             <RecentMatches home={match.teams.home} away={match.teams.away} />
           )}

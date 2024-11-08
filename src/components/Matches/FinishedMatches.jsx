@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { GrFormNext } from "react-icons/gr";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-function FinishedMatches({ date, onMatchClick }) {
+import { useNavigate } from "react-router-dom";
+function FinishedMatches({ date }) {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6; // Number of matches per page
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -53,6 +55,10 @@ function FinishedMatches({ date, onMatchClick }) {
 
     fetchMatches();
   }, [date]);
+
+  const handleMatchClick = (match) => {
+    navigate(`/matches/${match.fixture.id}`);
+  };
 
   if (loading) {
     return (
@@ -120,9 +126,9 @@ function FinishedMatches({ date, onMatchClick }) {
                 <div
                   key={match.fixture.id}
                   className="mt-6 mb-10 mx-4 bg-white grid grid-cols-[2fr_6fr_1.5fr_0.5fr] py-8 border border-zinc-300 rounded-3xl shadow-lg"
-                  onClick={() => onMatchClick(match)}
+                  onClick={() => handleMatchClick(match)}
                 >
-                  <div className="font-bold text-xl text-center flex items-center justify-center">
+                  <div className="font-bold text-xl text-center flex items-center justify-center pl-4">
                     <span>{league.name}</span>
                   </div>
                   <div className="flex flex-row justify-center">
