@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
 import Lineups from "../components/lineups/Lineups-v2";
 import RecentMatches from "../components/recentMatches/RecentMatches-v2";
-import HeadToHead from "../components/Matches/HeadToHead-v2";
+import HeadToHead from "../components/headToHead/HeadToHead-v2";
 import MatchStatistics from "../components/Matches/MatchStatistics-v2";
 
 function MatchDetails() {
@@ -172,7 +172,12 @@ function MatchDetails() {
           {selectedDetails === "recent" && (
             <RecentMatches home={match.teams.home} away={match.teams.away} />
           )}
-          {selectedDetails === "h2h" && <HeadToHead />}
+          {selectedDetails === "h2h" && (
+            <HeadToHead
+              homeTeamId={match.teams.home.id}
+              awayTeamId={match.teams.away.id}
+            />
+          )}
           {selectedDetails === "stats" && <MatchStatistics />}
         </div>
       </div>
