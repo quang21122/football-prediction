@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import RecentMatchesTeams from "../components/recentMatches/RecentMatches-teams-v2";
 
 function ClubDetails() {
   const { id } = useParams();
@@ -108,19 +109,13 @@ function ClubDetails() {
             </div>
           </div>
         </div>
-        {/* <div className="border-2 border-zinc-100">
-          {selectedDetails === "lineups" && <Lineups matchId={id} />}
+        <div className="border-2 border-zinc-100">
           {selectedDetails === "recent" && (
-            <RecentMatches home={match.teams.home} away={match.teams.away} />
+            <div className="border-2 border-zinc-100 m-10 shadow-2xl rounded-[2rem] pb-10">
+              <RecentMatchesTeams data={"recentMatchesData2"} />
+            </div>
           )}
-          {selectedDetails === "h2h" && (
-            <HeadToHead
-              homeTeamId={match.teams.home.id}
-              awayTeamId={match.teams.away.id}
-            />
-          )}
-          {selectedDetails === "stats" && <MatchStatistics matchId={id} />}
-        </div> */}
+        </div>
       </div>
     </div>
   );
