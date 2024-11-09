@@ -14,6 +14,7 @@ import recentMatchesData from "../../recent-matches.json";
 import matchStatisticsData from "../../match-statistics.json";
 import recentMatchesData2 from "../../mc.json";
 import upcomingClubData from "../../upcoming-club.json";
+import playersClubData from "../../players-club.json";
 
 function loadData() {
   localStorage.setItem(
@@ -38,6 +39,7 @@ function loadData() {
     JSON.stringify(matchStatisticsData)
   );
   localStorage.setItem("upcomingClubData", JSON.stringify(upcomingClubData));
+  localStorage.setItem("playersClubData", JSON.stringify(playersClubData));
   console.log("Data loaded");
 }
 
