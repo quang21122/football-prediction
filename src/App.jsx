@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import ClubDetails from "./pages/ClubDetails-v2";
 import MatchDetails from "./pages/MatchDetails-v2";
+import Standings from "./pages/Standings";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/clubs/:id",
         element: <ClubDetails />,
+      },
+      {
+        path: "/standings/:leagueId",
+        element: <Standings />,
       },
     ],
   },
