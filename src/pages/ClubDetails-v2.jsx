@@ -10,10 +10,10 @@ function ClubDetails() {
   const [selectedDetails, setSelectedDetails] = useState("upcoming");
 
   useEffect(() => {
-    const savedClub = JSON.parse(localStorage.getItem("club"));
+    const savedClub = JSON.parse(localStorage.getItem("clubInfoData"));
     if (savedClub) {
       setClub(savedClub);
-      console.log(savedClub);
+      console.log("club data: ", JSON.stringify(savedClub));
     }
   }, [id]);
 
