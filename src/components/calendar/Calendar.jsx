@@ -64,7 +64,7 @@ const Calendar = () => {
   const [today, setToday] = React.useState(dayjs());
   const [selectedDate, setSelectedDate] = React.useState(dayjs());
   return (
-    <div className="pl-2">
+    <div className="pl-2 border border-gray-300 rounded-[3rem] shadow-sm">
       <div className="w-[40rem] h-[48rem] rounded-[4.5rem] bg-white">
         <div className="flex items-center justify-center py-1">
           <GrFormPrevious
