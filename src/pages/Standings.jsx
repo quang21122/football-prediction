@@ -95,11 +95,11 @@ const Standings = () => {
         <h1 className="flex justify-center items-center text-center font-semibold text-red-600 text-3xl mb-6">
           Các trận đấu của mùa giải sắp diễn ra
         </h1>
-        <UpcomingMatches />
+        <UpcomingMatches leagueId={leagueId} />
         <h1 className="flex justify-center items-center text-center font-semibold text-red-600 text-3xl mb-6 mt-20">
           Các trận đấu của mùa giải đã kết thúc
         </h1>
-        <FinishedMatches />
+        <FinishedMatches leagueId={leagueId} />
       </div>
       <div className="">
         <div

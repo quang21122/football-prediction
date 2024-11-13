@@ -1,26 +1,69 @@
+// import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
+import PropTypes from "prop-types";
 
-function UpcomingMatches() {
+function UpcomingMatches({ leagueId }) {
   const navigate = useNavigate();
   const [matches, setMatches] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 4; // Number of matches per page
 
   useEffect(() => {
-    const savedMatches = localStorage.getItem("eplMatches");
-    console.log("Saved matches:", savedMatches);
-    if (savedMatches) {
-      // filter 20 matches
-      setMatches(
-        JSON.parse(savedMatches).filter(
-          (match, index) => index > 20 && index <= 40
-        )
-      );
-    }
-  }, []);
+    const fetchMatches = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(
+          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
+              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
+            },
+          }
+        );
+        const data = await response.json();
+        console.log(JSON.stringify(data.response));
+        if (data.response && data.response.length > 0) {
+          const filterMatches = data.response.filter(
+            (match, index) => index > 20 && index <= 40
+          );
+          setMatches(filterMatches);
+        } else {
+          setError(new Error("No matches data found."));
+        }
+      } catch (error) {
+        console.error("Error fetching matches:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMatches();
+  }, [leagueId]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center">
+        <h1 className="text-3xl">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center">
+        <h1 className="text-3xl">Error fetching matches: {error.message}</h1>
+      </div>
+    );
+  }
 
   const handleMatchClick = (match) => {
     navigate(`/matches/${match.fixture.id}`);
@@ -166,5 +209,9 @@ function UpcomingMatches() {
     </div>
   );
 }
+
+UpcomingMatches.propTypes = {
+  leagueId: PropTypes.number.isRequired,
+};
 
 export default UpcomingMatches;

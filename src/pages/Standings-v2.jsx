@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import FinishedMatches from "../components/standing/FinishedMatches";
-import UpcomingMatches from "../components/standing/UpcomingMatches";
+import FinishedMatches from "../components/standing/FinishedMatches-v2";
+import UpcomingMatches from "../components/standing/UpcomingMatches-v2";
 // import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 // import { useNavigate } from "react-router-dom";
 // import PropTypes from 'prop-types';

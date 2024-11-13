@@ -1,69 +1,26 @@
-// import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
-import PropTypes from "prop-types";
 
-function FinishedMatches({ leagueId }) {
+function UpcomingMatches() {
   const navigate = useNavigate();
   const [matches, setMatches] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 4; // Number of matches per page
 
   useEffect(() => {
-    const fetchMatches = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
-              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
-            },
-          }
-        );
-        const data = await response.json();
-        console.log(JSON.stringify(data.response));
-        if (data.response && data.response.length > 0) {
-          const filterMatches = data.response.filter(
-            (match, index) => index < 20
-          );
-          setMatches(filterMatches);
-        } else {
-          setError(new Error("No matches data found."));
-        }
-      } catch (error) {
-        console.error("Error fetching matches:", error);
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMatches();
-  }, [leagueId]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center">
-        <h1 className="text-3xl">Loading...</h1>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center">
-        <h1 className="text-3xl">Error fetching matches: {error.message}</h1>
-      </div>
-    );
-  }
+    const savedMatches = localStorage.getItem("eplMatches");
+    console.log("Saved matches:", savedMatches);
+    if (savedMatches) {
+      // filter 20 matches
+      setMatches(
+        JSON.parse(savedMatches).filter(
+          (match, index) => index > 20 && index <= 40
+        )
+      );
+    }
+  }, []);
 
   const handleMatchClick = (match) => {
     navigate(`/matches/${match.fixture.id}`);
@@ -141,12 +98,12 @@ function FinishedMatches({ leagueId }) {
                       />
                       <div className="mx-8">
                         <span className="text-xl -mt-8 flex justify-center font-bold text-primary  ">
-                          Kết quả
+                          Dự đoán
                         </span>
                         <div className="border mt-2 shadow-xl text-2xl font-bold text-primary-dark border-zinc-400 rounded-full px-6 flex justify-center py-2">
-                          <span className="">{match.goals.home}</span>
+                          <span className="">?</span>
                           <span className="mx-6">-</span>
-                          <span className="">{match.goals.away}</span>
+                          <span className="">?</span>
                         </div>
                       </div>
                       <img
@@ -210,8 +167,4 @@ function FinishedMatches({ leagueId }) {
   );
 }
 
-FinishedMatches.propTypes = {
-  leagueId: PropTypes.number.isRequired,
-};
-
-export default FinishedMatches;
+export default UpcomingMatches;
