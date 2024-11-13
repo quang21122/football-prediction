@@ -1,21 +1,69 @@
+// import React from 'react';
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import { GrFormNext } from "react-icons/gr";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { GrFormNext } from "react-icons/gr";
+import PropTypes from "prop-types";
 
-function FinishedMatches() {
-  const [matches, setMatches] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 6; // Number of matches per page
+function FinishedMatches({ leagueId }) {
   const navigate = useNavigate();
+  const [matches, setMatches] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 4; // Number of matches per page
 
   useEffect(() => {
-    const savedMatches = localStorage.getItem("finishedMatchesData");
-    if (savedMatches) {
-      setMatches(JSON.parse(savedMatches));
-    }
-  }, []);
+    const fetchMatches = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(
+          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
+              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
+            },
+          }
+        );
+        const data = await response.json();
+        console.log(JSON.stringify(data.response));
+        if (data.response && data.response.length > 0) {
+          const filterMatches = data.response.filter(
+            (match, index) => index < 20
+          );
+          setMatches(filterMatches);
+        } else {
+          setError(new Error("No matches data found."));
+        }
+      } catch (error) {
+        console.error("Error fetching matches:", error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMatches();
+  }, [leagueId]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center">
+        <h1 className="text-3xl">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center">
+        <h1 className="text-3xl">Error fetching matches: {error.message}</h1>
+      </div>
+    );
+  }
 
   const handleMatchClick = (match) => {
     navigate(`/matches/${match.fixture.id}`);
@@ -41,7 +89,7 @@ function FinishedMatches() {
     return (
       <div className="flex justify-center h-screen items-center">
         <h1 className="text-3xl">No matches found in localStorage.</h1>
-      </div> 
+      </div>
     );
   }
 
@@ -69,7 +117,7 @@ function FinishedMatches() {
   };
 
   return (
-    <div>
+    <div className="mx-8">
       <div className="bg-white rounded-[2rem] border border-solid border-gray-200 p-2">
         {leagueIds.map((leagueId) => {
           const league = groupedMatches[leagueId];
@@ -78,7 +126,7 @@ function FinishedMatches() {
               {league.matches.map((match) => (
                 <div
                   key={match.fixture.id}
-                  className="mt-6 mb-10 mx-4 bg-white grid grid-cols-[2fr_6fr_1.5fr_0.5fr] py-8 border border-zinc-300 rounded-3xl shadow-lg"
+                  className="mt-4 mb-6 mx-4 bg-white grid grid-cols-[2fr_6fr_1.5fr_0.5fr] pt-8 pb-4 border border-zinc-300 rounded-3xl shadow-lg"
                   onClick={() => handleMatchClick(match)}
                 >
                   <div className="font-bold text-xl text-center flex items-center justify-center pl-4">
@@ -115,7 +163,6 @@ function FinishedMatches() {
                     <p className="text-black text-[1rem]">
                       {convertDate(match.fixture.date).formattedDate}
                     </p>
-                    <p className="text-black text-[1rem] font-bold">KT</p>
                   </div>
                   <div className="flex justify-center items-center">
                     <GrFormNext className="cursor-pointer text-6xl" />
@@ -127,11 +174,11 @@ function FinishedMatches() {
         })}
       </div>
       {/* Pagination control */}
-      <div className="flex justify-center mt-6 space-x-2">
+      <div className="flex justify-center mt-4 space-x-2">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronLeft />
         </button>
@@ -141,7 +188,7 @@ function FinishedMatches() {
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
-            className={`text-2xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
+            className={`text-xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
               currentPage === i + 1
                 ? "bg-red-600 text-white"
                 : "hover:bg-red-600 hover:text-white"
@@ -154,7 +201,7 @@ function FinishedMatches() {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="text-2xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
+          className="text-xl px-3 py-2 rounded-xl border-2 border-zinc-300 font-normal hover:bg-red-600 hover:text-white disabled:opacity-50"
         >
           <FaChevronRight />
         </button>
@@ -164,7 +211,7 @@ function FinishedMatches() {
 }
 
 FinishedMatches.propTypes = {
-  onMatchClick: PropTypes.func.isRequired,
+  leagueId: PropTypes.number.isRequired,
 };
 
 export default FinishedMatches;

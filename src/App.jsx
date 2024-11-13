@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         element: <ClubDetails />,
       },
       {
-        path: "/standings/:leagueId",
+        path: "/standings",
         element: <Standings />,
       },
     ],

@@ -17,6 +17,7 @@ import upcomingClubData from "../../upcoming-club.json";
 import playersClubData from "../../players-club.json";
 import standingsData from "../../standings.json";
 import clubInfoData from "../../club-info.json";
+import eplMatches from "../../epl-matches.json";
 
 function loadData() {
   localStorage.setItem(
@@ -44,6 +45,7 @@ function loadData() {
   localStorage.setItem("playersClubData", JSON.stringify(playersClubData));
   localStorage.setItem("standingsData", JSON.stringify(standingsData));
   localStorage.setItem("clubInfoData", JSON.stringify(clubInfoData));
+  localStorage.setItem("eplMatches", JSON.stringify(eplMatches));
   console.log("Data loaded");
 }
 
