@@ -11,7 +11,18 @@ const Standings = () => {
   const [leagueName, setLeagueName] = useState("");
   const [displayLimit, setDisplayLimit] = useState(10);
 
-  const leaderboardArr = [' ', ' ', 'ST', 'T', 'H', 'B', 'BT', 'BB', '+/-', 'Đ'];
+  const leaderboardArr = [
+    " ",
+    " ",
+    "ST",
+    "T",
+    "H",
+    "B",
+    "BT",
+    "BB",
+    "+/-",
+    "Đ",
+  ];
 
   useEffect(() => {
     const savedStandings = JSON.parse(localStorage.getItem("standingsData"));
@@ -25,9 +36,13 @@ const Standings = () => {
   return (
     <div className="grid grid-cols-[3.8fr_6.2fr] py-10 gap-x-20 max-w-[120rem] mx-auto border border-x-2 border-gray-200">
       <div className="w-full">
-        <h1 className="flex justify-center items-center text-center font-semibold text-red-600 text-3xl mb-6">Các trận đấu của mùa giải sắp diễn ra</h1>
+        <h1 className="flex justify-center items-center text-center font-semibold text-red-600 text-3xl mb-6">
+          Các trận đấu của mùa giải sắp diễn ra
+        </h1>
         <UpcomingMatches />
-        <h1 className="flex justify-center items-center text-center font-semibold text-red-600 text-3xl mb-6 mt-20">Các trận đấu của mùa giải đã kết thúc</h1>
+        <h1 className="flex justify-center items-center text-center font-semibold text-red-600 text-3xl mb-6 mt-20">
+          Các trận đấu của mùa giải đã kết thúc
+        </h1>
         <FinishedMatches />
       </div>
       <div className="">
@@ -35,9 +50,9 @@ const Standings = () => {
           className="py-6 rounded-[2.5rem] bg-gradient-to-r from-primary to-primary-dark
       text-white text-5xl font-bold text-center flex flex-row justify-between items-center px-10 w-[94%]"
         >
-          <GrFormPrevious className="text-5xl hover:cursor-pointer" />
+          <GrFormPrevious className="text-5xl hover:cursor-pointer hover:text-black" />
           {leagueName}
-          <GrFormNext className="text-5xl hover:cursor-pointer" />
+          <GrFormNext className="text-5xl hover:cursor-pointer hover:text-black" />
         </div>
         <table className="w-[94%] mt-10 shadow-sm">
           <thead>

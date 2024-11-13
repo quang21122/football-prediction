@@ -14,7 +14,11 @@ function UpcomingMatches() {
     console.log("Saved matches:", savedMatches);
     if (savedMatches) {
       // filter 20 matches
-      setMatches(JSON.parse(savedMatches).filter((match, index) => index < 20));
+      setMatches(
+        JSON.parse(savedMatches).filter(
+          (match, index) => index > 20 && index <= 40
+        )
+      );
     }
   }, []);
 
@@ -94,7 +98,7 @@ function UpcomingMatches() {
                       />
                       <div className="mx-8">
                         <span className="text-xl -mt-8 flex justify-center font-bold text-primary  ">
-                          Kết quả
+                          Dự đoán
                         </span>
                         <div className="border mt-2 shadow-xl text-2xl font-bold text-primary-dark border-zinc-400 rounded-full px-6 flex justify-center py-2">
                           <span className="">?</span>
