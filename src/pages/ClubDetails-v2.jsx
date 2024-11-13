@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import RecentMatchesTeams from "../components/recentMatches/RecentMatches-teams-v2";
 import UpcomingMatches from "../components/club/Upcoming-club-v2";
 import PlayersClub from "../components/club/Players-club-v2";
+import StadingsClub from "../components/club/Standings-club-v2";
 
 function ClubDetails() {
   const { id } = useParams();
@@ -125,6 +126,11 @@ function ClubDetails() {
           {selectedDetails === "players" && (
             <div className="border-2 border-zinc-100 m-10 shadow-2xl rounded-[2rem] pb-10">
               <PlayersClub clubId={id} />
+            </div>
+          )}
+          {selectedDetails === "standings" && (
+            <div className=" m-10 shadow-2xl rounded-[2rem]">
+              <StadingsClub clubId={id} />
             </div>
           )}
         </div>
