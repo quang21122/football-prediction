@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import ClubDetails from "./pages/ClubDetails-v2";
 import MatchDetails from "./pages/MatchDetails-v2";
 import Standings from "./pages/Standings-v2";
+import NavigationBar from "./components/navbar/navbar";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,14 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+    <NavigationBar />
+      <div style={{ paddingTop: '3.75rem' }}>
+        <RouterProvider router={router} />
+      </div>
+  </div>
+  )
 }
 
 export default App;
