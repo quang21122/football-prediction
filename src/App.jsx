@@ -4,6 +4,7 @@ import ClubDetails from "./pages/ClubDetails-v2";
 import MatchDetails from "./pages/MatchDetails-v2";
 import Standings from "./pages/Standings-v2";
 import NavigationBar from "./components/navbar/navbar";
+import ChatBot from "./components/chatbot/chatbot";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path: "/standings",
         element: <Standings />,
       },
+      {
+        path: "/chatbot",
+        element: <ChatBot />,
+      }
     ],
   },
 ]);
@@ -35,7 +40,7 @@ function App() {
       <div style={{ paddingTop: '3.75rem' }}>
         <RouterProvider router={router} />
       </div>
-  </div>
+    </div>
   )
 }
 

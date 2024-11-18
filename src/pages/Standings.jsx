@@ -142,7 +142,7 @@ const Standings = () => {
                   <img
                     src={team.team.logo}
                     alt={team.team.name}
-                    className="w-12 h-12 mr-6"
+                    className="w-12 h-12 mr-4"
                   />
                   {team.team.name}
                 </td>
