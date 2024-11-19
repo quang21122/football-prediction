@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Bar = ({children}) => {
   return(
@@ -72,6 +72,10 @@ const Bar = ({children}) => {
 }
 
 const NavigationBar = () => {
+  const location = useLocation();
+  const isActive = (path) => {
+    return location.pathname === path || location.pathname.startsWith(`${path}/`);
+  };
   return(
     <>
     <Bar>
@@ -80,7 +84,8 @@ const NavigationBar = () => {
       <NavLink to="/standings" className="link">Bảng xếp hạng</NavLink>
       <NavLink to="/clubs" className="link">Câu lạc bộ</NavLink>
       <NavLink to="/chatbot" className="link">Chatbot</NavLink>
-      <NavLink to="/signin" className="link">Đăng nhập</NavLink>
+      <NavLink to="/signin" className={({ isActive }) => isActive || location.pathname === '/signup' ? 'link active' : 'link'}>
+      Đăng nhập</NavLink>
     </Bar>
     
     
