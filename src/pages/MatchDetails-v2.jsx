@@ -35,7 +35,7 @@ function MatchDetails() {
   }
 
   return (
-    <div className="bg-white pt-[2rem]">
+    <div className="bg-white mt-[3.75em]">
       <div className="max-w-[120rem] mx-auto">
         <div className=" bg-primary-dark text-white text-2xl pt-4 pl-4">
           <div className="flex">
