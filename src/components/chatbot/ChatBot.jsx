@@ -80,7 +80,7 @@ function ChatBot() {
 
   return (
     <div
-      className={`grid pt-8 gap-x-8 max-w-[120rem] mx-auto border border-x-2 border-gray-200 ${
+      className={`grid pt-8 gap-x-8 max-w-[120rem] mx-auto border border-x-2 border-gray-200 transition-all duration-500 ease-in-out ${
         isSidebarVisible ? "grid-cols-[0.5fr_9.5fr]" : "grid-cols-[3fr_7fr]"
       }`}
     >
@@ -101,7 +101,7 @@ function ChatBot() {
             Lịch sử trò chuyện
           </p>
 
-          <div className="overflow-y-auto h-[80%] flex flex-col mt-10 w-[100%]">
+          <div className="h-[80%] flex flex-col mt-10 w-[100%]">
             {Object.keys(groupedChatHistory).map((date, index) => (
               <div key={index} className="mb-10">
                 <p className="text-white font-semibold text-4xl pl-10 pb-4">
