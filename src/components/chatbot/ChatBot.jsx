@@ -8,15 +8,15 @@ function ChatBot() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isStartChat, setIsStartChat] = useState(false);
 
-  // Message mẫu 
+  // Message mẫu
   const [messages, setMessages] = useState([
-      { type: "question", text: "Hello, how can I help you?" },
-      { type: "answer", text: "What are the latest football scores?" },
-      { type: "question", text: "Can you predict the next match?" },
-      { type: "answer", text: "Sure, let me check the data for you." },
-      { type: "question", text: "Show me the league standings." },
-      { type: "answer", text: "Here are the current league standings." },
-    ]);
+    { type: "question", text: "Hello, how can I help you?" },
+    { type: "answer", text: "What are the latest football scores?" },
+    { type: "question", text: "Can you predict the next match?" },
+    { type: "answer", text: "Sure, let me check the data for you." },
+    { type: "question", text: "Show me the league standings." },
+    { type: "answer", text: "Here are the current league standings." },
+  ]);
   const [newMessage, setNewMessage] = useState("");
 
   const toggleSidebar = () => {
@@ -30,7 +30,7 @@ function ChatBot() {
     }
   };
 
-  // Chat history mẫu 
+  // Chat history mẫu
   const chatHistory = [
     { date: new Date("2024-11-18"), message: "Hello, how can I help you?" },
     { date: new Date("2024-11-18"), message: "What are the latest scores?" },
@@ -44,7 +44,7 @@ function ChatBot() {
     },
     { date: new Date("2023-10-04"), message: "Show me the league standings." },
   ];
-  
+
   const sortedChatHistory = chatHistory.sort((a, b) => b.date - a.date);
 
   const formatDate = (date) => {
@@ -97,11 +97,11 @@ function ChatBot() {
             />
           </div>
 
-          <p className="text-red-600 mx-10 font-semibold text-4xl py-5">
+          <p className="text-red-600 mx-10 font-semibold text-4xl py-5 select-none">
             Lịch sử trò chuyện
           </p>
 
-          <div className="h-[80%] flex flex-col mt-10 w-[100%]">
+          <div className="h-[80%] flex flex-col mt-10 w-[100%] select-none">
             {Object.keys(groupedChatHistory).map((date, index) => (
               <div key={index} className="mb-10">
                 <p className="text-white font-semibold text-4xl pl-10 pb-4">
@@ -137,7 +137,7 @@ function ChatBot() {
       )}
 
       {!isStartChat && (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center select-none">
           <div className="flex flex-row items-center">
             <img src={Logo} alt="Chatbot logo" className="w-20 h-20" />
             <p className="text-red-600 text-4xl font-semibold mx-10">
