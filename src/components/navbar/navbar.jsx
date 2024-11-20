@@ -61,7 +61,7 @@ const NavigationBar = () => {
       <div className="navbar">
         {/* Add your navigation items here */}
         <a href="/">Football Prediction</a>
-        <a href="/" class="active">Lịch thi đấu</a>
+        <a href="/" className="active">Lịch thi đấu</a>
         <a href="#ranking">Bảng xếp hạng</a>
         <a href="#club">Câu lạc bộ</a>
         <a href="#chatbot">Chatbot</a>
