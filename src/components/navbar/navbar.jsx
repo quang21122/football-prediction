@@ -1,17 +1,17 @@
-import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
-const NavigationBar = () => {
-  return (
+const Bar = ({children}) => {
+  return(
     <>
-      <style>
-        {`
-          body {
+    <style>
+      {`
+        body {
             margin: 0;
             padding: 0;
             font-size: 16px;
             font-family: Arial, sans-serif;
-        }
-        .navbar {
+              }
+        .bar {
             height: 3.75em;
             width: 100%;
             top: 0;
@@ -22,7 +22,7 @@ const NavigationBar = () => {
             justify-content: center; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .navbar a {
+        .link {
             float: left;
             display: block;
             color: #ffffff;
@@ -31,44 +31,65 @@ const NavigationBar = () => {
             text-decoration: none;
             font-size: 16px;
             font-weight: bold; 
-            width: 10em;
+            width: 10.9em;
             border-right: 0.0625em solid #B22D2D;
             position: relative;
         }
-        .navbar a:first-child {
+        .link:first-child {
             text-align: left;
             width: 20em;
         }
-        .navbar a::after {
+        .link:first-child.active::after {
+          width:0%
+        }
+        .link:first-child.active{
+          background-color: #DD3333
+        }
+        .link:hover {
+            background-color: #FF8F8F;
+          }
+          .link.active {
+            background-color: #B22D2D;
+          }
+          .link.active::after {
             content: '';
             position: absolute;
-            width: 0;
+            width: 100%;
             height: 0.25em;
             background-color: yellow;
             bottom: 0;
             left: 0;
-            transition: width 0s;
-        }
-        .navbar a.active::after {
-            width: 100%;
-        }
-        .navbar a:hover {
-            background-color: #FF8F8F;
-            /*color: black;*/
-        }
-        `}
-      </style>
-      <div className="navbar">
-        {/* Add your navigation items here */}
-        <a href="/">Football Prediction</a>
-        <a href="/" className="active">Lịch thi đấu</a>
-        <a href="#ranking">Bảng xếp hạng</a>
-        <a href="#club">Câu lạc bộ</a>
-        <a href="#chatbot">Chatbot</a>
-        <a href="#account">Đăng nhập</a>
-      </div>
+          }
+        
+      }   `
+    }
+    </style> 
+    <nav className="bar">
+      {children}
+    </nav>
     </>
-  );
-};
+  )
+}
 
+const NavigationBar = () => {
+  const location = useLocation();
+  const isActive = (path) => {
+    return location.pathname === path || location.pathname.startsWith(`${path}/`);
+  };
+  return(
+    <>
+    <Bar>
+      <NavLink to="/" className="link" end>Football Prediction</NavLink>
+      <NavLink to="/" className={({ isActive }) => isActive || location.pathname.startsWith('/matches/')? 'link active' : 'link'} end>Lịch thi đấu</NavLink>
+      <NavLink to="/standings" className="link">Bảng xếp hạng</NavLink>
+      <NavLink to="/clubs" className="link">Câu lạc bộ</NavLink>
+      <NavLink to="/chatbot" className="link">Chatbot</NavLink>
+      <NavLink to="/signin" className={({ isActive }) => isActive || location.pathname === '/signup' ? 'link active' : 'link'}>
+      Đăng nhập</NavLink>
+    </Bar>
+    
+    
+    </>
+  )
+}
 export default NavigationBar;
