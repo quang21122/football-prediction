@@ -80,7 +80,7 @@ const NavigationBar = () => {
     <>
     <Bar>
       <NavLink to="/" className="link" end>Football Prediction</NavLink>
-      <NavLink to="/" className="link" end>Lịch thi đấu</NavLink>
+      <NavLink to="/" className={({ isActive }) => isActive || location.pathname.startsWith('/matches/')? 'link active' : 'link'} end>Lịch thi đấu</NavLink>
       <NavLink to="/standings" className="link">Bảng xếp hạng</NavLink>
       <NavLink to="/clubs" className="link">Câu lạc bộ</NavLink>
       <NavLink to="/chatbot" className="link">Chatbot</NavLink>
