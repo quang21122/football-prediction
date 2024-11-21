@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import ClubDetails from "./pages/ClubDetails-v2";
 import MatchDetails from "./pages/MatchDetails-v2";
 import Standings from "./pages/Standings-v2";
+import ChatBot from "./components/chatbot/chatbot";
 import NavigationBar from "./components/navbar/navbar";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -42,6 +43,9 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp/>,
+      },
+        path: "/chatbot",
+        element: <ChatBot />,
       }
     ],
   },
@@ -53,7 +57,6 @@ function App() {
       <div className="mt-[3.75rem]">
         <RouterProvider router={router}/>
       </div>
-      
     </div>
   )
 }
