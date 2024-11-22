@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function ClubDetails() {
   const [clubs, setClubs] = useState(null);
@@ -9,6 +10,7 @@ function ClubDetails() {
   const [filteredClubs, setFilteredClubs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
   const pageSize = 10;
 
   const leagueIds = [39, 61, 78, 135, 140];
@@ -64,6 +66,10 @@ function ClubDetails() {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleClubClick = (clubId) => {
+    navigate(`/clubs/${clubId}`);
   };
 
   if (loading) {
@@ -134,6 +140,7 @@ function ClubDetails() {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 className="ml-auto mr-10 cursor-pointer"
+                onClick={() => handleClubClick(club.team.id)}
               >
                 <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z" />
               </svg>
