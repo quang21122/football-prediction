@@ -18,6 +18,7 @@ import playersClubData from "../../players-club.json";
 import standingsData from "../../standings.json";
 import clubInfoData from "../../club-info.json";
 import eplMatches from "../../epl-matches.json";
+import clubListData from "../../club-list.json";
 
 function loadData() {
   localStorage.setItem(
@@ -46,61 +47,11 @@ function loadData() {
   localStorage.setItem("standingsData", JSON.stringify(standingsData));
   localStorage.setItem("clubInfoData", JSON.stringify(clubInfoData));
   localStorage.setItem("eplMatches", JSON.stringify(eplMatches));
+  localStorage.setItem("clubListData", JSON.stringify(clubListData));
   console.log("Data loaded");
 }
 
 function Home() {
-  // const [selectedMatch, setSelectedMatch] = useState({
-  //   fixture: {
-  //     id: 157256,
-  //     referee: "M. Oliver",
-  //     timezone: "UTC",
-  //     date: "2024-10-20T15:30:00+00:00",
-  //     timestamp: 1737241200,
-  //   },
-  //   league: {
-  //     id: 39,
-  //     name: "Premier League",
-  //     country: "England",
-  //     logo: "https://media.api-sports.io/football/leagues/39.png",
-  //     flag: "https://media.api-sports.io/flags/gb.svg",
-  //   },
-  //   teams: {
-  //     home: {
-  //       id: 40,
-  //       name: "Liverpool",
-  //       logo: "https://media.api-sports.io/football/teams/40.png",
-  //     },
-  //     away: {
-  //       id: 49,
-  //       name: "Chelsea",
-  //       logo: "https://media.api-sports.io/football/teams/49.png",
-  //     },
-  //   },
-  //   goals: {
-  //     home: 2,
-  //     away: 1,
-  //   },
-  //   score: {
-  //     halftime: {
-  //       home: 1,
-  //       away: 0,
-  //     },
-  //     fulltime: {
-  //       home: 2,
-  //       away: 1,
-  //     },
-  //     extratime: {
-  //       home: null,
-  //       away: null,
-  //     },
-  //     penalty: {
-  //       home: null,
-  //       away: null,
-  //     },
-  //   },
-  // });
-
   useEffect(() => {
     loadData();
   }, []);
