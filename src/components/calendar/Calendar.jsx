@@ -3,13 +3,22 @@ import dayjs from "dayjs";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export const generateDate = (
-  month = dayjs().month(),
-  year = dayjs().year()
+  month = dayjs().subtract(2, "year").month(),
+  year = dayjs().subtract(2, "year").year()
 ) => {
-  const firstDayOfMonth = dayjs().year(year).month(month).startOf("month");
-  const lastDayOfMonth = dayjs().year(year).month(month).endOf("month");
+  const firstDayOfMonth = dayjs()
+    .subtract(2, "year")
+    .year(year)
+    .month(month)
+    .startOf("month");
+  const lastDayOfMonth = dayjs()
+    .subtract(2, "year")
+    .year(year)
+    .month(month)
+    .endOf("month");
   const days = [];
 
+  // Previous month days
   for (let i = 0; i < firstDayOfMonth.day(); i++) {
     const date = firstDayOfMonth.day(i);
     days.push({
@@ -18,28 +27,30 @@ export const generateDate = (
     });
   }
 
+  // Current month days
   for (let i = firstDayOfMonth.date(); i <= lastDayOfMonth.date(); i++) {
     const date = firstDayOfMonth.date(i);
+    const twoYearsAgo = dayjs().subtract(2, "year");
     days.push({
       date,
       isCurrentMonth: true,
-      today: dayjs().isSame(date, "date"),
+      today: twoYearsAgo.isSame(date, "date"),
     });
   }
 
-  const remaining = 42 - days.length;
+    const remaining = 42 - days.length;
 
-  for (
-    let i = lastDayOfMonth.date() + 1;
-    i <= lastDayOfMonth.date() + remaining;
-    i++
-  ) {
-    const date = lastDayOfMonth.date(i);
-    days.push({
-      date,
-      isCurrentMonth: false,
-    });
-  }
+    for (
+      let i = lastDayOfMonth.date() + 1;
+      i <= lastDayOfMonth.date() + remaining;
+      i++
+    ) {
+      const date = lastDayOfMonth.date(i);
+      days.push({
+        date,
+        isCurrentMonth: false,
+      });
+    }
 
   return days;
 };
@@ -61,8 +72,10 @@ export const months = [
 
 const Calendar = () => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const [today, setToday] = React.useState(dayjs());
-  const [selectedDate, setSelectedDate] = React.useState(dayjs());
+  const [today, setToday] = React.useState(dayjs().subtract(2, "year"));
+  const [selectedDate, setSelectedDate] = React.useState(
+    null
+  );
   return (
     <div className="pl-2 border border-gray-300 rounded-[3rem] shadow-sm">
       <div className="w-[40rem] h-[48rem] rounded-[4.5rem] bg-white">
@@ -98,13 +111,13 @@ const Calendar = () => {
                                             : "text-gray-300"
                                         } 
                                         ${
-                                          day.today 
+                                          day.today
                                             ? "bg-primary rounded-full"
                                             : ""
                                         }
                                         ${
                                           day.date.isSame(selectedDate, "date")
-                                            ? "bg-primary rounded-full text-white"
+                                            ? "bg-red-500 rounded-full text-white"
                                             : ""
                                         }`}
               onClick={() => setSelectedDate(day.date)}
