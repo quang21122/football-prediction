@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
+import Club from "./pages/Club-v2";
 import ClubDetails from "./pages/ClubDetails-v2";
 import MatchDetails from "./pages/MatchDetails-v2";
 import Standings from "./pages/Standings-v2";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <MatchDetails />,
       },
       {
+        path: "/clubs",
+        element: <Club />,
+      },
+      {
         path: "/clubs/:id",
         element: <ClubDetails />,
       },
@@ -38,16 +43,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        element: <SignIn/>,
+        element: <SignIn />,
       },
       {
         path: "/signup",
-        element: <SignUp/>,
+        element: <SignUp />,
       },
       {
         path: "/chatbot",
         element: <ChatBot />,
-      }
+      },
     ],
   },
 ]);
@@ -56,11 +61,10 @@ function App() {
   return (
     <div className="App">
       <div className="mt-[3.75rem]">
-        <RouterProvider router={router}/>
+        <RouterProvider router={router} />
       </div>
     </div>
-  )
+  );
 }
-
 
 export default App;
