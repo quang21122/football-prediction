@@ -44,6 +44,7 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp/>,
       },
+      {
         path: "/chatbot",
         element: <ChatBot />,
       }
