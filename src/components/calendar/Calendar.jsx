@@ -70,12 +70,15 @@ export const months = [
   "December",
 ];
 
-const Calendar = () => {
+const Calendar = ({ onDateSelect }) => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [today, setToday] = React.useState(dayjs().subtract(2, "year"));
-  const [selectedDate, setSelectedDate] = React.useState(
-    null
-  );
+  const [selectedDate, setSelectedDate] = React.useState(dayjs().subtract(2, "year"));
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+    onDateSelect(date); // Call the prop function to pass selectedDate
+  };
+  console.log("selectedDate", selectedDate);
   return (
     <div className="pl-2 border border-gray-300 rounded-[3rem] shadow-sm">
       <div className="w-[40rem] h-[48rem] rounded-[4.5rem] bg-white">
@@ -120,7 +123,7 @@ const Calendar = () => {
                                             ? "bg-red-500 rounded-full text-white"
                                             : ""
                                         }`}
-              onClick={() => setSelectedDate(day.date)}
+              onClick={() => handleDateSelect(day.date)}
             >
               {day.date.date()}
             </div>

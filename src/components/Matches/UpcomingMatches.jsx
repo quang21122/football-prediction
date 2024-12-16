@@ -2,50 +2,70 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+async function fetchMatchesByDate(date, leagueId) {
+  try {
+    const response = await fetch(`http://localhost:9000/match?date=${date}&league=${leagueId}`);
+    if (!response.ok) {
+      throw new Error(`Error fetching matches for league ${leagueId}: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.matches;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it upstream
+  }
+}
+
+async function fetchPrediction(MatchID, leagueId) {
+  try {
+    const response = await fetch(`http://localhost:9000/predict?matchID=${MatchID}&league=${leagueId}`);
+    if (!response.ok) {
+      throw new Error(`Error fetching prediction for match ${MatchID}: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.prediction;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it upstream
+  }
+}
+
 function UpcomingMatches({ date, onMatchClick }) {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5; // Number of matches per page
-
+  const leagueIDs = [ 39, 140, 78, 135, 61];
+  
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const myHeaders = new Headers();
-        myHeaders.append("x-rapidapi-key", import.meta.env.VITE_RAPIDAPI_KEY);
-        myHeaders.append("x-rapidapi-host", import.meta.env.VITE_RAPIDAPI_HOST);
-
-        const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-          redirect: "follow",
-        };
-
-        const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?date=${date}`,
-          requestOptions
+        const leagueMatchesPromises = leagueIDs.map((leagueId) => fetchMatchesByDate(date, leagueId));
+        const results = await Promise.all(leagueMatchesPromises);
+        const combinedMatches = results.flat(); // Flatten the results
+        console.log("combinedMatches", combinedMatches);
+        // if (combinedMatches.length === 0) {
+        //   setError("No matches found for the specified date.");
+        //   setLoading(false);
+        //   return;
+        // }
+        const predictionPromises = combinedMatches.map(match =>
+          fetchPrediction(match.fixture.id, match.league.id)
         );
-        const data = await response.json();
+        const predictions = await Promise.all(predictionPromises);
 
-        const majorLeagueMatches = data.response.filter((match) =>
-          [2, 3, 39, 140, 78, 135, 61].includes(match.league.id)
-        );
-
-        const upcomingMatches = majorLeagueMatches.filter(
-          (match) => match.fixture.status.short === "NS"
-        );
-
-        localStorage.setItem(
-          "upcomingMatches",
-          JSON.stringify(upcomingMatches)
-        );
-        console.log("Upcoming matches:", JSON.stringify(upcomingMatches));
-
-        setMatches(upcomingMatches);
+        // Map predictions to the corresponding matches
+        const matchesWithPredictions = combinedMatches.map((match, index) => ({
+          ...match,
+          prediction: predictions[index],
+        }));
+        console.log("finish predicting")
+        console.log(matchesWithPredictions)
+        setMatches(matchesWithPredictions);
         setLoading(false);
-      } catch (error) {
-        setError(error);
+      } catch (err) {
+        setError(`Failed to fetch matches: ${err.message}`);
         setLoading(false);
       }
     };
@@ -148,9 +168,9 @@ function UpcomingMatches({ date, onMatchClick }) {
                         Dự đoán
                       </span>
                       <div className="border mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-4">
-                        <span className="">?</span>
+                        <span className="">{match.prediction.home}</span>
                         <span className="mx-6">-</span>
-                        <span className="">?</span>
+                        <span className="">{match.prediction.away}</span>
                       </div>
                     </div>
                     <img

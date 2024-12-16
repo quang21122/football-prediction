@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "../components/calendar/Calendar";
 import FinishedMatches from "../components/Matches/FinishedMatches-v2";
 // import LiveMatches from "../components/Matches/LiveMatches-v2";
-import UpcomingMatches from "../components/Matches/UpcomingMatches-v2";
+import UpcomingMatches from "../components/Matches/UpcomingMatches";
 import finishedMatchesData from "../../finished-matches.json";
 import liveMatchesData from "../../live-matches.json";
 import upcomingMatchesData from "../../upcoming-matches.json";
@@ -19,6 +19,7 @@ import standingsData from "../../standings.json";
 import clubInfoData from "../../club-info.json";
 import eplMatches from "../../epl-matches.json";
 import clubListData from "../../club-list.json";
+import dayjs from "dayjs";
 
 function loadData() {
   localStorage.setItem(
@@ -52,9 +53,14 @@ function loadData() {
 }
 
 function Home() {
+  const [selectedDate, setSelectedDate] = useState(dayjs().subtract(2, "year"));
   useEffect(() => {
     loadData();
   }, []);
+
+  const handleDateSelect = (date) => {
+    setSelectedDate(date); // Update selected date
+  };
 
   // const onMatchClick = (match) => {
   //   console.log("Match clicked", match);
@@ -64,7 +70,7 @@ function Home() {
   return (
     <div className="grid grid-cols-[3fr_7fr] py-10 gap-x-20 max-w-[120rem] mx-auto">
       <div className="flex flex-col">
-        <Calendar />
+        <Calendar onDateSelect={handleDateSelect}/>
         <h2 className="text-4xl font-bold pt-10 pb-5 flex justify-center items-center text-primary">
           Các trận đấu đã kết thúc
         </h2>
@@ -78,7 +84,7 @@ function Home() {
         {/* <UpcomingMatches onMatchClick={onMatchClick} />
         <LiveMatches onMatchClick={onMatchClick} />
         <FinishedMatches onMatchClick={onMatchClick} /> */}
-        <UpcomingMatches date={"2024-11-09"} />
+        <UpcomingMatches date={selectedDate.format("YYYY-MM-DD")} />
         {/* <UpcomingMatches /> */}
         {/* <LiveMatches />
         <FinishedMatches /> */}

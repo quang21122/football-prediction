@@ -12,6 +12,13 @@ const Standings = () => {
   const [leagueId, setLeagueId] = useState(39);
 
   const leagueIds = [39, 78, 61, 140, 135];
+  const leagueNames = {
+    39: "Premier League",
+    61: "Ligue 1",
+    78: "Bundesliga",
+    135: "Serie A",
+    140: "La Liga"
+  }
 
   const leaderboardArr = [
     " ",
@@ -32,23 +39,18 @@ const Standings = () => {
       setError(null);
       try {
         const response = await fetch(
-          `https://v3.football.api-sports.io/standings?season=2022&league=${leagueId}`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
-              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
-            },
-          }
+          `http://localhost:9000/leaderboard?league=${leagueId}`,
         );
-        const data = await response.json();
-        console.log(JSON.stringify(data.response));
-        if (data.response && data.response.length > 0) {
-          setStandings(data.response[0].league.standings[0]);
-          setLeagueName(data.response[0].league.name);
-        } else {
-          setError(new Error("No standings data found."));
+        if (!response.ok) {
+          throw new Error(`Error fetching standings: ${response.status}`);
         }
+        const data = await response.json();
+        console.log("data", data);
+        setStandings(data.leaderboard.Teams);
+        console.log("standings", data.leaderboard.Teams);
+        setLeagueName(leagueNames[leagueId]);
+        console.log("leagueName", leagueNames[leagueId]);
+
       } catch (error) {
         console.error("Error fetching standings:", error);
         setError(error);
@@ -133,31 +135,32 @@ const Standings = () => {
             {standings.slice(0, displayLimit).map((team, index) => (
               <tr
                 key={index}
-                className={`${
-                  index % 2 === 0 ? "" : "bg-gray-100"
-                } text-3xl text-center`}
+                className={`${index % 2 === 0 ? "" : "bg-gray-100"
+                  } text-3xl text-center`}
               >
-                <td className="py-7 px-6">{team.rank}</td>
+                <td className="py-7 px-6">{team.Rank}</td>
                 <td className="py-7 flex flex-row justify-start items-center">
-                  <img
+                  {/* <img
                     src={team.team.logo}
                     alt={team.team.name}
                     className="w-12 h-12 mr-4"
-                  />
-                  {team.team.name}
+                    
+                  /> */
+                  console.log("team.Team",team.Team)}
+                  {team.Team}
                 </td>
-                <td className="py-7 px-6">{team.all.played}</td>
-                <td className="py-7 px-6">{team.all.win}</td>
-                <td className="py-7 px-6">{team.all.draw}</td>
-                <td className="py-7 px-6">{team.all.lose}</td>
-                <td className="py-7 px-6">{team.all.goals.for}</td>
-                <td className="py-7 px-6">{team.all.goals.against}</td>
+                <td className="py-7 px-6">{team.GP}</td>
+                <td className="py-7 px-6">{team.W}</td>
+                <td className="py-7 px-6">{team.D}</td>
+                <td className="py-7 px-6">{team.L}</td>
+                <td className="py-7 px-6">{team.GF}</td>
+                <td className="py-7 px-6">{team.GA}</td>
                 <td className="py-7 px-6">
-                  {team.all.goals.for - team.all.goals.against >= 0
-                    ? "+" + (team.all.goals.for - team.all.goals.against)
-                    : "-" + (team.all.goals.against - team.all.goals.for)}
+                  {team.GF - team.GA >= 0
+                    ? "+" + (team.GF - team.GA)
+                    : "-" + (team.GF- team.GA)}
                 </td>
-                <td className="py-7 px-6">{team.points}</td>
+                <td className="py-7 px-6">{team.Pts}</td>
               </tr>
             ))}
           </tbody>
