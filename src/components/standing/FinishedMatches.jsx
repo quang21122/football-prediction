@@ -17,9 +17,18 @@ function FinishedMatches({ leagueId }) {
     const fetchMatches = async () => {
       setLoading(true);
       setError(null);
-      try {
+      try {const startDate = new Date();
+        startDate.setMonth(startDate.getMonth() -3);
+        startDate.setFullYear(2022);
+        const startDateFormat = `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, '0')}-${String(startDate.getDate()).padStart(2, '0')}`;
+
+        const endDate = new Date();
+        endDate.setDate(endDate.getDate() - 1);
+        
+        const endDateFormat = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
+
         const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022`,
+          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022&from=${startDateFormat}&to=${endDateFormat}`,
           {
             method: "GET",
             headers: {
