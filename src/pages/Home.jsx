@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import Calendar from "../components/calendar/Calendar";
-import FinishedMatches from "../components/Matches/FinishedMatches-v2";
-// import LiveMatches from "../components/Matches/LiveMatches-v2";
 import UpcomingMatches from "../components/Matches/UpcomingMatches";
 import finishedMatchesData from "../../finished-matches.json";
 import liveMatchesData from "../../live-matches.json";
 import upcomingMatchesData from "../../upcoming-matches.json";
-// import MatchDetails from "../components/Matches/MatchDetails-v2";
 import lineups from "../../lineups.json";
 import headToHeadData from "../../head-to-head.json";
 import playersData from "../../players.json";
@@ -70,26 +67,11 @@ function Home() {
   return (
     <div className="grid grid-cols-[3fr_7fr] py-10 gap-x-20 max-w-[120rem] mx-auto">
       <div className="flex flex-col">
-        <Calendar onDateSelect={handleDateSelect}/>
-        <h2 className="text-4xl font-bold pt-10 pb-5 flex justify-center items-center text-primary">
-          Các trận đấu đã kết thúc
-        </h2>
-        {/* <FinishedMatches /> */}
-        <FinishedMatches date={"2024-11-02"} />
+        <Calendar onDateSelect={handleDateSelect} />
       </div>
       <div className="">
-        {/* <UpcomingMatches date={'2024-11-02'} /> */}
-        {/* <LiveMatches date={'2024-10-26'} /> */}
-        {/* <FinishedMatches date={'2024-10-20'} /> */}
-        {/* <UpcomingMatches onMatchClick={onMatchClick} />
-        <LiveMatches onMatchClick={onMatchClick} />
-        <FinishedMatches onMatchClick={onMatchClick} /> */}
         <UpcomingMatches date={selectedDate.format("YYYY-MM-DD")} />
-        {/* <UpcomingMatches /> */}
-        {/* <LiveMatches />
-        <FinishedMatches /> */}
       </div>
-      {/* <MatchDetails selectedMatch={selectedMatch} /> */}
     </div>
   );
 }
