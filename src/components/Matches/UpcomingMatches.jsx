@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Loading from "../loading";
 
 async function fetchMatchesByDate(date, leagueId) {
   try {
-    const response = await fetch(`http://localhost:9000/match?date=${date}&league=${leagueId}`);
+    const response = await fetch(
+      `http://localhost:9000/match?date=${date}&league=${leagueId}`
+    );
     if (!response.ok) {
-      throw new Error(`Error fetching matches for league ${leagueId}: ${response.status}`);
+      throw new Error(
+        `Error fetching matches for league ${leagueId}: ${response.status}`
+      );
     }
     const data = await response.json();
     return data.matches;
@@ -18,9 +23,13 @@ async function fetchMatchesByDate(date, leagueId) {
 
 async function fetchPrediction(MatchID, leagueId) {
   try {
-    const response = await fetch(`http://localhost:9000/predict?matchID=${MatchID}&league=${leagueId}`);
+    const response = await fetch(
+      `http://localhost:9000/predict?matchID=${MatchID}&league=${leagueId}`
+    );
     if (!response.ok) {
-      throw new Error(`Error fetching prediction for match ${MatchID}: ${response.status}`);
+      throw new Error(
+        `Error fetching prediction for match ${MatchID}: ${response.status}`
+      );
     }
     const data = await response.json();
     return data.prediction;
@@ -36,21 +45,29 @@ function UpcomingMatches({ date, onMatchClick }) {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5; // Number of matches per page
-  const leagueIDs = [ 39, 140, 78, 135, 61];
-  
+  const leagueIDs = [39, 140, 78, 135, 61];
+
   useEffect(() => {
     const fetchMatches = async () => {
       try {
-        const leagueMatchesPromises = leagueIDs.map((leagueId) => fetchMatchesByDate(date, leagueId));
+        setLoading(true);
+        setError(null);
+
+        const leagueMatchesPromises = leagueIDs.map((leagueId) =>
+          fetchMatchesByDate(date, leagueId)
+        );
+        console.log("leagueMatchesPromises", leagueMatchesPromises);
         const results = await Promise.all(leagueMatchesPromises);
         const combinedMatches = results.flat(); // Flatten the results
         console.log("combinedMatches", combinedMatches);
-        // if (combinedMatches.length === 0) {
-        //   setError("No matches found for the specified date.");
-        //   setLoading(false);
-        //   return;
-        // }
-        const predictionPromises = combinedMatches.map(match =>
+        console.log("combinedMatches.length", combinedMatches.length);
+
+        if (combinedMatches.length === 0) {
+          setError("No matches found for the specified date.");
+          setLoading(false);
+          return;
+        }
+        const predictionPromises = combinedMatches.map((match) =>
           fetchPrediction(match.fixture.id, match.league.id)
         );
         const predictions = await Promise.all(predictionPromises);
@@ -60,8 +77,8 @@ function UpcomingMatches({ date, onMatchClick }) {
           ...match,
           prediction: predictions[index],
         }));
-        console.log("finish predicting")
-        console.log(matchesWithPredictions)
+        console.log("finish predicting");
+        console.log(matchesWithPredictions);
         setMatches(matchesWithPredictions);
         setLoading(false);
       } catch (err) {
@@ -76,14 +93,14 @@ function UpcomingMatches({ date, onMatchClick }) {
   if (loading) {
     return (
       <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">Loading...</h1>
+        <Loading />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex justify-center h-screen items-center">
+      <div className="flex justify-center h-1/2 items-center">
         <h1 className="text-red-500 text-3xl">{error}</h1>
       </div>
     );
@@ -163,16 +180,40 @@ function UpcomingMatches({ date, onMatchClick }) {
                       alt={match.teams.home.name}
                       className="w-28 h-28"
                     />
-                    <div className="mx-10">
-                      <span className="text-2xl -mt-8 flex justify-center font-bold text-primary">
-                        Dự đoán
-                      </span>
-                      <div className="border mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-4">
-                        <span className="">{match.prediction.home}</span>
-                        <span className="mx-6">-</span>
-                        <span className="">{match.prediction.away}</span>
-                      </div>
-                    </div>
+                    {/* Display predict if current date is less than match date minus 2 years */}
+                    {(() => {
+                      const currentDate = new Date();
+                      const matchDate = new Date(date);
+                      const addedTwoYear = new Date(
+                        matchDate.setFullYear(matchDate.getFullYear() + 2)
+                      );
+                      console.log("currentDate", currentDate);
+                      console.log("addedTwoYear", addedTwoYear);
+
+                      return currentDate < addedTwoYear ? (
+                        <div className="mx-10">
+                          <span className="text-2xl -mt-8 flex justify-center font-bold text-primary">
+                            Dự đoán
+                          </span>
+                          <div className="border mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-4">
+                            <span className="">{match.prediction.home}</span>
+                            <span className="mx-6">-</span>
+                            <span className="">{match.prediction.away}</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="mx-10">
+                          <span className="text-2xl -mt-8 flex justify-center font-bold text-primary">
+                            Kết quả
+                          </span>
+                          <div className="border mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-4">
+                            <span className="">{match.goals.home}</span>
+                            <span className="mx-6">-</span>
+                            <span className="">{match.goals.away}</span>
+                          </div>
+                        </div>
+                      );
+                    })()}
                     <img
                       src={match.teams.away.logo}
                       alt={match.teams.away.name}
