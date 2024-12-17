@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
+import dayjs from 'dayjs';
 
 function FinishedMatches({ leagueId }) {
   const navigate = useNavigate();
@@ -17,16 +18,13 @@ function FinishedMatches({ leagueId }) {
     const fetchMatches = async () => {
       setLoading(true);
       setError(null);
-      try {const startDate = new Date();
-        startDate.setMonth(startDate.getMonth() -3);
-        startDate.setFullYear(2022);
-        const startDateFormat = `${startDate.getFullYear()}-${String(startDate.getMonth() + 1).padStart(2, '0')}-${String(startDate.getDate()).padStart(2, '0')}`;
+      try {
+        const endDate = dayjs().subtract(1, 'day').subtract(2, 'year'); // Lùi 1 ngày, 2 năm so với hiện tại
+        const endDateFormat = endDate.format('YYYY-MM-DD');
 
-        const endDate = new Date();
-        endDate.setDate(endDate.getDate() - 1);
-        
-        const endDateFormat = `${endDate.getFullYear()}-${String(endDate.getMonth() + 1).padStart(2, '0')}-${String(endDate.getDate()).padStart(2, '0')}`;
-
+        const startDate = endDate.subtract(3, 'month'); // Lùi 3 tháng so với endDate
+        const startDateFormat = startDate.format('YYYY-MM-DD');
+        console.log(startDateFormat, endDateFormat);
         const response = await fetch(
           `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022&from=${startDateFormat}&to=${endDateFormat}`,
           {
