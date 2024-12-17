@@ -27,20 +27,19 @@ async function fetchPrediction(matchID, leagueId, matchDate) {
       `http://localhost:9000/predict?matchID=${matchID}&league=${leagueId}&matchDate=${matchDate}}`
     );
     if (!response.ok) {
-      throw new Error(
-        `Error fetching prediction for match ${matchID}: ${response.status}`
-      );
+      if (response.status === 429) {
+        console.warn(`Rate limit exceeded for match ${matchID}, returning default prediction.`);
+        return { basedRound: 0, home: "?", away: "?" }; // Trả về dự đoán mặc định
+      }
+      throw new Error(`Error fetching prediction for match ${matchID}: ${response.status}`);
     }
     const data = await response.json();
     return data.prediction;
   } catch (error) {
-    console.error(error);
-    if (error.message.includes("429")) {
-      console.log("Rate limit exceeded, waiting before retrying...");
-      await new Promise((resolve) => setTimeout(resolve, 10000)); // Wait for 10 seconds
-      return fetchPrediction(matchID, leagueId, matchDate); // Retry after 10 seconds
-    }
-    throw error; // Re-throw the error to handle it upstream
+    console.error(`Error predicting match ${matchID}:`, error);
+
+    // Trả về dự đoán mặc định nếu lỗi xảy ra
+    return { basedRound: 0, home: "?", away: "?" };
   }
 }
 
@@ -57,7 +56,7 @@ async function fetchPredictionsInBatches(matches, batchSize = 8) {
     } catch (error) {
       console.error("Error in batch prediction:", error);
     }
-    await new Promise(resolve => setTimeout(resolve, 3000)); // Delay for 1 second
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 1 second
   }
   return predictions;
 }
