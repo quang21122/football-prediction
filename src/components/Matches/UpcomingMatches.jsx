@@ -118,7 +118,7 @@ function UpcomingMatches({ date, onMatchClick }) {
         );
         console.log("leagueMatchesPromises", leagueMatchesPromises);
         const results = await Promise.all(leagueMatchesPromises);
-        const matchesWithPredictions = results.flat(); // Flatten the results
+        const matchesWithPredictions = results.flat(); // combine all league matches
         console.log("fetch Matches", matchesWithPredictions);
         console.log("Matches.length", matchesWithPredictions.length);
 
