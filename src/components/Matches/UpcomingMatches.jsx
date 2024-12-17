@@ -24,13 +24,9 @@ async function fetchMatchesByDate(date, leagueId) {
 async function fetchPrediction(matchID, leagueId, matchDate) {
   try {
     const response = await fetch(
-      `http://localhost:9000/predict?matchID=${matchID}&league=${leagueId}&matchDate=${matchDate}}`
+      `http://localhost:9000/predict?matchID=${matchID}&league=${leagueId}&matchDate=${matchDate}`
     );
     if (!response.ok) {
-      if (response.status === 429) {
-        console.warn(`Rate limit exceeded for match ${matchID}, returning default prediction.`);
-        return { basedRound: 0, home: "?", away: "?" }; // Trả về dự đoán mặc định
-      }
       throw new Error(`Error fetching prediction for match ${matchID}: ${response.status}`);
     }
     const data = await response.json();
@@ -61,6 +57,22 @@ async function fetchPredictionsInBatches(matches, batchSize = 8) {
   return predictions;
 }
 
+async function fetchMatchesWithPredictionByDate(date, leagueId) {
+  try {
+    const response = await fetch(
+      `http://localhost:9000/predict?date=${date}&league=${leagueId}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error fetching matches with prediction for league ${leagueId}: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.matches;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it upstream
+  }
+}
+
 function UpcomingMatches({ date, onMatchClick }) {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -75,30 +87,46 @@ function UpcomingMatches({ date, onMatchClick }) {
         setLoading(true);
         setError(null);
 
+        // const leagueMatchesPromises = leagueIDs.map((leagueId) =>
+        //   fetchMatchesByDate(date, leagueId)
+        // );
+        // console.log("leagueMatchesPromises", leagueMatchesPromises);
+        // const results = await Promise.all(leagueMatchesPromises);
+        // const combinedMatches = results.flat(); // Flatten the results
+        // console.log("fetch Matches", combinedMatches);
+        // console.log("Matches.length", combinedMatches.length);
+
+        // if (combinedMatches.length === 0) {
+        //   setError("No matches found for the specified date.");
+        //   setLoading(false);
+        //   return;
+        // }
+        // const predictions = await fetchPredictionsInBatches(combinedMatches);
+
+        // // Map predictions to the corresponding matches
+        // const matchesWithPredictions = combinedMatches.map((match, index) => ({
+        //   ...match,
+        //   predict: predictions[index],
+        // }));
+
+        // console.log("finish predicting");
+        // console.log(matchesWithPredictions);
+
+
         const leagueMatchesPromises = leagueIDs.map((leagueId) =>
-          fetchMatchesByDate(date, leagueId)
+          fetchMatchesWithPredictionByDate(date, leagueId)
         );
         console.log("leagueMatchesPromises", leagueMatchesPromises);
         const results = await Promise.all(leagueMatchesPromises);
-        const combinedMatches = results.flat(); // Flatten the results
-        console.log("fetch Matches", combinedMatches);
-        console.log("Matches.length", combinedMatches.length);
+        const matchesWithPredictions = results.flat(); // Flatten the results
+        console.log("fetch Matches", matchesWithPredictions);
+        console.log("Matches.length", matchesWithPredictions.length);
 
-        if (combinedMatches.length === 0) {
+        if (matchesWithPredictions.length === 0) {
           setError("No matches found for the specified date.");
           setLoading(false);
           return;
         }
-        const predictions = await fetchPredictionsInBatches(combinedMatches);
-
-        // Map predictions to the corresponding matches
-        const matchesWithPredictions = combinedMatches.map((match, index) => ({
-          ...match,
-          predict: predictions[index],
-        }));
-
-        console.log("finish predicting");
-        console.log(matchesWithPredictions);
 
         setMatches(matchesWithPredictions);
         setLoading(false);
@@ -208,8 +236,6 @@ function UpcomingMatches({ date, onMatchClick }) {
                       const addedTwoYear = new Date(
                         matchDate.setFullYear(matchDate.getFullYear() + 2)
                       );
-                      console.log("currentDate", currentDate);
-                      console.log("addedTwoYear", addedTwoYear);
 
                       return currentDate < addedTwoYear ? (
                         <div className="mx-10">
