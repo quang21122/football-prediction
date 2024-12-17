@@ -8,6 +8,8 @@ import ChatBot from "./components/chatbot/chatbot";
 import NavigationBar from "./components/navbar/navbar";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Footer from "./components/footer/footer";
+import {UserProvider} from "./context/userContext";
 
 const MainLayout = () => (
   <>
@@ -60,9 +62,14 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
-      <div className="mt-[3.75rem]">
+      <UserProvider>
+      <div className="mt-[3.75rem] min-h-screen overflow-x-hidden flex flex-col">
         <RouterProvider router={router} />
+        <div className="mt-auto">
+          <Footer />
+        </div>
       </div>
+      </UserProvider>
     </div>
   );
 }
