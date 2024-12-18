@@ -10,7 +10,9 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Footer from "./components/footer/footer";
 import {UserProvider} from "./context/userContext";
-
+import Profile from "./pages/Profile";
+import ChangePassword from "./pages/ChangePassword";
+import DeleteAccount from "./pages/DeleteAccount";
 const MainLayout = () => (
   <>
     <NavigationBar />
@@ -55,6 +57,18 @@ const router = createBrowserRouter([
         path: "/chatbot",
         element: <ChatBot />,
       },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/changepassword",
+        element: <ChangePassword />,
+      },
+      {
+        path: "/deleteaccount",
+        element: <DeleteAccount/>,
+      }
     ],
   },
 ]);
@@ -65,6 +79,8 @@ function App() {
       <UserProvider>
       <div className="mt-[3.75rem] min-h-screen overflow-x-hidden flex flex-col">
         <RouterProvider router={router} />
+        {/* <DeleteAccount/> */}
+        {/* <ChangePassword/> */}
         <div className="mt-auto">
           <Footer />
         </div>

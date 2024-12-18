@@ -106,7 +106,7 @@ const NavigationBar = () => {
       <NavLink to="/standings" className="link">Bảng xếp hạng</NavLink>
       <NavLink to="/clubs" className="link">Câu lạc bộ</NavLink>
       <NavLink to="/chatbot" className="link">Chatbot</NavLink>
-        <NavLink to="/signin" className={({ isActive }) => isActive || location.pathname === '/signup' ? 'link active' : 'link'}>
+        <NavLink to="/profile" className={({ isActive }) => isActive || location.pathname === '/signup' ? 'link active' : 'link'}>
         <div className="flex justify-items-start">
           <img className="w-12 h-12 ml-16 ml-4" src={userIcon} alt="User Icon" />
           <div className="ml-4">{userName}</div>

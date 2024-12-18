@@ -36,7 +36,7 @@ function UserInput({ label, field, placeHolder, inputRef, children }) {
 
 const SignInForm = () => {
     const navigate = useNavigate();
-    const { userName, setUserName } = useContext(UserContext); 
+    const { userName, setUserName, email, setEmail, password, setPassword} = useContext(UserContext); 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const [emailNoti, setEmailNoti] = useState("");
@@ -62,6 +62,8 @@ const SignInForm = () => {
           setPasswordNoti("");
           const username = email.split('@')[0];
           setUserName(username);
+          setEmail(email);
+          setPassword(password);
           navigate("/");
         }
       }
@@ -124,7 +126,7 @@ const SignInForm = () => {
 const SignUpForm = () => {
 
   const navigate = useNavigate();
-  const { userName, setUserName } = useContext(UserContext); 
+  const { userName, setUserName, email, setEmail, password, setPassword} = useContext(UserContext);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null)
@@ -166,6 +168,8 @@ const SignUpForm = () => {
       {
         const username = email.split('@')[0];
         setUserName(username);
+        setEmail(email);
+        setPassword(password);
         setConfirmPasswordNoti("");
         navigate("/");
       }
@@ -229,5 +233,6 @@ const SignUpForm = () => {
     </div>
   );
 };
+export { UserInput };
 export { SignUpForm };
 export default SignInForm;
