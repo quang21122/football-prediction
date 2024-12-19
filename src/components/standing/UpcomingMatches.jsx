@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
+import dayjs from 'dayjs';
 
 function UpcomingMatches({ leagueId }) {
   const navigate = useNavigate();
@@ -18,8 +19,15 @@ function UpcomingMatches({ leagueId }) {
       setLoading(true);
       setError(null);
       try {
+        const startDate = dayjs().add(1, 'day').subtract(2, 'year'); // Thêm 1 ngày và lùi 2 năm
+        const startDateFormat = startDate.format('YYYY-MM-DD');
+        
+        // Khởi tạo ngày kết thúc
+        const endDate = startDate.add(3, 'month'); // Thêm 3 tháng so với startDate
+        const endDateFormat = endDate.format('YYYY-MM-DD');
+        
         const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022`,
+          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022&from=${startDateFormat}&to=${endDateFormat}`,
           {
             method: "GET",
             headers: {
