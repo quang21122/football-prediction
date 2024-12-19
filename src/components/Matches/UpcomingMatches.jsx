@@ -27,7 +27,9 @@ async function fetchPrediction(matchID, leagueId, matchDate) {
       `http://localhost:9000/predict?matchID=${matchID}&league=${leagueId}&matchDate=${matchDate}`
     );
     if (!response.ok) {
-      throw new Error(`Error fetching prediction for match ${matchID}: ${response.status}`);
+      throw new Error(
+        `Error fetching prediction for match ${matchID}: ${response.status}`
+      );
     }
     const data = await response.json();
     return data.prediction;
@@ -52,7 +54,7 @@ async function fetchPredictionsInBatches(matches, batchSize = 8) {
     } catch (error) {
       console.error("Error in batch prediction:", error);
     }
-    await new Promise(resolve => setTimeout(resolve, 2000)); // Delay for 1 second
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Delay for 1 second
   }
   return predictions;
 }
@@ -63,7 +65,9 @@ async function fetchMatchesWithPredictionByDate(date, leagueId) {
       `http://localhost:9000/predict?date=${date}&league=${leagueId}`
     );
     if (!response.ok) {
-      throw new Error(`Error fetching matches with prediction for league ${leagueId}: ${response.status}`);
+      throw new Error(
+        `Error fetching matches with prediction for league ${leagueId}: ${response.status}`
+      );
     }
     const data = await response.json();
     return data.matches;
@@ -112,7 +116,6 @@ function UpcomingMatches({ date, onMatchClick }) {
         // console.log("finish predicting");
         // console.log(matchesWithPredictions);
 
-
         const leagueMatchesPromises = leagueIDs.map((leagueId) =>
           fetchMatchesWithPredictionByDate(date, leagueId)
         );
@@ -129,6 +132,7 @@ function UpcomingMatches({ date, onMatchClick }) {
         }
 
         setMatches(matchesWithPredictions);
+        setCurrentPage(1);
         setLoading(false);
       } catch (err) {
         setError(`Failed to fetch matches: ${err.message}`);
