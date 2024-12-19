@@ -1,4 +1,8 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
+import userIcon from "../../assets/user.png";
+
 
 const Bar = ({children}) => {
   return(
@@ -42,6 +46,10 @@ const Bar = ({children}) => {
         .link:first-child.active::after {
           width:0%
         }
+        .link:last-child {
+          width: auto;
+          min-width: 10.9em;
+        }
         .link:first-child.active{
           background-color: #DD3333
         }
@@ -73,11 +81,13 @@ const Bar = ({children}) => {
 
 const NavigationBar = () => {
   const location = useLocation();
-  const isActive = (path) => {
-    return location.pathname === path || location.pathname.startsWith(`${path}/`);
-  };
+  const { userName, setUserName } = useContext(UserContext)
+
+  // const isActive = (path) => {
+  //   return location.pathname === path || location.pathname.startsWith(`${path}/`);
+  // };
+  if (userName == null)
   return(
-    <>
     <Bar>
       <NavLink to="/" className="link" end>Football Prediction</NavLink>
       <NavLink to="/" className={({ isActive }) => isActive || location.pathname.startsWith('/matches/')? 'link active' : 'link'} end>Lịch thi đấu</NavLink>
@@ -85,11 +95,25 @@ const NavigationBar = () => {
       <NavLink to="/clubs" className="link">Câu lạc bộ</NavLink>
       <NavLink to="/chatbot" className="link">Chatbot</NavLink>
       <NavLink to="/signin" className={({ isActive }) => isActive || location.pathname === '/signup' ? 'link active' : 'link'}>
-      Đăng nhập</NavLink>
+      Đăng nhập
+      </NavLink>
     </Bar>
-    
-    
-    </>
+  )
+  else return(
+    <Bar>
+      <NavLink to="/" className="link" end>Football Prediction</NavLink>
+      <NavLink to="/" className={({ isActive }) => isActive || location.pathname.startsWith('/matches/')? 'link active' : 'link'} end>Lịch thi đấu</NavLink>
+      <NavLink to="/standings" className="link">Bảng xếp hạng</NavLink>
+      <NavLink to="/clubs" className="link">Câu lạc bộ</NavLink>
+      <NavLink to="/chatbot" className="link">Chatbot</NavLink>
+        <NavLink to="/profile" className={({ isActive }) => isActive || location.pathname === '/signup' ? 'link active' : 'link'}>
+        <div className="flex justify-items-start">
+          <img className="w-12 h-12 ml-16 ml-4" src={userIcon} alt="User Icon" />
+          <div className="ml-4">{userName}</div>
+        </div>
+        </NavLink>
+      
+    </Bar>
   )
 }
 export default NavigationBar;
