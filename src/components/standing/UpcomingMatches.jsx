@@ -6,6 +6,24 @@ import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
 import dayjs from 'dayjs';
 
+async function fetchMatchesWithPredictionByRange(leagueId, from, to) {
+  try {
+    const response = await fetch(
+      `http://localhost:9000/predict?league=${leagueId}&from=${from}&to=${to}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching matches with prediction for league ${leagueId}: ${response.status}`
+      );
+    }
+    const data = await response.json();
+    return data.matches;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it upstream
+  }
+}
+
 function UpcomingMatches({ leagueId }) {
   const navigate = useNavigate();
   const [matches, setMatches] = useState([]);
@@ -20,31 +38,14 @@ function UpcomingMatches({ leagueId }) {
       setError(null);
       try {
         const startDate = dayjs().add(1, 'day').subtract(2, 'year'); // Thêm 1 ngày và lùi 2 năm
-        const startDateFormat = startDate.format('YYYY-MM-DD');
-        
-        // Khởi tạo ngày kết thúc
-        const endDate = startDate.add(3, 'month'); // Thêm 3 tháng so với startDate
-        const endDateFormat = endDate.format('YYYY-MM-DD');
-        
-        const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022&from=${startDateFormat}&to=${endDateFormat}`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
-              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
-            },
-          }
-        );
-        const data = await response.json();
-        console.log(JSON.stringify(data.response));
-        if (data.response && data.response.length > 0) {
-          const filterMatches = data.response.filter(
-            (match, index) => index > 20 && index <= 40
-          );
-          setMatches(filterMatches);
+        const endDate = startDate.add(10, 'day'); // Thêm 10 ngày so với startDate
+        const data = await fetchMatchesWithPredictionByRange(leagueId, startDate, endDate);
+
+        if (data.length > 0) {
+          const matches = data.slice(0, 16);
+          setMatches(matches);
         } else {
-          setError(new Error("No matches data found."));
+          setError(new Error("No match founded in the next 10 days."));
         }
       } catch (error) {
         console.error("Error fetching matches:", error);
@@ -68,7 +69,7 @@ function UpcomingMatches({ leagueId }) {
   if (error) {
     return (
       <div className="flex justify-center items-center">
-        <h1 className="text-3xl">Error fetching matches: {error.message}</h1>
+        <h1 className="text-3xl">{error.message}</h1>
       </div>
     );
   }
@@ -152,9 +153,9 @@ function UpcomingMatches({ leagueId }) {
                           Dự đoán
                         </span>
                         <div className="border mt-2 shadow-xl text-2xl font-bold text-primary-dark border-zinc-400 rounded-full px-6 flex justify-center py-2">
-                          <span className="">?</span>
+                          <span className="">{match.predict.home}</span>
                           <span className="mx-6">-</span>
-                          <span className="">?</span>
+                          <span className="">{match.predict.away}</span>
                         </div>
                       </div>
                       <img

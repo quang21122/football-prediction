@@ -6,6 +6,24 @@ import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
 import dayjs from 'dayjs';
 
+async function fetchMatchesByRange(leagueId, from, to) {
+  try {
+    const response = await fetch(
+      `http://localhost:9000/match?league=${leagueId}&from=${from}&to=${to}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching matches for league ${leagueId}: ${response.status}`
+      );
+    }
+    const data = await response.json();
+    return data.matches;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it upstream
+  }
+}
+
 function FinishedMatches({ leagueId }) {
   const navigate = useNavigate();
   const [matches, setMatches] = useState([]);
@@ -20,28 +38,13 @@ function FinishedMatches({ leagueId }) {
       setError(null);
       try {
         const endDate = dayjs().subtract(1, 'day').subtract(2, 'year'); // Lùi 1 ngày, 2 năm so với hiện tại
-        const endDateFormat = endDate.format('YYYY-MM-DD');
+        const startDate = endDate.subtract(2, 'month'); // Lùi 2 tháng so với endDate
+        const data = await fetchMatchesByRange(leagueId, startDate, endDate);
 
-        const startDate = endDate.subtract(3, 'month'); // Lùi 3 tháng so với endDate
-        const startDateFormat = startDate.format('YYYY-MM-DD');
-        console.log(startDateFormat, endDateFormat);
-        const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022&from=${startDateFormat}&to=${endDateFormat}`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
-              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
-            },
-          }
-        );
-        const data = await response.json();
-        console.log(JSON.stringify(data.response));
-        if (data.response && data.response.length > 0) {
-          const filterMatches = data.response.filter(
-            (match, index) => index < 20
-          );
-          setMatches(filterMatches);
+        if (data.length > 0) {
+          const sortedData = data.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date));
+          const matches = sortedData.slice(0, 16);
+          setMatches(matches);
         } else {
           setError(new Error("No matches data found."));
         }
@@ -195,11 +198,10 @@ function FinishedMatches({ leagueId }) {
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
-            className={`text-xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
-              currentPage === i + 1
+            className={`text-xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${currentPage === i + 1
                 ? "bg-red-600 text-white"
                 : "hover:bg-red-600 hover:text-white"
-            }`}
+              }`}
           >
             {i + 1}
           </button>

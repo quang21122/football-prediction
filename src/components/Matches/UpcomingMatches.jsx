@@ -3,62 +3,6 @@ import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Loading from "../loading";
 
-async function fetchMatchesByDate(date, leagueId) {
-  try {
-    const response = await fetch(
-      `http://localhost:9000/match?date=${date}&league=${leagueId}`
-    );
-    if (!response.ok) {
-      throw new Error(
-        `Error fetching matches for league ${leagueId}: ${response.status}`
-      );
-    }
-    const data = await response.json();
-    return data.matches;
-  } catch (error) {
-    console.error(error);
-    throw error; // Re-throw the error to handle it upstream
-  }
-}
-
-async function fetchPrediction(matchID, leagueId, matchDate) {
-  try {
-    const response = await fetch(
-      `http://localhost:9000/predict?matchID=${matchID}&league=${leagueId}&matchDate=${matchDate}`
-    );
-    if (!response.ok) {
-      throw new Error(
-        `Error fetching prediction for match ${matchID}: ${response.status}`
-      );
-    }
-    const data = await response.json();
-    return data.prediction;
-  } catch (error) {
-    console.error(`Error predicting match ${matchID}:`, error);
-
-    // Trả về dự đoán mặc định nếu lỗi xảy ra
-    return { basedRound: 0, home: "?", away: "?" };
-  }
-}
-
-async function fetchPredictionsInBatches(matches, batchSize = 8) {
-  const predictions = [];
-  for (let i = 0; i < matches.length; i += batchSize) {
-    const batch = matches.slice(i, i + batchSize); // Chia nhóm
-    const batchPromises = batch.map((match) =>
-      fetchPrediction(match.fixture.id, match.league.id, match.fixture.date)
-    );
-    try {
-      const batchResults = await Promise.all(batchPromises);
-      predictions.push(...batchResults);
-    } catch (error) {
-      console.error("Error in batch prediction:", error);
-    }
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Delay for 1 second
-  }
-  return predictions;
-}
-
 async function fetchMatchesWithPredictionByDate(date, leagueId) {
   try {
     const response = await fetch(
@@ -90,31 +34,6 @@ function UpcomingMatches({ date, onMatchClick }) {
       try {
         setLoading(true);
         setError(null);
-
-        // const leagueMatchesPromises = leagueIDs.map((leagueId) =>
-        //   fetchMatchesByDate(date, leagueId)
-        // );
-        // console.log("leagueMatchesPromises", leagueMatchesPromises);
-        // const results = await Promise.all(leagueMatchesPromises);
-        // const combinedMatches = results.flat(); // Flatten the results
-        // console.log("fetch Matches", combinedMatches);
-        // console.log("Matches.length", combinedMatches.length);
-
-        // if (combinedMatches.length === 0) {
-        //   setError("No matches found for the specified date.");
-        //   setLoading(false);
-        //   return;
-        // }
-        // const predictions = await fetchPredictionsInBatches(combinedMatches);
-
-        // // Map predictions to the corresponding matches
-        // const matchesWithPredictions = combinedMatches.map((match, index) => ({
-        //   ...match,
-        //   predict: predictions[index],
-        // }));
-
-        // console.log("finish predicting");
-        // console.log(matchesWithPredictions);
 
         const leagueMatchesPromises = leagueIDs.map((leagueId) =>
           fetchMatchesWithPredictionByDate(date, leagueId)
