@@ -5,6 +5,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
 import dayjs from 'dayjs';
+import Loading from "../loading";
 
 async function fetchMatchesWithPredictionByRange(leagueId, from, to) {
   try {
@@ -61,7 +62,7 @@ function UpcomingMatches({ leagueId }) {
   if (loading) {
     return (
       <div className="flex justify-center items-center">
-        <h1 className="text-3xl">Loading...</h1>
+        <Loading />
       </div>
     );
   }

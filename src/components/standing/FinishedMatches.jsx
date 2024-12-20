@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
+import Loading from "../loading";
 
 async function fetchMatchesByRange(leagueId, from, to) {
   try {
@@ -37,12 +38,14 @@ function FinishedMatches({ leagueId }) {
       setLoading(true);
       setError(null);
       try {
-        const endDate = dayjs().subtract(1, 'day').subtract(2, 'year'); // Lùi 1 ngày, 2 năm so với hiện tại
-        const startDate = endDate.subtract(2, 'month'); // Lùi 2 tháng so với endDate
+        const endDate = dayjs().subtract(1, "day").subtract(2, "year"); // Lùi 1 ngày, 2 năm so với hiện tại
+        const startDate = endDate.subtract(2, "month"); // Lùi 2 tháng so với endDate
         const data = await fetchMatchesByRange(leagueId, startDate, endDate);
 
         if (data.length > 0) {
-          const sortedData = data.sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date));
+          const sortedData = data.sort(
+            (a, b) => new Date(b.fixture.date) - new Date(a.fixture.date)
+          );
           const matches = sortedData.slice(0, 16);
           setMatches(matches);
         } else {
@@ -62,7 +65,7 @@ function FinishedMatches({ leagueId }) {
   if (loading) {
     return (
       <div className="flex justify-center items-center">
-        <h1 className="text-3xl">Loading...</h1>
+        <Loading />
       </div>
     );
   }
@@ -198,10 +201,11 @@ function FinishedMatches({ leagueId }) {
           <button
             key={i + 1}
             onClick={() => handlePageChange(i + 1)}
-            className={`text-xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${currentPage === i + 1
+            className={`text-xl px-4 py-2 rounded-xl border-2 border-zinc-300 ${
+              currentPage === i + 1
                 ? "bg-red-600 text-white"
                 : "hover:bg-red-600 hover:text-white"
-              }`}
+            }`}
           >
             {i + 1}
           </button>
