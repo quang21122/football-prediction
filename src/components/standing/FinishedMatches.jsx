@@ -4,7 +4,26 @@ import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
+import Loading from "../loading";
+
+async function fetchMatchesByRange(leagueId, from, to) {
+  try {
+    const response = await fetch(
+      `http://localhost:9000/match?league=${leagueId}&from=${from}&to=${to}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching matches for league ${leagueId}: ${response.status}`
+      );
+    }
+    const data = await response.json();
+    return data.matches;
+  } catch (error) {
+    console.error(error);
+    throw error; // Re-throw the error to handle it upstream
+  }
+}
 
 function FinishedMatches({ leagueId }) {
   const navigate = useNavigate();
@@ -19,29 +38,16 @@ function FinishedMatches({ leagueId }) {
       setLoading(true);
       setError(null);
       try {
-        const endDate = dayjs().subtract(1, 'day').subtract(2, 'year'); // Lùi 1 ngày, 2 năm so với hiện tại
-        const endDateFormat = endDate.format('YYYY-MM-DD');
+        const endDate = dayjs().subtract(1, "day").subtract(2, "year"); // Lùi 1 ngày, 2 năm so với hiện tại
+        const startDate = endDate.subtract(2, "month"); // Lùi 2 tháng so với endDate
+        const data = await fetchMatchesByRange(leagueId, startDate, endDate);
 
-        const startDate = endDate.subtract(3, 'month'); // Lùi 3 tháng so với endDate
-        const startDateFormat = startDate.format('YYYY-MM-DD');
-        console.log(startDateFormat, endDateFormat);
-        const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?league=${leagueId}&season=2022&from=${startDateFormat}&to=${endDateFormat}`,
-          {
-            method: "GET",
-            headers: {
-              "x-rapidapi-host": import.meta.env.VITE_RAPIDAPI_HOST,
-              "x-rapidapi-key": import.meta.env.VITE_RAPIDAPI_KEY,
-            },
-          }
-        );
-        const data = await response.json();
-        console.log(JSON.stringify(data.response));
-        if (data.response && data.response.length > 0) {
-          const filterMatches = data.response.filter(
-            (match, index) => index < 20
+        if (data.length > 0) {
+          const sortedData = data.sort(
+            (a, b) => new Date(b.fixture.date) - new Date(a.fixture.date)
           );
-          setMatches(filterMatches);
+          const matches = sortedData.slice(0, 16);
+          setMatches(matches);
         } else {
           setError(new Error("No matches data found."));
         }
@@ -59,7 +65,7 @@ function FinishedMatches({ leagueId }) {
   if (loading) {
     return (
       <div className="flex justify-center items-center">
-        <h1 className="text-3xl">Loading...</h1>
+        <Loading />
       </div>
     );
   }
