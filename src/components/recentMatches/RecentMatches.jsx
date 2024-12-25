@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import RecentMatchesTeams from "./RecentMatches-teams";
 
-function RecentMatches({ home, away }) {
+function RecentMatches({ home, away, date }) {
   // const teams = [
   //   {
   //     name: "Manchester United",
@@ -46,7 +46,7 @@ function RecentMatches({ home, away }) {
           </div>
         </div>
         {/* <RecentMatchesTeams data={selectedTeam.data} /> */}
-        <RecentMatchesTeams teamId={selectedTeam.id} />
+        <RecentMatchesTeams teamId={selectedTeam.id} date={date} />
       </div>
     </div>
   );
@@ -55,6 +55,7 @@ function RecentMatches({ home, away }) {
 RecentMatches.propTypes = {
   home: PropTypes.object.isRequired,
   away: PropTypes.object.isRequired,
+  date: PropTypes.string.isRequired,
 };
 
 export default RecentMatches;

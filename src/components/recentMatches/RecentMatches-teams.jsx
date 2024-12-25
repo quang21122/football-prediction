@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Loading from "../loading";
 
-function RecentMatches({ teamId }) {
+function RecentMatches({ teamId, date }) {
   const [recentMatches, setRecentMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,6 +15,18 @@ function RecentMatches({ teamId }) {
       setLoading(true);
       setError(null); // Reset error before fetching
       try {
+        // Calculate the "from" date
+        const currentDate = new Date(date);
+        currentDate.setMonth(currentDate.getMonth() - 2);
+        const fromDate = currentDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+
+        const toDate = new Date(date);
+        toDate.setDate(toDate.getDate() - 1);
+        const newDate = toDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+
+        console.log("fromDate", fromDate);
+        console.log("date", date);
+
         const myHeaders = new Headers();
         myHeaders.append("x-rapidapi-key", import.meta.env.VITE_RAPIDAPI_KEY);
         myHeaders.append("x-rapidapi-host", import.meta.env.VITE_RAPIDAPI_HOST);
@@ -25,7 +38,7 @@ function RecentMatches({ teamId }) {
         };
 
         const response = await fetch(
-          `https://v3.football.api-sports.io/fixtures?team=${teamId}&last=20`,
+          `https://v3.football.api-sports.io/fixtures?team=${teamId}&season=2022&from=${fromDate}&to=${newDate}`,
           requestOptions
         );
         if (!response.ok) {
@@ -65,7 +78,7 @@ function RecentMatches({ teamId }) {
   if (loading) {
     return (
       <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">Loading recent matches...</h1>
+        <Loading />
       </div>
     );
   }
@@ -211,6 +224,7 @@ function RecentMatches({ teamId }) {
 
 RecentMatches.propTypes = {
   teamId: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
 };
 
 export default RecentMatches;
