@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Loading from "../loading";
 
 function MatchStatistics({ matchId }) {
   const [stats, setStats] = useState([]);
@@ -108,7 +109,7 @@ function MatchStatistics({ matchId }) {
   if (loading) {
     return (
       <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">Loading...</h1>
+        <Loading />
       </div>
     );
   }

@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Loading from "../loading";
 
 function Lineups({ matchId }) {
   const [lineups, setLineups] = useState([]);
   const [playersData, setPlayersData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLineups = async () => {
       try {
+        setLoading(true);
         const myHeaders = new Headers();
         myHeaders.append("x-rapidapi-key", import.meta.env.VITE_RAPIDAPI_KEY);
         myHeaders.append("x-rapidapi-host", import.meta.env.VITE_RAPIDAPI_HOST);
@@ -45,11 +48,21 @@ function Lineups({ matchId }) {
         console.log("players", JSON.stringify(playerPhotos));
       } catch (error) {
         console.error("Error fetching lineups or players:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchLineups();
   }, [matchId]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center h-screen items-center">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 w-[120rem] mx-auto px-20">

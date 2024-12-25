@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Loading from "../loading";
+import { useNavigate } from "react-router-dom";
 
 async function fetchMatchesWithPredictionByDate(date, leagueId) {
   try {
@@ -21,13 +22,14 @@ async function fetchMatchesWithPredictionByDate(date, leagueId) {
   }
 }
 
-function UpcomingMatches({ date, onMatchClick }) {
+function UpcomingMatches({ date }) {
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5; // Number of matches per page
   const leagueIDs = [39, 140, 78, 135, 61];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMatches = async () => {
@@ -117,6 +119,15 @@ function UpcomingMatches({ date, onMatchClick }) {
     setCurrentPage(page);
   };
 
+  const handleMatchClick = (match) => {
+    navigate(`/matches/${match.fixture.id}`, {
+      state: {
+        prediction: match.predict,
+        date: date,
+      },
+    });
+  };
+
   return (
     <div className="rounded-[2rem] pb-4">
       {leagueIds.map((leagueId, index) => {
@@ -135,7 +146,7 @@ function UpcomingMatches({ date, onMatchClick }) {
               <div
                 key={match.fixture.id}
                 className="mt-6 bg-white px-8 flex py-10 border border-zinc-300 rounded-2xl shadow-lg"
-                onClick={() => onMatchClick(match)}
+                onClick={() => handleMatchClick(match)}
               >
                 <div className="flex flex-col items-center border-r-2 my-auto pr-8">
                   <p className="text-black text-2xl font-semibold mb-6">

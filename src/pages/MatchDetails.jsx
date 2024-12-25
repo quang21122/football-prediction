@@ -7,12 +7,17 @@ import Lineups from "../components/lineups/Lineups";
 import RecentMatches from "../components/recentMatches/RecentMatches";
 import HeadToHead from "../components/headToHead/HeadToHead";
 import MatchStatistics from "../components/matchStatistics/MatchStatistics";
+import Loading from "../components/loading";
+import { useLocation } from "react-router-dom";
 
 function MatchDetails() {
   const { id } = useParams(); // Retrieve match ID from the URL
   const [match, setMatch] = useState(null);
   const [selectedDetails, setSelectedDetails] = useState("lineups");
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const { prediction = {}, date } = location.state || {};
+  console.log("prediction", prediction);
 
   useEffect(() => {
     const fetchMatchData = async () => {
@@ -48,7 +53,7 @@ function MatchDetails() {
   if (loading) {
     return (
       <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">Loading match details...</h1>
+        <Loading />
       </div>
     );
   }
@@ -113,9 +118,9 @@ function MatchDetails() {
                   Dự đoán
                 </span>
                 <div className="border space-x-10 mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-6">
-                  <span className="">?</span>
+                  <span className="">{prediction.home}</span>
                   <span className="">-</span>
-                  <span className="">?</span>
+                  <span className="">{prediction.away}</span>
                 </div>
               </div>
             </div>
@@ -197,7 +202,11 @@ function MatchDetails() {
         <div className="border-2 border-zinc-100">
           {selectedDetails === "lineups" && <Lineups matchId={id} />}
           {selectedDetails === "recent" && (
-            <RecentMatches home={match.teams.home} away={match.teams.away} />
+            <RecentMatches
+              home={match.teams.home}
+              away={match.teams.away}
+              date={date}
+            />
           )}
           {selectedDetails === "h2h" && (
             <HeadToHead

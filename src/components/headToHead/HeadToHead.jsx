@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Loading from "../loading";
 
 function HeadToHead({ homeTeamId, awayTeamId }) {
   const [headToHead, setHeadToHead] = useState([]);
@@ -120,7 +121,7 @@ function HeadToHead({ homeTeamId, awayTeamId }) {
   if (loading) {
     return (
       <div className="flex justify-center h-screen items-center">
-        <h1 className="text-3xl">Loading...</h1>
+        <Loading />
       </div>
     );
   }
