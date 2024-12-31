@@ -4,7 +4,7 @@ import Club from "./pages/Club-v2";
 import ClubDetails from "./pages/ClubDetails-v2";
 import MatchDetails from "./pages/MatchDetails";
 import Standings from "./pages/Standings";
-import ChatBot from "./components/chatbot/chatbot";
+import ChatBot from "./components/chatbot/ChatBot";
 import NavigationBar from "./components/navbar/navbar";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
