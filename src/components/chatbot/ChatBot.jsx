@@ -8,14 +8,17 @@ function ChatBot() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const [isStartChat, setIsStartChat] = useState(false);
 
+  const suggestedQuestions = [
+    "Who is Cristiano Ronaldo?",
+    "Where was Cristiano Ronaldo born?",
+    "Where can Cristiano Ronaldo play?",
+    "What club does Cristiano Ronaldo play for?",
+    "Is Cristiano Ronaldo GOAT of Football?",
+  ];
+
   // Message mẫu
   const [messages, setMessages] = useState([
-    { type: "question", text: "Hello, how can I help you?" },
-    { type: "answer", text: "What are the latest football scores?" },
-    { type: "question", text: "Can you predict the next match?" },
-    { type: "answer", text: "Sure, let me check the data for you." },
-    { type: "question", text: "Show me the league standings." },
-    { type: "answer", text: "Here are the current league standings." },
+    { type: "answer", text: "Welcome to Football players Chatbot!" },
   ]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -23,66 +26,35 @@ function ChatBot() {
     setIsSidebarVisible(!isSidebarVisible);
   };
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== "") {
-      setMessages([...messages, { type: "question", text: newMessage }]);
-      setNewMessage("");
-    }
+  const handleSendMessage = async (question) => {
+    const updatedMessages = [...messages, { type: "question", text: question }];
+    // Gọi API để lấy câu trả lời từ chatbot
+    const response = await fetch("https://ca5d-34-83-234-130.ngrok-free.app/ask", { // This link changes each time we run the model server on kaggle
+      method: "POST",
+      body: JSON.stringify({ text: question }),
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    const data = await response.json();
+
+    setMessages([...updatedMessages, { type: "answer", text: data.answer }]);
   };
 
-  // Chat history mẫu
-  const chatHistory = [
-    { date: new Date("2024-11-18"), message: "Hello, how can I help you?" },
-    { date: new Date("2024-11-18"), message: "What are the latest scores?" },
-    {
-      date: new Date("2024-10-02"),
-      message: "What are the latest football scores?",
-    },
-    {
-      date: new Date("2023-10-03"),
-      message: "Can you predict the next match?",
-    },
-    { date: new Date("2023-10-04"), message: "Show me the league standings." },
-  ];
-
-  const sortedChatHistory = chatHistory.sort((a, b) => b.date - a.date);
-
-  const formatDate = (date) => {
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
-
-    if (date.toDateString() === today.toDateString()) {
-      return "Hôm nay";
-    } else if (date.toDateString() === yesterday.toDateString()) {
-      return "Hôm qua";
-    } else {
-      const monthsDifference =
-        (today.getFullYear() - date.getFullYear()) * 12 +
-        (today.getMonth() - date.getMonth());
-      if (monthsDifference < 12) {
-        return `${monthsDifference} tháng trước`;
-      } else {
-        const yearsDifference = today.getFullYear() - date.getFullYear();
-        return `${yearsDifference} năm trước`;
-      }
-    }
-  };
-
-  const groupedChatHistory = sortedChatHistory.reduce((acc, chat) => {
-    const date = chat.date.toDateString();
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(chat);
-    return acc;
-  }, {});
+  const handleSuggestedQuestionClick = (question) => {
+    setIsStartChat(true);
+    const updatedMessages = [...messages, { type: "question", text: newMessage }];
+    setMessages(updatedMessages);
+    setNewMessage("");
+    handleSendMessage(question);
+  }
 
   return (
     <div
-      className={`grid pt-8 gap-x-8 max-w-[120rem] mx-auto border border-x-2 border-gray-200 transition-all duration-500 ease-in-out ${
-        isSidebarVisible ? "grid-cols-[0.5fr_9.5fr]" : "grid-cols-[3fr_7fr]"
-      }`}
+      className={`grid pt-8 gap-x-8 max-w-[120rem] mx-auto border border-x-2 border-gray-200 transition-all duration-500 ease-in-out ${isSidebarVisible ? "grid-cols-[0.5fr_9.5fr]" : "grid-cols-[3fr_7fr]"
+        }`}
     >
       {!isSidebarVisible && (
         <div className="bg-red-300 h-screen">
@@ -93,31 +65,22 @@ function ChatBot() {
             />
             <LuPenSquare
               className="text-5xl text-red-600 cursor-pointer"
-              onClick={() => {}}
+              onClick={() => { }}
             />
           </div>
 
           <p className="text-red-600 mx-10 font-semibold text-4xl py-5 select-none">
-            Lịch sử trò chuyện
+            Suggested Questions
           </p>
 
           <div className="h-[80%] flex flex-col mt-10 w-[100%] select-none">
-            {Object.keys(groupedChatHistory).map((date, index) => (
-              <div key={index} className="mb-10">
-                <p className="text-white font-semibold text-4xl pl-10 pb-4">
-                  {formatDate(new Date(date))}
-                </p>
-                {groupedChatHistory[date].map((chat, chatIndex) => (
-                  <div
-                    key={chatIndex}
-                    className="mb-3 py-2 hover:bg-red-500 hover:cursor-pointer w-full"
-                    onClick={() => {}}
-                  >
-                    <p className="text-gray-100 text-3xl pl-10 py-2">
-                      {chat.message}
-                    </p>
-                  </div>
-                ))}
+            {suggestedQuestions.map((question, index) => (
+              <div
+                key={index}
+                className="mb-3 py-2 hover:bg-red-500 hover:cursor-pointer w-full"
+                onClick={() => handleSuggestedQuestionClick(question)}
+              >
+                <p className="text-gray-100 text-3xl pl-10 py-2">{question}</p>
               </div>
             ))}
           </div>
@@ -131,7 +94,7 @@ function ChatBot() {
           />
           <LuPenSquare
             className="text-5xl text-red-600 cursor-pointer"
-            onClick={() => {}}
+            onClick={() => { }}
           />
         </div>
       )}
@@ -141,7 +104,7 @@ function ChatBot() {
           <div className="flex flex-row items-center">
             <img src={Logo} alt="Chatbot logo" className="w-20 h-20" />
             <p className="text-red-600 text-4xl font-semibold mx-10">
-              Trợ lý bóng đá của bạn
+              Ask about football players
             </p>
           </div>
           <div className="w-[90%] mt-8 flex flex-row items-center">
@@ -150,39 +113,24 @@ function ChatBot() {
               type="text"
               placeholder="Đặt câu hỏi cho tôi ngay"
               className="border border-red-200 rounded-full p-4 w-full text-red-500 placeholder:text-red-300 focus:outline-none"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
             />
             {/* Button */}
             <button
               className="bg-red-200 text-red-500 text-2xl font-semibold rounded-full w-14 h-14 flex justify-center items-center -ml-16 hover:bg-red-400 hover:text-white"
-              onClick={() => {}}
+              onClick={() => {
+                setIsStartChat(true);
+
+                if (newMessage.trim() !== "") {
+                  const updatedMessages = [...messages, { type: "question", text: newMessage }];
+                  setMessages(updatedMessages);
+                  setNewMessage("");
+                  handleSendMessage(newMessage)
+                }
+              }}
             >
               <FaArrowUp />
-            </button>
-          </div>
-          <div className="space-x-16 items-center mt-8">
-            <button
-              className="bg-red-500 text-2xl px-8 py-4 rounded-2xl text-white hover:cursor-pointer hover:bg-red-300 hover:text-red-500"
-              onClick={() => {}}
-            >
-              Dự đoán
-            </button>
-            <button
-              className="bg-red-500 text-2xl px-8 py-4 rounded-2xl text-white hover:cursor-pointer hover:bg-red-300 hover:text-red-500"
-              onClick={() => {}}
-            >
-              Phân tích
-            </button>
-            <button
-              className="bg-red-500 text-2xl px-8 py-4 rounded-2xl text-white hover:cursor-pointer hover:bg-red-300 hover:text-red-500"
-              onClick={() => {}}
-            >
-              Lịch đấu
-            </button>
-            <button
-              className="bg-red-500 text-2xl px-8 py-4 rounded-2xl text-white hover:cursor-pointer hover:bg-red-300 hover:text-red-500"
-              onClick={() => {}}
-            >
-              Bảng xếp hạng
             </button>
           </div>
         </div>
@@ -194,11 +142,10 @@ function ChatBot() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`mb-6 p-4 rounded-2xl ${
-                  message.type === "question"
-                    ? "bg-red-400 text-white self-end"
-                    : "text-black self-start"
-                }`}
+                className={`mb-6 p-4 rounded-2xl ${message.type === "question"
+                  ? "bg-red-400 text-white self-end"
+                  : "text-black self-start"
+                  }`}
               >
                 <div className="flex flex-row">
                   {message.type === "answer" && (
@@ -210,9 +157,8 @@ function ChatBot() {
             ))}
           </div>
           <div
-            className={`fixed bottom-0 p-4 ${
-              isSidebarVisible ? "w-[60%]" : "w-[50%]"
-            }`}
+            className={`fixed bottom-0 p-4 ${isSidebarVisible ? "w-[60%]" : "w-[50%]"
+              }`}
           >
             <div className="flex items-center w-[90%] mx-auto">
               {/* Input field */}
@@ -226,7 +172,18 @@ function ChatBot() {
               {/* Button */}
               <button
                 className="bg-red-200 text-red-500 text-2xl font-semibold rounded-full w-14 h-14 flex justify-center items-center -ml-16 hover:bg-red-400 hover:text-white"
-                onClick={handleSendMessage}
+                onClick={() => {
+                  if (!isStartChat) {
+                    setIsStartChat(true);
+                  }
+
+                  if (newMessage.trim() !== "") {
+                    const updatedMessages = [...messages, { type: "question", text: newMessage }];
+                    setMessages(updatedMessages);
+                    setNewMessage("");
+                    handleSendMessage(newMessage)
+                  }
+                }}
               >
                 <FaArrowUp />
               </button>
