@@ -40,11 +40,8 @@ function UpcomingMatches({ date }) {
         const leagueMatchesPromises = leagueIDs.map((leagueId) =>
           fetchMatchesWithPredictionByDate(date, leagueId)
         );
-        console.log("leagueMatchesPromises", leagueMatchesPromises);
         const results = await Promise.all(leagueMatchesPromises);
         const matchesWithPredictions = results.flat(); // combine all league matches
-        console.log("fetch Matches", matchesWithPredictions);
-        console.log("Matches.length", matchesWithPredictions.length);
 
         if (matchesWithPredictions.length === 0) {
           setError("No matches found for the specified date.");
@@ -120,12 +117,23 @@ function UpcomingMatches({ date }) {
   };
 
   const handleMatchClick = (match) => {
-    navigate(`/matches/${match.fixture.id}`, {
-      state: {
-        prediction: match.predict,
-        date: date,
-      },
-    });
+    const currentDate = new Date();
+    const matchDate = new Date(date);
+    const addedTwoYear = new Date(
+      matchDate.setFullYear(matchDate.getFullYear() + 2)
+    );
+
+    // If match date is beyond 2 years, don't pass prediction state
+    if (currentDate >= addedTwoYear) {
+      navigate(`/matches/${match.fixture.id}`);
+    } else {
+      navigate(`/matches/${match.fixture.id}`, {
+        state: {
+          prediction: match.predict,
+          date: date,
+        },
+      });
+    }
   };
 
   return (

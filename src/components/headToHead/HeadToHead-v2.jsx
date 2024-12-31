@@ -31,9 +31,7 @@ function HeadToHead() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("Updated Stats:", stats);
-  }, [stats]);
+  useEffect(() => {}, [stats]);
 
   const convertDate = (utcDate) => {
     const date = new Date(utcDate);

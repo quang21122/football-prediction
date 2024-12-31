@@ -46,7 +46,6 @@ function loadData() {
   localStorage.setItem("clubInfoData", JSON.stringify(clubInfoData));
   localStorage.setItem("eplMatches", JSON.stringify(eplMatches));
   localStorage.setItem("clubListData", JSON.stringify(clubListData));
-  console.log("Data loaded");
 }
 
 function Home() {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { GrFormNext } from "react-icons/gr";
 import PropTypes from "prop-types";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import Loading from "../loading";
 
 async function fetchMatchesWithPredictionByRange(leagueId, from, to) {
@@ -38,9 +38,13 @@ function UpcomingMatches({ leagueId }) {
       setLoading(true);
       setError(null);
       try {
-        const startDate = dayjs().add(1, 'day').subtract(2, 'year'); // Thêm 1 ngày và lùi 2 năm
-        const endDate = startDate.add(10, 'day'); // Thêm 10 ngày so với startDate
-        const data = await fetchMatchesWithPredictionByRange(leagueId, startDate, endDate);
+        const startDate = dayjs().add(1, "day").subtract(2, "year"); // Thêm 1 ngày và lùi 2 năm
+        const endDate = startDate.add(10, "day"); // Thêm 10 ngày so với startDate
+        const data = await fetchMatchesWithPredictionByRange(
+          leagueId,
+          startDate,
+          endDate
+        );
 
         if (data.length > 0) {
           const matches = data.slice(0, 16);
@@ -76,7 +80,11 @@ function UpcomingMatches({ leagueId }) {
   }
 
   const handleMatchClick = (match) => {
-    navigate(`/matches/${match.fixture.id}`);
+    navigate(`/matches/${match.fixture.id}`, {
+      state: {
+        prediction: match.predict,
+      },
+    });
   };
 
   const convertDate = (utcDate) => {

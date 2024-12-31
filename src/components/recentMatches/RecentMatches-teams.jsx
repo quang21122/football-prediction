@@ -24,9 +24,6 @@ function RecentMatches({ teamId, date }) {
         toDate.setDate(toDate.getDate() - 1);
         const newDate = toDate.toISOString().split("T")[0]; // Format as YYYY-MM-DD
 
-        console.log("fromDate", fromDate);
-        console.log("date", date);
-
         const myHeaders = new Headers();
         myHeaders.append("x-rapidapi-key", import.meta.env.VITE_RAPIDAPI_KEY);
         myHeaders.append("x-rapidapi-host", import.meta.env.VITE_RAPIDAPI_HOST);
@@ -46,7 +43,6 @@ function RecentMatches({ teamId, date }) {
         }
         const data = await response.json();
         setRecentMatches(data.response);
-        console.log("Recent matches:", JSON.stringify(data.response));
         localStorage.setItem("recentMatches", JSON.stringify(data.response));
       } catch (error) {
         console.error("Error fetching recent matches:", error);

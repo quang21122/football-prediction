@@ -35,7 +35,6 @@ export default function MatchStatistics() {
     });
 
     setStats(filteredStats);
-    console.log(filteredStats);
   }, []);
 
   const stats1 =

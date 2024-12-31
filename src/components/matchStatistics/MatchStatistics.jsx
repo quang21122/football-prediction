@@ -47,7 +47,6 @@ function MatchStatistics({ matchId }) {
         );
 
         const data = await response.json();
-        console.log("API Response:", data);
 
         if (!data.response || !Array.isArray(data.response)) {
           setError("No valid data received from API.");

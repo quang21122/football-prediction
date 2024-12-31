@@ -17,8 +17,8 @@ const Standings = () => {
     61: "Ligue 1",
     78: "Bundesliga",
     135: "Serie A",
-    140: "La Liga"
-  }
+    140: "La Liga",
+  };
 
   const leaderboardArr = [
     " ",
@@ -39,18 +39,14 @@ const Standings = () => {
       setError(null);
       try {
         const response = await fetch(
-          `http://localhost:9000/leaderboard?league=${leagueId}`,
+          `http://localhost:9000/leaderboard?league=${leagueId}`
         );
         if (!response.ok) {
           throw new Error(`Error fetching standings: ${response.status}`);
         }
         const data = await response.json();
-        console.log("data", data);
         setStandings(data.leaderboard.Teams);
-        console.log("standings", data.leaderboard.Teams);
         setLeagueName(leagueNames[leagueId]);
-        console.log("leagueName", leagueNames[leagueId]);
-
       } catch (error) {
         console.error("Error fetching standings:", error);
         setError(error);
@@ -135,8 +131,9 @@ const Standings = () => {
             {standings.slice(0, displayLimit).map((team, index) => (
               <tr
                 key={index}
-                className={`${index % 2 === 0 ? "" : "bg-gray-100"
-                  } text-3xl text-center`}
+                className={`${
+                  index % 2 === 0 ? "" : "bg-gray-100"
+                } text-3xl text-center`}
               >
                 <td className="py-7 px-6">{team.Rank}</td>
                 <td className="py-7 flex flex-row justify-start items-center">
@@ -145,8 +142,7 @@ const Standings = () => {
                     alt={team.team.name}
                     className="w-12 h-12 mr-4"
                     
-                  /> */
-                  console.log("team.Team",team.Team)}
+                  /> */}
                   {team.Team}
                 </td>
                 <td className="py-7 px-6">{team.GP}</td>
@@ -158,7 +154,7 @@ const Standings = () => {
                 <td className="py-7 px-6">
                   {team.GF - team.GA >= 0
                     ? "+" + (team.GF - team.GA)
-                    : "-" + (team.GF- team.GA)}
+                    : "-" + (team.GF - team.GA)}
                 </td>
                 <td className="py-7 px-6">{team.Pts}</td>
               </tr>

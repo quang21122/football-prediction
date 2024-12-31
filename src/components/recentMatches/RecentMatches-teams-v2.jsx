@@ -9,13 +9,7 @@ function RecentMatchesTeams({ data }) {
 
   useEffect(() => {
     setCurrentPage(1);
-    setRecentMatches(
-      JSON.parse(localStorage.getItem(data)) || []
-    );
-    console.log(
-      "Recent matches:",
-      JSON.parse(localStorage.getItem("recentMatches"))
-    );
+    setRecentMatches(JSON.parse(localStorage.getItem(data)) || []);
   }, [data]);
 
   const convertDate = (utcDate) => {

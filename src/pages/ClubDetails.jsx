@@ -27,7 +27,6 @@ function ClubDetails() {
           }
         );
         const data = await response.json();
-        console.log(data);
         if (data && data.response && data.response.length > 0) {
           setClub(data.response[0]);
         } else {
