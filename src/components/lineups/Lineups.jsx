@@ -28,7 +28,6 @@ function Lineups({ matchId }) {
         const lineupData = await lineupResponse.json();
         setLineups(lineupData.response);
         localStorage.setItem("lineups", JSON.stringify(lineupData.response));
-        console.log("lineups", JSON.stringify(lineupData.response));
 
         const playersResponse = await fetch(
           `https://v3.football.api-sports.io/fixtures/players?fixture=${matchId}`,
@@ -45,7 +44,6 @@ function Lineups({ matchId }) {
 
         setPlayersData(playerPhotos);
         localStorage.setItem("playersData", JSON.stringify(playerPhotos));
-        console.log("players", JSON.stringify(playerPhotos));
       } catch (error) {
         console.error("Error fetching lineups or players:", error);
       } finally {

@@ -30,7 +30,6 @@ function UpcomingMatches({ clubId, onMatchClick }) {
         const data = await response.json();
 
         localStorage.setItem("upcomingMatches", JSON.stringify(data.response));
-        console.log("Upcoming matches:", JSON.stringify(data.response));
 
         setMatches(data.response);
         setLoading(false);

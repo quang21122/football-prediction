@@ -38,7 +38,6 @@ const Standings = ({ clubId }) => {
           );
 
           const data = await response.json();
-          console.log(`Data for league ${leagueId}:`, data);
 
           if (data.response && data.response.length > 0) {
             const standings = data.response[0].league.standings[0];

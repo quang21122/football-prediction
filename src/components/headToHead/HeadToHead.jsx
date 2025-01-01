@@ -44,7 +44,6 @@ function HeadToHead({ homeTeamId, awayTeamId }) {
         setHeadToHead(slicedMatches);
 
         localStorage.setItem("headToHead", JSON.stringify(slicedMatches));
-        console.log("h2h", JSON.stringify(slicedMatches));
 
         if (Array.isArray(slicedMatches)) {
           const homeWins = slicedMatches.filter(
@@ -76,9 +75,7 @@ function HeadToHead({ homeTeamId, awayTeamId }) {
     fetchHeadToHead();
   }, [homeTeamId, awayTeamId]);
 
-  useEffect(() => {
-    console.log("Updated Stats:", stats);
-  }, [stats]);
+  useEffect(() => {}, [stats]);
 
   const convertDate = (utcDate) => {
     const date = new Date(utcDate);

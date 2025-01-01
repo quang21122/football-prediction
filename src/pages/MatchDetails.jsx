@@ -17,7 +17,6 @@ function MatchDetails() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
   const { prediction = {}, date } = location.state || {};
-  console.log("prediction", prediction);
 
   useEffect(() => {
     const fetchMatchData = async () => {
@@ -113,16 +112,30 @@ function MatchDetails() {
                   <span className="">{match.fixture.venue.name}</span>
                 </div>
               </div>
-              <div className="w-80 mx-auto mt-14">
-                <span className="text-3xl -mt-8 flex justify-center font-bold text-primary">
-                  Dự đoán
-                </span>
-                <div className="border space-x-10 mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-6">
-                  <span className="">{prediction.home}</span>
-                  <span className="">-</span>
-                  <span className="">{prediction.away}</span>
+              {prediction && Object.keys(prediction).length > 0 ? (
+                <div className="w-80 mx-auto mt-14">
+                  <span className="text-3xl -mt-8 flex justify-center font-bold text-primary">
+                    Dự đoán
+                  </span>
+                  <div className="border space-x-10 mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-6">
+                    <span className="">{prediction.home}</span>
+                    <span className="">-</span>
+                    <span className="">{prediction.away}</span>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="w-80 mx-auto mt-14">
+                  <span className="text-3xl -mt-8 flex justify-center font-bold text-primary">
+                    Kết quả
+                  </span>
+                  <div className="border space-x-10 mt-2 shadow-xl text-5xl font-bold text-primary-dark border-zinc-400 rounded-full px-10 flex justify-center py-6">
+                    <span className="">{match.goals.home}</span>
+                    <span className="">-</span>
+                    <span className="">{match.goals.away}</span>
+                  </div>
+                </div>
+              )}
+              ;
             </div>
             <div className="flex justify-center items-center mt-48 text-black text-4xl font-bold space-x-8">
               <img

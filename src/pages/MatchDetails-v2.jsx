@@ -22,7 +22,6 @@ function MatchDetails() {
         (m) => m.fixture.id === parseInt(id)
       );
       setMatch(selectedMatch);
-      console.log(selectedMatch);
     }
   }, [id]);
 

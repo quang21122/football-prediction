@@ -38,19 +38,19 @@ export const generateDate = (
     });
   }
 
-    const remaining = 42 - days.length;
+  const remaining = 42 - days.length;
 
-    for (
-      let i = lastDayOfMonth.date() + 1;
-      i <= lastDayOfMonth.date() + remaining;
-      i++
-    ) {
-      const date = lastDayOfMonth.date(i);
-      days.push({
-        date,
-        isCurrentMonth: false,
-      });
-    }
+  for (
+    let i = lastDayOfMonth.date() + 1;
+    i <= lastDayOfMonth.date() + remaining;
+    i++
+  ) {
+    const date = lastDayOfMonth.date(i);
+    days.push({
+      date,
+      isCurrentMonth: false,
+    });
+  }
 
   return days;
 };
@@ -73,12 +73,13 @@ export const months = [
 const Calendar = ({ onDateSelect }) => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [today, setToday] = React.useState(dayjs().subtract(2, "year"));
-  const [selectedDate, setSelectedDate] = React.useState(dayjs().subtract(2, "year"));
+  const [selectedDate, setSelectedDate] = React.useState(
+    dayjs().subtract(2, "year")
+  );
   const handleDateSelect = (date) => {
     setSelectedDate(date);
     onDateSelect(date); // Call the prop function to pass selectedDate
   };
-  console.log("selectedDate", selectedDate);
   return (
     <div className="pl-2 border border-gray-300 rounded-[3rem] shadow-sm">
       <div className="w-[40rem] h-[48rem] rounded-[4.5rem] bg-white">

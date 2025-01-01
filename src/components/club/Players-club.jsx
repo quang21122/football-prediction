@@ -31,7 +31,6 @@ function PlayersClub({ clubId }) {
         const playersData = data.response[0]?.players || []; // Get the players array from the first team object
 
         localStorage.setItem("playersClub", JSON.stringify(playersData));
-        console.log("Players:", JSON.stringify(playersData));
 
         setPlayers(playersData);
         setLoading(false);

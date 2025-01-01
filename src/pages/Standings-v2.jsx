@@ -26,7 +26,6 @@ const Standings = () => {
 
   useEffect(() => {
     const savedStandings = JSON.parse(localStorage.getItem("standingsData"));
-    console.log("Standings data:", savedStandings);
     if (savedStandings && savedStandings[0].league.standings[0]) {
       setStandings(savedStandings[0].league.standings[0]);
       setLeagueName(savedStandings[0].league.name);

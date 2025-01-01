@@ -43,8 +43,6 @@ function FinishedMatches({ date }) {
           JSON.stringify(finishedMatches)
         );
 
-        console.log("Finished matches:", JSON.stringify(finishedMatches));
-
         setMatches(finishedMatches);
         setLoading(false);
       } catch (error) {

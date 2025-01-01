@@ -10,8 +10,6 @@ function Lineups() {
     const savedPlayersData = localStorage.getItem("playersData");
     setLineups(savedLineups ? JSON.parse(savedLineups) : []);
     setPlayersData(savedPlayersData ? JSON.parse(savedPlayersData) : {});
-    console.log("Lineups:", savedLineups);
-    console.log("Players data:", savedPlayersData);
   }, []);
 
   if (lineups.length === 0) {
